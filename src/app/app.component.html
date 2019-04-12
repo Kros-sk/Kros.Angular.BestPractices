@@ -1,12 +1,23 @@
-<div style="text-align:center">
-    <h1>
+<div class="container border rounded p-4 my-4 bg-light">
+    <h1 class="text-center">
         KROS Todo list
     </h1>
-</div>
 
-<div>
-    <button [routerLink]="['/todo']" >Todo list</button>
-    <button [routerLink]="['/users']">Users management</button>
-</div>
+    <div class="row justify-content-between no-gutters px-0 py-4">
+        <div class="btn-group col-6" role="group">
+            <button type="button" class="btn btn-outline-primary col" [routerLink]="['/todo']" routerLinkActive="active">
+                Todo list
+            </button>
+            <button type="button" class="btn btn-outline-primary col" [routerLink]="['/users']" routerLinkActive="active">
+                Users management
+            </button>
+        </div>
 
-<router-outlet></router-outlet>
+        <button class="btn btn-outline-danger col-2"
+            ngbPopover="Maj sa, hraj sa..." popoverTitle="Logout">
+            Logout
+        </button>
+    </div>
+
+    <router-outlet></router-outlet>
+</div>
