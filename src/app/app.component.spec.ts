@@ -20,16 +20,10 @@ describe('AppComponent', () => {
         expect(app).toBeTruthy();
     });
 
-    it(`should have correct title`, () => {
-        const fixture = TestBed.createComponent(AppComponent);
-        const app = fixture.debugElement.componentInstance;
-        expect(app.title).toEqual('KROS Angular best practices');
-    });
-
-    it('should render title in a h1 tag', () => {
+    it('should render correct title', () => {
         const fixture = TestBed.createComponent(AppComponent);
         fixture.detectChanges();
         const compiled = fixture.debugElement.nativeElement;
-        expect(compiled.querySelector('h1').textContent).toContain('Vitajte v KROS Angular best practices!');
+        expect(compiled.querySelector('h1').textContent).toContain('KROS Todo list');
     });
 });
