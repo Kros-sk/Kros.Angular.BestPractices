@@ -6,6 +6,7 @@
         "start": "ng serve",
         "build": "ng build",
         "build-prod": "ng build --prod",
+        "http-server": "http-server -p 8080 -c-1 ./dist/Kros.Angular.BestPractices",
         "test": "ng test",
         "lint": "ng lint",
         "e2e": "ng e2e"
@@ -19,7 +20,9 @@
         "@angular/forms": "~7.2.0",
         "@angular/platform-browser": "~7.2.0",
         "@angular/platform-browser-dynamic": "~7.2.0",
+        "@angular/pwa": "^0.12.4",
         "@angular/router": "~7.2.0",
+        "@angular/service-worker": "~7.2.0",
         "core-js": "^2.5.4",
         "rxjs": "~6.3.3",
         "tslib": "^1.9.0",
