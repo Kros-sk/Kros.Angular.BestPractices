@@ -1,0 +1,5 @@
+<ul class="list-group">
+    <li class="list-group-item" *ngFor="let item of todoList$ | async">
+        <kros-todo-item [item]="item"></kros-todo-item>
+    </li>
+</ul>

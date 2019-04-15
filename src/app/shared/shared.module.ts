@@ -2,6 +2,8 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
+import { HttpClientModule } from '@angular/common/http';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 
 @NgModule({
@@ -9,14 +11,18 @@ import { RouterModule } from '@angular/router';
         CommonModule,
         ReactiveFormsModule,
         RouterModule,
+        HttpClientModule,
+        NgbModule,
     ],
     declarations: [
-      // shared components
+        // shared components
     ],
     exports: [
         CommonModule,
         ReactiveFormsModule,
         RouterModule,
+        HttpClientModule,
+        NgbModule,
     ]
 })
 export class SharedModule {}

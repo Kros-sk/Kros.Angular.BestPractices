@@ -1,12 +1,29 @@
-<div style="text-align:center">
-    <h1>
+<div class="container border rounded p-4 my-4 bg-light">
+    <h1 class="text-center">
         KROS Todo list
     </h1>
-</div>
 
-<div>
-    <button [routerLink]="['/todo']" >Todo list</button>
-    <button [routerLink]="['/users']">Users management</button>
-</div>
+    <div *ngIf="!isLoggedIn()" class="row px-4 py-4">
+        <button class="btn btn-outline-primary col-2" (click)="login()">
+            Login
+        </button>
+    </div>
 
-<router-outlet></router-outlet>
+    <div *ngIf="isLoggedIn()">
+        <div class="row justify-content-between no-gutters px-0 py-4">
+            <div class="btn-group col-6" role="group">
+                <button type="button" class="btn btn-outline-primary col" [routerLink]="['/todo']" routerLinkActive="active">
+                    Todo list
+                </button>
+                <button type="button" class="btn btn-outline-primary col" [routerLink]="['/users']" routerLinkActive="active">
+                    Users management
+                </button>
+            </div>
+
+            <button class="btn btn-outline-danger col-2" (click)="logout()">
+                Logout
+            </button>
+        </div>
+        <router-outlet></router-outlet>
+    </div>
+</div>
