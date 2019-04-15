@@ -15,32 +15,12 @@ export class TodoService {
 
 
     public getTodoList(): Observable<Todo[]> {
-        return of<Todo[]>([
-            {
-                id: 1,
-                name: 'blabla',
-                userId: 0,
-                created: new Date()
-            },
-            {
-                id: 2,
-                name: 'hello',
-                description: 'toto je description',
-                userId: 1,
-                created: new Date()
-            },
-            {
-                id: 3,
-                name: 'world',
-                userId: 1,
-                created: new Date()
-            }
-        ]);
+       return this.http.get<Todo[]>(this.createApiUrl(''));
     }
 
     private createApiUrl(controllerName: string, methodAndParameters?: string): string {
-        const apiUrl = `${environment.todoApiUrl}/api/${controllerName}`;
-
+        // const apiUrl = `${environment.todoApiUrl}/api/${controllerName}`;
+        const apiUrl = `${environment.todoApiUrl}`;
         if (methodAndParameters) {
             return `${apiUrl}/${methodAndParameters}`;
         }

@@ -3,21 +3,27 @@
         KROS Todo list
     </h1>
 
-    <div class="row justify-content-between no-gutters px-0 py-4">
-        <div class="btn-group col-6" role="group">
-            <button type="button" class="btn btn-outline-primary col" [routerLink]="['/todo']" routerLinkActive="active">
-                Todo list
-            </button>
-            <button type="button" class="btn btn-outline-primary col" [routerLink]="['/users']" routerLinkActive="active">
-                Users management
-            </button>
-        </div>
-
-        <button class="btn btn-outline-danger col-2"
-            ngbPopover="Maj sa, hraj sa..." popoverTitle="Logout">
-            Logout
+    <div *ngIf="!isLoggedIn()" class="row px-4 py-4">
+        <button class="btn btn-outline-primary col-2" (click)="login()">
+            Login
         </button>
     </div>
 
-    <router-outlet></router-outlet>
+    <div *ngIf="isLoggedIn()">
+        <div class="row justify-content-between no-gutters px-0 py-4">
+            <div class="btn-group col-6" role="group">
+                <button type="button" class="btn btn-outline-primary col" [routerLink]="['/todo']" routerLinkActive="active">
+                    Todo list
+                </button>
+                <button type="button" class="btn btn-outline-primary col" [routerLink]="['/users']" routerLinkActive="active">
+                    Users management
+                </button>
+            </div>
+
+            <button class="btn btn-outline-danger col-2" (click)="logout()">
+                Logout
+            </button>
+        </div>
+        <router-outlet></router-outlet>
+    </div>
 </div>
