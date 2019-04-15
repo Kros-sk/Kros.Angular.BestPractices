@@ -44,12 +44,11 @@ export class AuthService {
         return this.user ? this.user.access_token : '';
     }
 
-    setUser(user: any): Promise<void> {
-        return this.user = user;
+    logOut(): Promise<void> {
+        return this.manager.signoutRedirect();
     }
 
     completeAuthentication(): Promise<void> {
-        console.log('completeAuthentication');
         return this.manager.signinRedirectCallback().then(user => {
             this.user = user;
         });

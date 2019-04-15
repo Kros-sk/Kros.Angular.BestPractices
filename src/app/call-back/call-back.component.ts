@@ -11,7 +11,6 @@ export class CallBackComponent implements OnInit {
     constructor(private authService: AuthService) { }
 
     ngOnInit() {
-        console.log('-------------------');
         this.authService.completeAuthentication().then(() => {
             window.history.replaceState({},
                 window.document.title,
