@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { AuthService } from './core/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'kros-root',
@@ -6,12 +8,16 @@ import { Component } from '@angular/core';
     styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
+
+    constructor(
+        private router: Router,
+        private authService: AuthService) { }
     isLoggedIn() {
-        return true;
+        return this.authService.isLoggedIn();
     }
 
-    login() {
-
+    login(pageName: string) {
+        this.router.navigate([`${pageName}`]);
     }
 
     logout() {

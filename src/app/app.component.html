@@ -4,7 +4,7 @@
     </h1>
 
     <div *ngIf="!isLoggedIn()" class="row px-4 py-4">
-        <button class="btn btn-outline-primary col-2" (click)="login()">
+        <button class="btn btn-outline-primary col-2" (click)="login('todo')">
             Login
         </button>
     </div>
@@ -24,6 +24,6 @@
                 Logout
             </button>
         </div>
-        <router-outlet></router-outlet>
     </div>
+    <router-outlet></router-outlet>
 </div>

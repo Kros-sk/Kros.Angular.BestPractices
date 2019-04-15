@@ -3,6 +3,7 @@ import { Observable, of, } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Todo } from '../models/todo.model';
 import { HttpClient } from '@angular/common/http';
+import { AuthService } from 'src/app/core/auth.service';
 
 @Injectable({
     providedIn: 'root'
@@ -10,6 +11,7 @@ import { HttpClient } from '@angular/common/http';
 export class TodoService {
 
     constructor(
+        private authService: AuthService,
         private http: HttpClient
     ) { }
 
