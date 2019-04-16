@@ -4,9 +4,9 @@ import { LocalizedErrorInfo } from 'src/app/shared/models/error-info.model';
 
 
 export enum TodoActionsTypes {
-    Load = '[Product] Load',
-    LoadSuccess = '[Product] Load Success',
-    LoadFail = '[Product] Load Fail',
+    Load = '[Todo] Load',
+    LoadSuccess = '[Todo] Load Success',
+    LoadFail = '[Todo] Load Fail',
 }
 
 export class Load implements Action {

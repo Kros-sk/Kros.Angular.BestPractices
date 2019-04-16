@@ -3,14 +3,14 @@
         KROS Todo list
     </h1>
 
-    <div *ngIf="!isLoggedIn()" class="row px-4 py-4">
+    <div *ngIf="!(isLoggedUser$ | async)" class="row px-4 py-4">
         <button class="btn btn-outline-primary col-2" (click)="login('todo')">
             Login
         </button>
     </div>
 
-    <div *ngIf="isLoggedIn()">
-        <div class="row justify-content-between no-gutters px-0 py-4">
+    <div>
+        <div *ngIf="(isLoggedUser$ | async)" class="row justify-content-between no-gutters px-0 py-4">
             <div class="btn-group col-6" role="group">
                 <button type="button" class="btn btn-outline-primary col" [routerLink]="['/todo']" routerLinkActive="active">
                     Todo list
@@ -25,5 +25,6 @@
             </button>
         </div>
     </div>
+
     <router-outlet></router-outlet>
 </div>
