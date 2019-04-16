@@ -20,7 +20,6 @@ export class TodoListComponent implements OnInit {
         this.store.dispatch(new todoActions.Load());
         this.store.pipe(select(state => state.todos)).subscribe(
             (x: TodoState) => {
-                console.log('--------',x);
                 this.todoList = x.todos;
             });
     }

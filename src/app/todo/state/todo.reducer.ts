@@ -43,6 +43,6 @@ export function reducer(state = initialState, action: TodoActions): TodoState {
                 error: action.payload
             };
         default:
-            return state;
+                        return state;
     }
 }
