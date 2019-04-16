@@ -9,7 +9,7 @@
             silentRequestTimeout: 5000,
             checkSessionInterval: 5000
         };
-        new Oidc.UserManager(config).signinSilentCallback().catch((err) => {
+        new UserManager(config).signinSilentCallback().catch((err) => {
             console.log('signinSilentCallback', err);
         });
     </script>
