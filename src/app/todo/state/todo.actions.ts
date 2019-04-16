@@ -8,7 +8,6 @@ export enum TodoActionsTypes {
     LoadFail = '[Product] Load Fail',
 }
 
-
 export class Load implements Action {
     readonly type = TodoActionsTypes.Load;
 }
@@ -24,7 +23,6 @@ export class LoadFail implements Action {
 
     constructor(public payload: string) { }
 }
-
 
 export type TodoActions =
     | Load

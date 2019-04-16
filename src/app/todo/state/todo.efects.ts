@@ -6,8 +6,9 @@ import * as todoActions from './todo.actions';
 import { mergeMap, map, catchError } from 'rxjs/operators';
 import { TodoService } from '../services/todo.service';
 
+
 @Injectable()
-export class InvoiceEffects {
+export class TodoEffects {
     constructor(private actions$: Actions,
                 private todoService: TodoService) { }
 
@@ -17,6 +18,6 @@ export class InvoiceEffects {
         mergeMap(action => this.todoService.getTodoList().pipe(
             map(todos => (new todoActions.LoadSuccess(todos))),
             catchError(err => of(new todoActions.LoadFail(err)))
-        )
-        ));
+        ))
+    );
 }

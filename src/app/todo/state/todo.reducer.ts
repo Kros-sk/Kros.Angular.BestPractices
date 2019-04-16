@@ -1,34 +1,9 @@
-import { Todo } from '../models/todo.model';
-import { TodoActionsTypes, TodoActions} from './todo.actions';
-import { createFeatureSelector, createSelector } from '@ngrx/store';
+import { TodoActionsTypes, TodoActions } from './todo.actions';
+import { initialState, TodoState } from './todo.state';
 
-export interface State {
-    todos: TodoState;
-  }
-
-export interface TodoState {
-    todos: Todo[];
-    error: string;
-}
-
-const initialState: TodoState = {
-    todos: [],
-    error: ''
-};
-
-
-const getTodoState = createFeatureSelector<TodoState>('todos');
-
-export const getTodoList = createSelector(
-    getTodoState,
-  state => {
-    return state.todos;
-  }
-);
 
 export function reducer(state = initialState, action: TodoActions): TodoState {
     switch (action.type) {
-
         case TodoActionsTypes.LoadSuccess:
             return {
                 ...state,
@@ -43,6 +18,6 @@ export function reducer(state = initialState, action: TodoActions): TodoState {
                 error: action.payload
             };
         default:
-                        return state;
+            return state;
     }
 }
