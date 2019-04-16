@@ -1,7 +1,8 @@
 import { OnInit, Component } from '@angular/core';
-import { TodoService } from '../services/todo.service';
 import { Todo } from '../models/todo.model';
-import { Observable } from 'rxjs';
+import { Store,  select} from '@ngrx/store';
+import * as todoActions from '../state/todo.actions';
+import { TodoState, State } from '../state/todo.reducer';
 
 @Component({
     selector: 'kros-todo-list',
@@ -10,11 +11,17 @@ import { Observable } from 'rxjs';
 })
 export class TodoListComponent implements OnInit {
 
-    constructor(private todoService: TodoService) { }
+    constructor(
+        private store: Store<State>) { }
 
-    todoList$: Observable<Todo[]>;
+    todoList: Todo[] = [];
 
     ngOnInit() {
-        this.todoList$ = this.todoService.getTodoList();
+        this.store.dispatch(new todoActions.Load());
+        this.store.pipe(select(state => state.todos)).subscribe(
+            (x: TodoState) => {
+                console.log('--------',x);
+                this.todoList = x.todos;
+            });
     }
 }
