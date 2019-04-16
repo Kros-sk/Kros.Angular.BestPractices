@@ -60,7 +60,7 @@ export function getClientSettings(): UserManagerSettings {
         userStore: new Oidc.WebStorageStateStore({ store: window.localStorage }),
         authority: 'https://demo.identityserver.io/',
         client_id: 'spa',
-        redirect_uri: 'http://localhost:4200/auth-callback',
+        redirect_uri: 'http://localhost:4200/assets/login-redirect.html',
         post_logout_redirect_uri: 'http://localhost:4200',
         response_type: 'code',
         scope: 'openid',

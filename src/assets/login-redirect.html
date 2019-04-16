@@ -1,0 +1,23 @@
+<head>
+        <title></title>
+    </head>
+
+    <body>
+        <script src="oidc-client.min.js"></script>
+        <script>
+                var config = {
+                  userStore: new WebStorageStateStore({ store: window.localStorage }),
+                  response_mode: 'query',
+                };
+                var mgr = new UserManager(config);
+                mgr.signinRedirectCallback().then(() => {
+                      window.history.replaceState({},
+                          window.document.title,
+                          window.location.origin);
+                      window.location = "/todo";
+                  }, error => {
+                      console.error(error);
+                  });
+
+              </script>
+    </body>
