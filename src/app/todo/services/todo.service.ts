@@ -1,9 +1,11 @@
 import { Injectable } from '@angular/core';
-import { Observable, of, } from 'rxjs';
+import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Todo } from '../models/todo.model';
 import { HttpClient } from '@angular/common/http';
 import { AuthService } from 'src/app/core/auth.service';
+import { catchError } from 'rxjs/operators';
+import { handleHttpError } from 'src/app/shared/helpers/api.helper';
 
 @Injectable({
     providedIn: 'root'
@@ -17,7 +19,11 @@ export class TodoService {
 
 
     public getTodoList(): Observable<Todo[]> {
-       return this.http.get<Todo[]>(this.createApiUrl(''));
+        return this.http
+            .get<Todo[]>(this.createApiUrl(''))
+            .pipe(
+                catchError(handleHttpError)
+            );
     }
 
     private createApiUrl(controllerName: string, methodAndParameters?: string): string {

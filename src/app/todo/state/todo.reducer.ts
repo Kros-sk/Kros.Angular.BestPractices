@@ -8,7 +8,7 @@ export function reducer(state = initialState, action: TodoActions): TodoState {
             return {
                 ...state,
                 todos: action.payload,
-                error: ''
+                error: null
             };
 
         case TodoActionsTypes.LoadFail:

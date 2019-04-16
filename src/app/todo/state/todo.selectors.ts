@@ -8,3 +8,8 @@ export const getTodoList = createSelector(
     getTodoFeatureState,
     state => state.todos
 );
+
+export const getError = createSelector(
+    getTodoFeatureState,
+    state => state.error
+);

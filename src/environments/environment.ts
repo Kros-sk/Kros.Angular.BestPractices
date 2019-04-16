@@ -1,7 +1,8 @@
 export const environment = {
-  production: false,
+    production: false,
 
-  todoApiUrl: 'http://www.mocky.io/v2/5cb43697330000191c11b891',
+    todoApiUrl: 'http://www.mocky.io/v2/5cb43697330000191c11b891',
+    // todoApiUrl: 'http://localhost:9000',
 };
 
 /*

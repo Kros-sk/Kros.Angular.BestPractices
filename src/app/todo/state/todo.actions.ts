@@ -1,5 +1,6 @@
 import { Todo } from '../models/todo.model';
 import { Action } from '@ngrx/store';
+import { LocalizedErrorInfo } from 'src/app/shared/models/error-info.model';
 
 
 export enum TodoActionsTypes {
@@ -21,7 +22,7 @@ export class LoadSuccess implements Action {
 export class LoadFail implements Action {
     readonly type = TodoActionsTypes.LoadFail;
 
-    constructor(public payload: string) { }
+    constructor(public payload: LocalizedErrorInfo) { }
 }
 
 export type TodoActions =

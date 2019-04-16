@@ -5,6 +5,7 @@ import { Observable, of } from 'rxjs';
 import * as todoActions from './todo.actions';
 import { mergeMap, map, catchError } from 'rxjs/operators';
 import { TodoService } from '../services/todo.service';
+import { LocalizedErrorInfo } from 'src/app/shared/models/error-info.model';
 
 
 @Injectable()
@@ -17,7 +18,7 @@ export class TodoEffects {
         ofType(todoActions.TodoActionsTypes.Load),
         mergeMap(action => this.todoService.getTodoList().pipe(
             map(todos => (new todoActions.LoadSuccess(todos))),
-            catchError(err => of(new todoActions.LoadFail(err)))
+            catchError((err: LocalizedErrorInfo) => of(new todoActions.LoadFail(err)))
         ))
     );
 }

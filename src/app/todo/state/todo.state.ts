@@ -1,5 +1,6 @@
 import { Todo } from '../models/todo.model';
 import * as fromRoot from '../../state/app.state';
+import { LocalizedErrorInfo } from 'src/app/shared/models/error-info.model';
 
 
 export interface State extends fromRoot.State {
@@ -8,10 +9,10 @@ export interface State extends fromRoot.State {
 
 export interface TodoState {
     todos: Todo[];
-    error: string;
+    error: LocalizedErrorInfo | null;
 }
 
 export const initialState: TodoState = {
     todos: [],
-    error: ''
+    error: null
 };
