@@ -7,6 +7,7 @@ import { StoreModule } from '@ngrx/store';
 import { reducer } from './state/todo.reducer';
 import { EffectsModule } from '@ngrx/effects';
 import { TodoEffects } from './state/todo.efects';
+import { AddTodoItemComponent } from './add-todo-item/add-todo-item.component';
 
 
 @NgModule({
@@ -20,7 +21,8 @@ import { TodoEffects } from './state/todo.efects';
     ],
     declarations: [
         TodoListComponent,
-        TodoItemComponent
+        TodoItemComponent,
+        AddTodoItemComponent
     ]
 })
 export class TodoModule { }

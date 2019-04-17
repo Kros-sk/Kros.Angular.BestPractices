@@ -20,6 +20,9 @@ export class AuthService {
 
         this.manager.getUser().then(user => {
             this.user = user;
+            if (this.user) {
+                this.store.dispatch(new LoginSuccess(this.getLoggedUser()));
+            }
         });
 
         this.manager.events.addUserLoaded(args => {
