@@ -1,8 +1,8 @@
 export class Todo {
-    id: number;
-    name: string;
+    id?: number;
+    name?: string;
     description?: string;
-    userId: number;
-    created: Date;
+    userId?: number;
+    created?: Date;
     lastChange?: Date;
 }

@@ -2,7 +2,7 @@ export const environment = {
     production: false,
 
      todoApiUrl: 'http://www.mocky.io/v2/5cb43697330000191c11b891',
-    // todoApiUrl: 'https://krostodos.azurewebsites.net/swagger/',
+    // todoApiUrl: 'https://krostodos.azurewebsites.net',
 };
 
 /*

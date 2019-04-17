@@ -16,6 +16,6 @@ export function handleHttpError(error: HttpErrorResponse): Observable<any> {
 
     return throwError({
         ...error,
-        localizedDescription: 'Niečo sa pokazilo, prosím skúste neskôr.'
+        localizedDescription: 'Something went wrong... :( Try again later :D.'
     });
 }

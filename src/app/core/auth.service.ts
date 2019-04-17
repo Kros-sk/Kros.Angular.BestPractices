@@ -65,7 +65,7 @@ export function getClientSettings(): UserManagerSettings {
     return {
         userStore: new Oidc.WebStorageStateStore({ store: window.localStorage }),
         authority: 'https://demo.identityserver.io/',
-        client_id: 'spa.short',
+        client_id: 'spa',
         redirect_uri: 'http://localhost:4200/assets/login-redirect.html',
         post_logout_redirect_uri: 'http://localhost:4200',
         response_type: 'code',
