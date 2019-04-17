@@ -8,27 +8,26 @@ import {
 } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import 'rxjs/add/operator/do';
-import { Router } from '@angular/router';
 import { AuthService } from './auth.service';
+import { environment } from 'src/environments/environment';
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
     constructor(
-        private authService: AuthService,
-        private router: Router) { }
+        private authService: AuthService) { }
 
     intercept(
         req: HttpRequest<any>,
         next: HttpHandler
     ): Observable<HttpEvent<any>> {
-        if (req.url.startsWith('***')) {
+        if (req.url.startsWith(`${environment.todoApiUrl}/api`)) {
             const accessToken = this.authService.getAuthorizationHeaderValue();
             const headers = req.headers.set('Authorization', `${accessToken}`);
             const authReq = req.clone({ headers });
             return next.handle(authReq).do(() => { }, error => {
                 const respError = error as HttpErrorResponse;
                 if (respError && (respError.status === 401 || respError.status === 403)) {
-                    this.router.navigate(['****']);
+
                 }
             });
         } else {

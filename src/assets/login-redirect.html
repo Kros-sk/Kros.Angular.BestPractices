@@ -14,15 +14,7 @@
             response_mode: 'query',
         };
         var mgr = new UserManager(config);
-        mgr.signinRedirectCallback().then(function() {
-            window.history.replaceState({},
-                window.document.title,
-                window.location.origin);
-            window.location = "/todo";
-        }, function(error) {
-            console.error(error);
-        });
-
+        mgr.signinPopupCallback();
     </script>
 </body>
 

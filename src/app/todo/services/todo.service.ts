@@ -22,7 +22,6 @@ export class TodoService {
         return this.http
             .get<Todo[]>(this.createApiUrl('ToDos'))
             .pipe(
-                tap(x => console.log('TODOLIST', x)),
                 catchError(handleHttpError)
             );
     }

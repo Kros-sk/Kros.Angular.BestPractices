@@ -20,14 +20,14 @@ export class AuthService {
 
         this.manager.getUser().then(user => {
             this.user = user;
-            if (this.user) {
-                this.store.dispatch(new LoginSuccess(this.getLoggedUser()));
-            }
         });
 
         this.manager.events.addUserLoaded(args => {
             this.manager.getUser().then(user => {
                 this.user = user;
+                if (this.user) {
+                    this.store.dispatch(new LoginSuccess(this.getLoggedUser()));
+                }
             });
         });
     }
@@ -49,7 +49,7 @@ export class AuthService {
     }
 
     startAuthentication(): Promise<void> {
-        return this.manager.signinRedirect();
+        return this.manager.signinPopup();
     }
 
     getAccessToken(): string {
@@ -64,6 +64,7 @@ export class AuthService {
 export function getClientSettings(): UserManagerSettings {
     return {
         userStore: new Oidc.WebStorageStateStore({ store: window.localStorage }),
+        popupWindowFeatures: 'location=no,toolbar=yes,width=800,height=600,left=100,top=100',
         authority: 'https://demo.identityserver.io/',
         client_id: 'spa',
         redirect_uri: 'http://localhost:4200/assets/login-redirect.html',
