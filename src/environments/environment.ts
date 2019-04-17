@@ -1,8 +1,8 @@
 export const environment = {
     production: false,
 
-    todoApiUrl: 'http://www.mocky.io/v2/5cb43697330000191c11b891',
-    // todoApiUrl: 'http://localhost:9000',
+     todoApiUrl: 'http://www.mocky.io/v2/5cb43697330000191c11b891',
+    // todoApiUrl: 'https://krostodos.azurewebsites.net/swagger/',
 };
 
 /*

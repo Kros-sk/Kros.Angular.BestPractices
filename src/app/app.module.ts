@@ -11,10 +11,14 @@ import { loginReducer } from './state/app.reducer';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { EffectsModule } from '@ngrx/effects';
 import { AppEffects } from './state/app.effects';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AuthInterceptor } from './core/auth.interceptor';
 
 @NgModule({
     imports: [
         BrowserModule,
+        BrowserAnimationsModule,
         AppRoutingModule,
         SharedModule,
         ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
@@ -32,6 +36,9 @@ import { AppEffects } from './state/app.effects';
         AppComponent
     ],
     providers: [
+        {
+            provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true
+        },
         AuthService
     ],
     bootstrap: [
