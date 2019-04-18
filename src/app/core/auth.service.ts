@@ -5,6 +5,7 @@ import { LoggedUser } from '../models/logged-user.model';
 import { Store } from '@ngrx/store';
 import { State } from '../state/app.state';
 import { LoginSuccess } from '../state/app.actions';
+import { environment } from 'src/environments/environment';
 
 
 @Injectable({
@@ -70,13 +71,13 @@ export function getClientSettings(): UserManagerSettings {
         popupWindowFeatures: 'location=no,toolbar=yes,width=800,height=600,left=100,top=100',
         authority: 'https://demo.identityserver.io/',
         client_id: 'spa',
-        redirect_uri: 'http://localhost:4200/assets/login-redirect.html',
-        post_logout_redirect_uri: 'http://localhost:4200',
+        redirect_uri: `${environment.identityServerCallBackUri}/assets/login-redirect.html`,
+        post_logout_redirect_uri: `${environment.identityServerCallBackUri}`,
         response_type: 'code',
         scope: 'openid profile email',
         filterProtocolClaims: true,
         loadUserInfo: true,
         automaticSilentRenew: true,
-        silent_redirect_uri: 'http://localhost:4200/assets/silent-refresh.html',
+        silent_redirect_uri: `${environment.identityServerCallBackUri}/assets/silent-refresh.html`,
     };
 }
