@@ -1,23 +1,21 @@
+<!doctype html>
+<html lang="en">
+
 <head>
-        <title></title>
-    </head>
+    <title></title>
+</head>
 
-    <body>
-        <script src="oidc-client.min.js"></script>
-        <script>
-                var config = {
-                  userStore: new WebStorageStateStore({ store: window.localStorage }),
-                  response_mode: 'query',
-                };
-                var mgr = new UserManager(config);
-                mgr.signinRedirectCallback().then(() => {
-                      window.history.replaceState({},
-                          window.document.title,
-                          window.location.origin);
-                      window.location = "/todo";
-                  }, error => {
-                      console.error(error);
-                  });
+<body>
+    <script src="polyfill.min.js"></script>
+    <script src="oidc-client.min.js"></script>
+    <script>
+        var config = {
+            userStore: new WebStorageStateStore({ store: window.localStorage }),
+            response_mode: 'query',
+        };
+        var mgr = new UserManager(config);
+        mgr.signinPopupCallback();
+    </script>
+</body>
 
-              </script>
-    </body>
+</html>

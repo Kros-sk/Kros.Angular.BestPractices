@@ -1,11 +1,26 @@
-<div class="row">
-    <div class="col-2">
+<div class="row px-2 align-items-center" (dblclick)="openModal(item.id)" >
+
+    <label class="btn-outline-success col-1 ml-2 mr-4 mb-0" ngbButtonLabel>
+        <input type="checkbox" style="display: none" ngbButton>
+        ✓
+    </label>
+
+    <div class="col-1">
         {{item.id}}
     </div>
-    <div class="col-2">
+
+    <div class="col">
         {{item.name}}
     </div>
-    <div class="col">
+
+    <div class="col-3">
         {{item.created}}
     </div>
+
+    <div class="col-1 text-right">
+        <button class="btn btn-outline-danger" (click)="deleteTodo(item.id)">
+            X
+        </button>
+    </div>
+
 </div>

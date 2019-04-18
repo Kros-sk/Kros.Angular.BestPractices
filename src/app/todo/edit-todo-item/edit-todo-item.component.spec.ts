@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { CallBackComponent } from './call-back.component';
+import { EditTodoItemComponent } from './edit-todo-item.component';
 
-describe('CallBackComponent', () => {
-  let component: CallBackComponent;
-  let fixture: ComponentFixture<CallBackComponent>;
+describe('EditTodoItemComponent', () => {
+  let component: EditTodoItemComponent;
+  let fixture: ComponentFixture<EditTodoItemComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ CallBackComponent ]
+      declarations: [ EditTodoItemComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(CallBackComponent);
+    fixture = TestBed.createComponent(EditTodoItemComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

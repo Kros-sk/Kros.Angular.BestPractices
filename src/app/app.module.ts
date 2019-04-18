@@ -5,21 +5,40 @@ import { SharedModule } from './shared/shared.module';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from 'src/environments/environment';
 import { AppRoutingModule } from './app-routing.module';
-import { CallBackComponent } from './call-back/call-back.component';
 import { AuthService } from './core/auth.service';
+import { StoreModule } from '@ngrx/store';
+import { loginReducer } from './state/app.reducer';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { EffectsModule } from '@ngrx/effects';
+import { AppEffects } from './state/app.effects';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AuthInterceptor } from './core/auth.interceptor';
 
 @NgModule({
     imports: [
         BrowserModule,
+        BrowserAnimationsModule,
         AppRoutingModule,
         SharedModule,
         ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
+        StoreModule.forRoot({login: loginReducer}),
+        EffectsModule.forRoot([
+            AppEffects
+        ]),
+        StoreDevtoolsModule.instrument({
+            name: 'APM Demo App DevTools',
+            maxAge: 25,
+            logOnly: environment.production,
+        })
     ],
     declarations: [
-        AppComponent,
-        CallBackComponent
+        AppComponent
     ],
     providers: [
+        {
+            provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true
+        },
         AuthService
     ],
     bootstrap: [

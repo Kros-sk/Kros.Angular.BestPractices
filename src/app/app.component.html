@@ -1,29 +1,39 @@
 <div class="container border rounded p-4 my-4 bg-light">
     <h1 class="text-center">
-        KROS Todo list
+        KROS Todo list Test
     </h1>
 
-    <div *ngIf="!isLoggedIn()" class="row px-4 py-4">
+    <div *ngIf="!(isLoggedUser$ | async)" class="row px-4 py-4">
         <button class="btn btn-outline-primary col-2" (click)="login('todo')">
             Login
         </button>
     </div>
 
-    <div *ngIf="isLoggedIn()">
-        <div class="row justify-content-between no-gutters px-0 py-4">
+    <div>
+        <div *ngIf="(isLoggedUser$ | async)" class="row justify-content-between no-gutters px-0 py-4">
             <div class="btn-group col-6" role="group">
-                <button type="button" class="btn btn-outline-primary col" [routerLink]="['/todo']" routerLinkActive="active">
+                <button type="button" class="btn btn-outline-primary col" [routerLink]="['/todo']"
+                    routerLinkActive="active">
                     Todo list
                 </button>
-                <button type="button" class="btn btn-outline-primary col" [routerLink]="['/users']" routerLinkActive="active">
+                <button type="button" class="btn btn-outline-primary col" [routerLink]="['/users']"
+                    routerLinkActive="active">
                     Users management
                 </button>
             </div>
-
+            <div class="badge badge-pill badge-success" [@animationKros] = 'state' (click)="animateMe()">
+                <div>
+                    {{ (loggedUser$ | async).name }}
+                </div>
+                <div>
+                    {{ (loggedUser$ | async).email }}
+                </div>
+            </div>
             <button class="btn btn-outline-danger col-2" (click)="logout()">
                 Logout
             </button>
         </div>
     </div>
+
     <router-outlet></router-outlet>
 </div>
