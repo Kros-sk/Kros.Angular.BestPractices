@@ -8,6 +8,7 @@ import { reducer } from './state/todo.reducer';
 import { EffectsModule } from '@ngrx/effects';
 import { TodoEffects } from './state/todo.efects';
 import { AddTodoItemComponent } from './add-todo-item/add-todo-item.component';
+import { EditTodoItemComponent } from './edit-todo-item/edit-todo-item.component';
 
 
 @NgModule({
@@ -22,7 +23,10 @@ import { AddTodoItemComponent } from './add-todo-item/add-todo-item.component';
     declarations: [
         TodoListComponent,
         TodoItemComponent,
-        AddTodoItemComponent
-    ]
+        AddTodoItemComponent,
+        EditTodoItemComponent
+    ],
+    entryComponents: [EditTodoItemComponent],
+    exports: [EditTodoItemComponent]
 })
 export class TodoModule { }

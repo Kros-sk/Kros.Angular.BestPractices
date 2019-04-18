@@ -1,4 +1,4 @@
-<div class="row px-2 align-items-center">
+<div class="row px-2 align-items-center" (dblclick)="openModal(item.id)" >
 
     <label class="btn-outline-success col-1 ml-2 mr-4 mb-0" ngbButtonLabel>
         <input type="checkbox" style="display: none" ngbButton>
@@ -18,7 +18,7 @@
     </div>
 
     <div class="col-1 text-right">
-        <button class="btn btn-outline-danger">
+        <button class="btn btn-outline-danger" (click)="deleteTodo(item.id)">
             X
         </button>
     </div>

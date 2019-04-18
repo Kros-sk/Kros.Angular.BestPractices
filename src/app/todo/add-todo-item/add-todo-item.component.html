@@ -2,11 +2,10 @@
     What needs to be done?
 </div>
 
-
-<div class="d-flex justify-content-between">
-    <input class="col mr-4" type="text">
-
-    <button class="btn btn-outline-success col-2">
+<form [formGroup]="todoForm" (ngSubmit)="addTodo()" class="d-flex justify-content-between">
+    <input class="col mr-4" type="text" formControlName="name">
+    <input class="col mr-4" type="text" formControlName="description">
+    <button class="btn btn-outline-success col-2" type="submit">
         Add
     </button>
-</div>
+</form>

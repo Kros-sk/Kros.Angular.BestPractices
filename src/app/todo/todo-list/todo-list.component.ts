@@ -8,7 +8,6 @@ import { getTodoList , getError} from '../state/todo.selectors';
 import { LocalizedErrorInfo } from 'src/app/shared/models/error-info.model';
 import { FormControl } from '@angular/forms';
 
-
 @Component({
     selector: 'kros-todo-list',
     templateUrl: './todo-list.component.html',
@@ -28,7 +27,6 @@ export class TodoListComponent implements OnInit {
 
     ngOnInit() {
         this.selectedFilterControl = new FormControl(TodoListFilter.All);
-
         this.todoList$ = this.store.pipe(select(getTodoList));
         this.errorMessage$ = this.store.pipe(select(getError));
         this.store.dispatch(new todoActions.Load());
