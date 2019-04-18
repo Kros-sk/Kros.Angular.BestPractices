@@ -1,5 +1,5 @@
 export const environment = {
-  production: true,
+    production: true,
 
-  todoApiUrl: '',
+    todoApiUrl: 'https://krostodos.azurewebsites.net',
 };

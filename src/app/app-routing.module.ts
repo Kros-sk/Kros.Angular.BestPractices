@@ -1,19 +1,18 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule, NoPreloading } from '@angular/router';
+import { GuardService } from './core/guard.service';
+import { AuthService } from './core/auth.service';
 
 const routes: Routes = [
     {
         path: 'todo',
-        loadChildren: './todo/todo.module#TodoModule'
+        loadChildren: './todo/todo.module#TodoModule',
+        canActivate: [GuardService]
     },
     {
         path: 'users',
-        loadChildren: './users/users.module#UsersModule'
-    },
-    {
-        path: '',
-        redirectTo: 'todo',
-        pathMatch: 'full'
+        loadChildren: './users/users.module#UsersModule',
+        canActivate: [GuardService]
     }
 ];
 
@@ -22,13 +21,14 @@ const routes: Routes = [
         RouterModule.forRoot(
             routes,
             {
-                useHash: true,
+                useHash: false,
                 preloadingStrategy: NoPreloading
             }
         )
     ],
     exports: [
         RouterModule
-    ]
+    ],
+    providers: [GuardService, AuthService]
 })
 export class AppRoutingModule { }

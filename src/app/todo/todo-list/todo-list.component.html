@@ -1,5 +1,39 @@
-<ul class="list-group">
-    <li class="list-group-item" *ngFor="let item of todoList$ | async">
-        <kros-todo-item [item]="item"></kros-todo-item>
-    </li>
-</ul>
+<ng-container *ngIf="!(errorMessage$ | async)">
+
+    <kros-add-todo-item></kros-add-todo-item>
+
+    <ul class="list-group mt-4">
+        <li class="list-group-item" *ngFor="let item of todoList$ | async">
+            <kros-todo-item [item]="item"></kros-todo-item>
+        </li>
+    </ul>
+
+    <div class="d-flex justify-content-between mt-4">
+
+        <div class="btn-group btn-group-toggle" ngbRadioGroup name="filterRadioGroup"
+            [formControl]="selectedFilterControl">
+            <label ngbButtonLabel class="btn-outline-secondary">
+                <input ngbButton type="radio" [value]="0">
+                All
+            </label>
+            <label ngbButtonLabel class="btn-outline-secondary">
+                <input ngbButton type="radio" [value]="1">
+                Active
+            </label>
+            <label ngbButtonLabel class="btn-outline-secondary">
+                <input ngbButton type="radio" [value]="2">
+                Completed
+            </label>
+        </div>
+
+        <button class="btn btn-outline-danger col-2">
+            Clear completed
+        </button>
+
+    </div>
+
+</ng-container>
+
+<div class="text-danger">
+    {{ (errorMessage$ | async)?.localizedDescription }}
+</div>

@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title></title>
+</head>
+
+<body>
+    <script src="polyfill.min.js"></script>
+    <script src="oidc-client.min.js"></script>
+    <script>
+        var config = {
+            silentRequestTimeout: 5000,
+            checkSessionInterval: 5000
+        };
+        new UserManager(config).signinSilentCallback().catch(function(err) {
+            console.log('signinSilentCallback', err);
+        });
+    </script>
+</body>
+
+</html>
