@@ -8,11 +8,14 @@ export enum TodoActionsTypes {
     LoadSuccess = '[Todo] Load Success',
     LoadFail = '[Todo] Load Fail',
     Add = '[Todo] Add',
+    AddSuccess = '[Todo] Add Success',
     AddFail = '[Todo] Add Fail',
     SetActionInProgress = '[Todo] Set Action in Progress',
     Delete = '[Todo] Delete',
+    DeleteSuccess = '[Todo] Delete Success',
     DeleteFail= '[Todo] Delete Fail',
     Update = '[Todo] Update',
+    UpdateSuccess = '[Todo] Update Success',
     UpdateFail = '[Todo] Update Fail',
 }
 
@@ -38,6 +41,11 @@ export class Add implements Action {
     constructor(public payload: NewTodo) { }
 }
 
+export class AddSuccess implements Action {
+    readonly type = TodoActionsTypes.AddSuccess;
+
+    constructor() { }
+}
 
 export class AddFail implements Action {
     readonly type = TodoActionsTypes.AddFail;
@@ -57,6 +65,12 @@ export class Delete implements Action {
     constructor(public payload: number) { }
 }
 
+export class DeleteSuccess implements Action {
+    readonly type = TodoActionsTypes.DeleteSuccess;
+
+    constructor() { }
+}
+
 export class DeleteFail implements Action {
     readonly type = TodoActionsTypes.DeleteFail;
 
@@ -66,7 +80,13 @@ export class DeleteFail implements Action {
 export class Update implements Action {
     readonly type = TodoActionsTypes.Update;
 
-    constructor(public payload: Todo ) { }
+    constructor(public payload: Todo) { }
+}
+
+export class UpdateSuccess implements Action {
+    readonly type = TodoActionsTypes.UpdateSuccess;
+
+    constructor() { }
 }
 
 export class UpdateFail implements Action {
@@ -80,9 +100,11 @@ export type TodoActions =
     | LoadSuccess
     | LoadFail
     | Add
+    | AddSuccess
     | AddFail
-    | SetActionInProgress
     | Delete
     | DeleteFail
     | Update
-    | UpdateFail;
+    | UpdateSuccess
+    | UpdateFail
+    | SetActionInProgress;
