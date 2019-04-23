@@ -2,6 +2,7 @@ export const environment = {
     production: false,
 
     todoApiUrl: 'https://krostodos.azurewebsites.net',
+    usersApiUrl: 'http://localhost:9002',
     identityServerCallBackUri: 'http://localhost:4200',
 };
 
