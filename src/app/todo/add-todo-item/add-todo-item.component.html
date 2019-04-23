@@ -1,11 +1,21 @@
-<div>
+<div [ngClass]="{ 'text-black-50': disabled }">
     What needs to be done?
 </div>
 
 <form [formGroup]="todoForm" (ngSubmit)="addTodo()" class="d-flex justify-content-between">
-    <input class="col mr-4" type="text" formControlName="name">
-    <input class="col mr-4" type="text" formControlName="description">
-    <button class="btn btn-outline-success col-2" type="submit">
+    <input class="col mr-4"
+        type="text"
+        formControlName="name"
+        [attr.disabled]="disabled ? true : null">
+
+    <input class="col mr-4"
+        type="text"
+        formControlName="description"
+        [attr.disabled]="disabled ? true : null">
+
+    <button class="btn btn-outline-success col-2"
+        type="submit"
+        [disabled]="disabled">
         Add
     </button>
 </form>

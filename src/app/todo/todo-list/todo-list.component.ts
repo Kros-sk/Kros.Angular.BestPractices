@@ -4,7 +4,7 @@ import { Store,  select} from '@ngrx/store';
 import * as todoActions from '../state/todo.actions';
 import { Observable } from 'rxjs';
 import { State } from '../state/todo.state';
-import { getTodoList , getError} from '../state/todo.selectors';
+import { getTodoList , getError, getTodoActionInProgress} from '../state/todo.selectors';
 import { LocalizedErrorInfo } from 'src/app/shared/models/error-info.model';
 import { FormControl } from '@angular/forms';
 
@@ -22,12 +22,14 @@ export class TodoListComponent implements OnInit {
 
     errorMessage$: Observable<LocalizedErrorInfo | null>;
     todoList$: Observable<Todo[]>;
+    actionInProgress$: Observable<boolean>;
 
     selectedFilterControl: FormControl;
 
     ngOnInit() {
         this.selectedFilterControl = new FormControl(TodoListFilter.All);
         this.todoList$ = this.store.pipe(select(getTodoList));
+        this.actionInProgress$ = this.store.pipe(select(getTodoActionInProgress));
         this.errorMessage$ = this.store.pipe(select(getError));
         this.store.dispatch(new todoActions.Load());
     }

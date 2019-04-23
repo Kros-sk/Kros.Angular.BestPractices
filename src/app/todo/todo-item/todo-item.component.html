@@ -1,24 +1,29 @@
 <div class="row px-2 align-items-center" (dblclick)="openModal(item.id)" >
 
     <label class="btn-outline-success col-1 ml-2 mr-4 mb-0" ngbButtonLabel>
-        <input type="checkbox" style="display: none" ngbButton>
+        <input type="checkbox"
+            style="display: none"
+            [disabled]="disabled"
+            ngbButton>
         ✓
     </label>
 
-    <div class="col-1">
+    <div class="col-1" [ngClass]="{ 'text-black-50': disabled }">
         {{item.id}}
     </div>
 
-    <div class="col">
+    <div class="col" [ngClass]="{ 'text-black-50': disabled }">
         {{item.name}}
     </div>
 
-    <div class="col-3">
+    <div class="col-3" [ngClass]="{ 'text-black-50': disabled }">
         {{item.created}}
     </div>
 
     <div class="col-1 text-right">
-        <button class="btn btn-outline-danger" (click)="deleteTodo(item.id)">
+        <button class="btn btn-outline-danger"
+            (click)="deleteTodo(item.id)"
+            [disabled]="disabled">
             X
         </button>
     </div>
