@@ -1,5 +1,5 @@
 import { OnInit, Component } from '@angular/core';
-import { Todo, TodoListFilter } from '../models/todo.model';
+import { TodoListFilter, TodoListItem } from '../models/todo.model';
 import { Store,  select} from '@ngrx/store';
 import * as todoActions from '../state/todo.actions';
 import { Observable } from 'rxjs';
@@ -21,7 +21,7 @@ export class TodoListComponent implements OnInit {
     }
 
     errorMessage$: Observable<LocalizedErrorInfo | null>;
-    todoList$: Observable<Todo[]>;
+    todoList$: Observable<TodoListItem[]>;
     actionInProgress$: Observable<boolean>;
 
     selectedFilterControl: FormControl;

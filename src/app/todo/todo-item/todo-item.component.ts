@@ -1,11 +1,10 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Todo } from '../models/todo.model';
+import { TodoItem } from '../models/todo.model';
 import { Store } from '@ngrx/store';
 import { State } from '../state/todo.state';
 import * as todoActions from '../state/todo.actions';
 import { EditTodoItemComponent } from '../edit-todo-item/edit-todo-item.component';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { FormControl } from '@angular/forms';
 
 
 @Component({
@@ -20,11 +19,8 @@ export class TodoItemComponent implements OnInit {
         private modalService: NgbModal
     ) { }
 
-    @Input() item: Todo;
+    @Input() item: TodoItem;
     @Input() disabled = false;
-
-    // TODO: this value will be inside Todo entity...
-    done: FormControl = new FormControl(false);
 
     ngOnInit() {
     }

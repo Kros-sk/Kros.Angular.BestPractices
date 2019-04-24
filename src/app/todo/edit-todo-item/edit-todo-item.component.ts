@@ -41,7 +41,8 @@ export class EditTodoItemComponent implements OnInit {
         this.store.dispatch(new todoActions.Update({
             id: this.itemId,
             name: this.todoForm.value.name,
-            description: this.todoForm.value.description
+            description: this.todoForm.value.description,
+            isDone: false
         }));
         this.modalService.dismissAll();
     }

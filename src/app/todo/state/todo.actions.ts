@@ -1,4 +1,4 @@
-import { Todo, NewTodo } from '../models/todo.model';
+import { NewTodoItem, TodoListItem, UpdateTodoItem } from '../models/todo.model';
 import { Action } from '@ngrx/store';
 import { LocalizedErrorInfo } from 'src/app/shared/models/error-info.model';
 
@@ -26,7 +26,7 @@ export class Load implements Action {
 export class LoadSuccess implements Action {
     readonly type = TodoActionsTypes.LoadSuccess;
 
-    constructor(public payload: Todo[]) { }
+    constructor(public payload: TodoListItem[]) { }
 }
 
 export class LoadFail implements Action {
@@ -38,7 +38,7 @@ export class LoadFail implements Action {
 export class Add implements Action {
     readonly type = TodoActionsTypes.Add;
 
-    constructor(public payload: NewTodo) { }
+    constructor(public payload: NewTodoItem) { }
 }
 
 export class AddSuccess implements Action {
@@ -80,7 +80,7 @@ export class DeleteFail implements Action {
 export class Update implements Action {
     readonly type = TodoActionsTypes.Update;
 
-    constructor(public payload: Todo) { }
+    constructor(public payload: UpdateTodoItem) { }
 }
 
 export class UpdateSuccess implements Action {

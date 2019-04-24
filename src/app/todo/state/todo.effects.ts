@@ -6,7 +6,7 @@ import * as todoActions from './todo.actions';
 import { mergeMap, map, catchError, switchMap } from 'rxjs/operators';
 import { TodoService } from '../services/todo.service';
 import { LocalizedErrorInfo } from 'src/app/shared/models/error-info.model';
-import { Todo } from '../models/todo.model';
+import { TodoItem } from '../models/todo.model';
 
 
 @Injectable()
@@ -14,7 +14,7 @@ export class TodoEffects {
     constructor(
         private actions$: Actions,
         private todoService: TodoService,
-        private store: Store<Todo>
+        private store: Store<TodoItem>
     ) {
     }
 

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { Todo, NewTodo } from '../models/todo.model';
+import { TodoItem, NewTodoItem, TodoListItem, UpdateTodoItem } from '../models/todo.model';
 import { HttpClient } from '@angular/common/http';
 import { AuthService } from 'src/app/core/auth.service';
 import { catchError, delay } from 'rxjs/operators';
@@ -17,23 +17,23 @@ export class TodoService {
         private http: HttpClient
     ) { }
 
-    public getTodoList(): Observable<Todo[]> {
+    public getTodoList(): Observable<TodoListItem[]> {
         return this.http
-            .get<Todo[]>(this.createApiUrl('ToDos'))
+            .get<TodoItem[]>(this.createApiUrl('ToDos'))
             .pipe(
                 delay(1000),
                 catchError(handleHttpError)
             );
     }
 
-    public getTodo(id: number): Observable<Todo> {
+    public getTodo(id: number): Observable<TodoItem> {
         return this.http.get(this.createApiUrl('ToDos', id.toString()))
         .pipe(
             catchError(handleHttpError)
         );
     }
 
-    public addNewTodo(newTodo: NewTodo): Observable<any> {
+    public addNewTodo(newTodo: NewTodoItem): Observable<any> {
         return this.http.post(this.createApiUrl('ToDos'), newTodo)
         .pipe(
             catchError(handleHttpError)
@@ -47,8 +47,15 @@ export class TodoService {
         );
     }
 
-    public updateTodo(updateTodo: Todo): Observable<any> {
+    public updateTodo(updateTodo: UpdateTodoItem): Observable<any> {
         return this.http.put(this.createApiUrl('ToDos', updateTodo.id.toString()), updateTodo)
+        .pipe(
+            catchError(handleHttpError)
+        );
+    }
+
+    public setTodoDoneState(id: number, isDone: boolean): Observable<any> {
+        return this.http.put(this.createApiUrl('ToDos', `changeIsDoneState/${id}`), { isDone })
         .pipe(
             catchError(handleHttpError)
         );
