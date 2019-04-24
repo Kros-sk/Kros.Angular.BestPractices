@@ -1,4 +1,4 @@
-import { NewTodoItem, TodoListItem, UpdateTodoItem } from '../models/todo.model';
+import { NewTodoItem, TodoListItem, UpdateTodoItem, UpdateTodoItemState } from '../models/todo.model';
 import { Action } from '@ngrx/store';
 import { LocalizedErrorInfo } from 'src/app/shared/models/error-info.model';
 
@@ -17,6 +17,9 @@ export enum TodoActionsTypes {
     Update = '[Todo] Update',
     UpdateSuccess = '[Todo] Update Success',
     UpdateFail = '[Todo] Update Fail',
+    SetState = '[Todo] Set State',
+    SetStateSuccess = '[Todo] Set State Success',
+    SetStateFail = '[Todo] Set State Fail',
 }
 
 export class Load implements Action {
@@ -95,6 +98,24 @@ export class UpdateFail implements Action {
     constructor(public payload: LocalizedErrorInfo) { }
 }
 
+export class SetState implements Action {
+    readonly type = TodoActionsTypes.SetState;
+
+    constructor(public payload: UpdateTodoItemState) { }
+}
+
+export class SetStateSuccess implements Action {
+    readonly type = TodoActionsTypes.SetStateSuccess;
+
+    constructor() { }
+}
+
+export class SetStateFail implements Action {
+    readonly type = TodoActionsTypes.SetStateFail;
+
+    constructor(public payload: LocalizedErrorInfo) { }
+}
+
 export type TodoActions =
     | Load
     | LoadSuccess
@@ -107,4 +128,7 @@ export type TodoActions =
     | Update
     | UpdateSuccess
     | UpdateFail
-    | SetActionInProgress;
+    | SetActionInProgress
+    | SetState
+    | SetStateSuccess
+    | SetStateFail;

@@ -5,6 +5,8 @@ import { State } from '../state/todo.state';
 import * as todoActions from '../state/todo.actions';
 import { EditTodoItemComponent } from '../edit-todo-item/edit-todo-item.component';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { FormControl } from '@angular/forms';
+import { debounceTime } from 'rxjs/operators';
 
 
 @Component({
@@ -22,7 +24,16 @@ export class TodoItemComponent implements OnInit {
     @Input() item: TodoItem;
     @Input() disabled = false;
 
+    isDoneControl: FormControl;
+
     ngOnInit() {
+        this.isDoneControl = new FormControl(this.item.isDone);
+
+        this.isDoneControl.valueChanges.pipe(
+            debounceTime(200)
+        ).subscribe(
+            (newValue: boolean) => this.setTodoState(this.item.id, newValue)
+        );
     }
 
     deleteTodo(id: number) {
@@ -37,5 +48,12 @@ export class TodoItemComponent implements OnInit {
             centered: true
         });
         modalRef.componentInstance.itemId = id;
+    }
+
+    setTodoState(id: number, isDone: boolean) {
+        this.store.dispatch(new todoActions.SetState({
+            id: this.item.id,
+            isDone
+        }));
     }
 }

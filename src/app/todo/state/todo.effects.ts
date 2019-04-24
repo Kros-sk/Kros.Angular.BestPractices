@@ -3,7 +3,7 @@ import { Action, Store } from '@ngrx/store';
 import { Actions, Effect, ofType } from '@ngrx/effects';
 import { Observable, of } from 'rxjs';
 import * as todoActions from './todo.actions';
-import { mergeMap, map, catchError, switchMap } from 'rxjs/operators';
+import { mergeMap, map, catchError, switchMap, concatMap } from 'rxjs/operators';
 import { TodoService } from '../services/todo.service';
 import { LocalizedErrorInfo } from 'src/app/shared/models/error-info.model';
 import { TodoItem } from '../models/todo.model';
@@ -52,7 +52,7 @@ export class TodoEffects {
     @Effect()
     updateTodo$: Observable<Action> = this.actions$.pipe(
         ofType(todoActions.TodoActionsTypes.Update),
-        mergeMap((action: todoActions.Update) =>
+        concatMap((action: todoActions.Update) =>
             this.todoService.updateTodo(action.payload).pipe(
                 map(() => (new todoActions.UpdateSuccess())),
                 catchError((err: LocalizedErrorInfo) => of(new todoActions.UpdateFail(err)))
@@ -61,10 +61,22 @@ export class TodoEffects {
     );
 
     @Effect()
+    setTodoState$: Observable<Action> = this.actions$.pipe(
+        ofType(todoActions.TodoActionsTypes.SetState),
+        concatMap((action: todoActions.SetState) =>
+            this.todoService.setTodoDoneState(action.payload.id, action.payload.isDone).pipe(
+                map(() => (new todoActions.SetStateSuccess())),
+                catchError((err: LocalizedErrorInfo) => of(new todoActions.SetStateFail(err)))
+            ),
+        )
+    );
+
+    @Effect()
     reloadAfterChanges$: Observable<Action> = this.actions$.pipe(
         ofType(todoActions.TodoActionsTypes.AddSuccess,
                todoActions.TodoActionsTypes.DeleteSuccess,
-               todoActions.TodoActionsTypes.UpdateSuccess),
+               todoActions.TodoActionsTypes.UpdateSuccess,
+               todoActions.TodoActionsTypes.SetStateSuccess),
         map(() => new todoActions.Load())
     );
 
@@ -73,7 +85,8 @@ export class TodoEffects {
         ofType(todoActions.TodoActionsTypes.Load,
                todoActions.TodoActionsTypes.Add,
                todoActions.TodoActionsTypes.Delete,
-               todoActions.TodoActionsTypes.Update),
+               todoActions.TodoActionsTypes.Update,
+               todoActions.TodoActionsTypes.SetState),
         map(() => new todoActions.SetActionInProgress(true))
     );
 
@@ -83,7 +96,8 @@ export class TodoEffects {
                todoActions.TodoActionsTypes.LoadFail,
                todoActions.TodoActionsTypes.AddFail,
                todoActions.TodoActionsTypes.DeleteFail,
-               todoActions.TodoActionsTypes.UpdateFail),
+               todoActions.TodoActionsTypes.UpdateFail,
+               todoActions.TodoActionsTypes.SetStateFail),
         map(() => new todoActions.SetActionInProgress(false))
     );
 }

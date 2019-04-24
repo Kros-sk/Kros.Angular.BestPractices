@@ -1,10 +1,11 @@
-<div class="row px-2 align-items-center" (dblclick)="openModal(item.id)" >
+<div class="row px-2 align-items-center">
 
     <label class="btn-outline-success col-1 ml-2 mr-4 mb-0 font-weight-bold" ngbButtonLabel>
         <input type="checkbox"
             style="display: none"
+            [formControl]="isDoneControl"
             ngbButton>
-        <!-- {{ done.value ? "✓" : "&nbsp;" }} -->
+        {{ isDoneControl.value ? "✓" : "&nbsp;" }}
     </label>
 
     <!-- <input class="col-1"
@@ -24,10 +25,18 @@
     </div>
 
     <div class="col-1 text-right">
+        <button class="btn btn-outline-primary"
+            (click)="openModal(item.id)"
+            [disabled]="disabled">
+            Edit
+        </button>
+    </div>
+
+    <div class="col-1 text-right">
         <button class="btn btn-outline-danger"
             (click)="deleteTodo(item.id)"
             [disabled]="disabled">
-            X
+            Delete
         </button>
     </div>
 

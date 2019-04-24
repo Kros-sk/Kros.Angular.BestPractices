@@ -26,6 +26,11 @@ export class UpdateTodoItem {
     isDone: boolean;
 }
 
+export class UpdateTodoItemState {
+    id: number;
+    isDone: boolean;
+}
+
 export enum TodoListFilter {
     All = 0,
     Active = 1,
