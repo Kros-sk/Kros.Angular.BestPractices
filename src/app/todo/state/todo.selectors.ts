@@ -13,3 +13,8 @@ export const getError = createSelector(
     getTodoFeatureState,
     state => state.error
 );
+
+export const getTodoActionInProgress = createSelector(
+    getTodoFeatureState,
+    state => state.actionInProgress
+);

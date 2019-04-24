@@ -6,7 +6,7 @@ import { TodoItemComponent } from './todo-item/todo-item.component';
 import { StoreModule } from '@ngrx/store';
 import { reducer } from './state/todo.reducer';
 import { EffectsModule } from '@ngrx/effects';
-import { TodoEffects } from './state/todo.efects';
+import { TodoEffects } from './state/todo.effects';
 import { AddTodoItemComponent } from './add-todo-item/add-todo-item.component';
 import { EditTodoItemComponent } from './edit-todo-item/edit-todo-item.component';
 

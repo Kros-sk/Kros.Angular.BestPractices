@@ -4,7 +4,7 @@ import { environment } from 'src/environments/environment';
 import { Todo, NewTodo } from '../models/todo.model';
 import { HttpClient } from '@angular/common/http';
 import { AuthService } from 'src/app/core/auth.service';
-import { catchError } from 'rxjs/operators';
+import { catchError, delay } from 'rxjs/operators';
 import { handleHttpError } from 'src/app/shared/helpers/api.helper';
 
 @Injectable({
@@ -21,6 +21,7 @@ export class TodoService {
         return this.http
             .get<Todo[]>(this.createApiUrl('ToDos'))
             .pipe(
+                delay(1000),
                 catchError(handleHttpError)
             );
     }
