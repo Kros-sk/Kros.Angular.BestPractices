@@ -73,12 +73,7 @@ export class AuthService {
 
     loadUserInfo() {
         this.http
-            .get(`${environment.usersApiUrl}/api/users/IsAdmin`, {
-                headers: {
-                    'Content-Type': 'application/json',
-                    Authorization: 'Bearer ' + this.user.access_token
-                }
-            })
+            .get(`${environment.usersApiUrl}/api/users/IsAdmin`)
             .subscribe(resp => {
                 if (resp) {
                     this.isAdmin = (resp as boolean);

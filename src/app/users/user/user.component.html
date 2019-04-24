@@ -1,0 +1,18 @@
+<div class="row px-2 align-items-center">
+
+    <div class="col-1">
+        {{user.id}}
+    </div>
+
+    <div class="col">
+        {{user.email}}
+    </div>
+
+    <div class="col-3">
+        {{user.isAdmin}}
+    </div>
+
+    <div>
+        <input class="col-1" type="checkbox" [attr.checked]="user.isAdmin ? 'true' : null">
+    </div>
+</div>
