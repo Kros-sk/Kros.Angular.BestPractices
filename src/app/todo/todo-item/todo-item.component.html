@@ -1,6 +1,6 @@
-<div class="row px-2 align-items-center">
+<div class="row px-3 align-items-center">
 
-    <label class="btn-outline-success col-1 ml-2 mr-4 mb-0 font-weight-bold" ngbButtonLabel>
+    <label class="btn-outline-success col-1 mr-4 mb-0 font-weight-bold" ngbButtonLabel>
         <input type="checkbox"
             style="display: none"
             [formControl]="isDoneControl"
@@ -20,24 +20,19 @@
         {{item.name}}
     </div>
 
-    <div class="col-3" [ngClass]="{ 'text-black-50': disabled }">
-        {{item.created}}
-    </div>
-
-    <div class="col-1 text-right">
-        <button class="btn btn-outline-primary"
-            (click)="openModal(item.id)"
-            [disabled]="disabled">
-            Edit
-        </button>
-    </div>
-
-    <div class="col-1 text-right">
-        <button class="btn btn-outline-danger"
-            (click)="deleteTodo(item.id)"
-            [disabled]="disabled">
-            Delete
-        </button>
+    <div class="col-2">
+        <div class="row justify-content-between">
+            <button class="btn btn-outline-primary col-5"
+                (click)="openModal(item.id)"
+                [disabled]="disabled">
+                Edit
+            </button>
+            <button class="btn btn-outline-danger col-5"
+                (click)="deleteTodo(item.id)"
+                [disabled]="disabled">
+                Delete
+            </button>
+        </div>
     </div>
 
 </div>
