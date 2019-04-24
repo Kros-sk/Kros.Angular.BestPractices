@@ -22,7 +22,6 @@ export class TodoListComponent implements OnInit {
 
     errorMessage$: Observable<LocalizedErrorInfo | null>;
     todoList$: Observable<Todo[]>;
-
     selectedFilterControl: FormControl;
 
     ngOnInit() {
