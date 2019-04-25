@@ -1,4 +1,4 @@
-import { Todo, NewTodo } from '../models/todo.model';
+import { NewTodoItem, TodoListItem, UpdateTodoItem, UpdateTodoItemState } from '../models/todo.model';
 import { Action } from '@ngrx/store';
 import { LocalizedErrorInfo } from 'src/app/shared/models/error-info.model';
 
@@ -8,12 +8,18 @@ export enum TodoActionsTypes {
     LoadSuccess = '[Todo] Load Success',
     LoadFail = '[Todo] Load Fail',
     Add = '[Todo] Add',
+    AddSuccess = '[Todo] Add Success',
     AddFail = '[Todo] Add Fail',
     SetActionInProgress = '[Todo] Set Action in Progress',
     Delete = '[Todo] Delete',
+    DeleteSuccess = '[Todo] Delete Success',
     DeleteFail= '[Todo] Delete Fail',
     Update = '[Todo] Update',
+    UpdateSuccess = '[Todo] Update Success',
     UpdateFail = '[Todo] Update Fail',
+    SetState = '[Todo] Set State',
+    SetStateSuccess = '[Todo] Set State Success',
+    SetStateFail = '[Todo] Set State Fail',
 }
 
 export class Load implements Action {
@@ -23,7 +29,7 @@ export class Load implements Action {
 export class LoadSuccess implements Action {
     readonly type = TodoActionsTypes.LoadSuccess;
 
-    constructor(public payload: Todo[]) { }
+    constructor(public payload: TodoListItem[]) { }
 }
 
 export class LoadFail implements Action {
@@ -35,9 +41,14 @@ export class LoadFail implements Action {
 export class Add implements Action {
     readonly type = TodoActionsTypes.Add;
 
-    constructor(public payload: NewTodo) { }
+    constructor(public payload: NewTodoItem) { }
 }
 
+export class AddSuccess implements Action {
+    readonly type = TodoActionsTypes.AddSuccess;
+
+    constructor() { }
+}
 
 export class AddFail implements Action {
     readonly type = TodoActionsTypes.AddFail;
@@ -57,6 +68,12 @@ export class Delete implements Action {
     constructor(public payload: number) { }
 }
 
+export class DeleteSuccess implements Action {
+    readonly type = TodoActionsTypes.DeleteSuccess;
+
+    constructor() { }
+}
+
 export class DeleteFail implements Action {
     readonly type = TodoActionsTypes.DeleteFail;
 
@@ -66,11 +83,35 @@ export class DeleteFail implements Action {
 export class Update implements Action {
     readonly type = TodoActionsTypes.Update;
 
-    constructor(public payload: Todo ) { }
+    constructor(public payload: UpdateTodoItem) { }
+}
+
+export class UpdateSuccess implements Action {
+    readonly type = TodoActionsTypes.UpdateSuccess;
+
+    constructor() { }
 }
 
 export class UpdateFail implements Action {
     readonly type = TodoActionsTypes.UpdateFail;
+
+    constructor(public payload: LocalizedErrorInfo) { }
+}
+
+export class SetState implements Action {
+    readonly type = TodoActionsTypes.SetState;
+
+    constructor(public payload: UpdateTodoItemState) { }
+}
+
+export class SetStateSuccess implements Action {
+    readonly type = TodoActionsTypes.SetStateSuccess;
+
+    constructor() { }
+}
+
+export class SetStateFail implements Action {
+    readonly type = TodoActionsTypes.SetStateFail;
 
     constructor(public payload: LocalizedErrorInfo) { }
 }
@@ -80,9 +121,14 @@ export type TodoActions =
     | LoadSuccess
     | LoadFail
     | Add
+    | AddSuccess
     | AddFail
-    | SetActionInProgress
     | Delete
     | DeleteFail
     | Update
-    | UpdateFail;
+    | UpdateSuccess
+    | UpdateFail
+    | SetActionInProgress
+    | SetState
+    | SetStateSuccess
+    | SetStateFail;

@@ -9,12 +9,6 @@ export function loginReducer(state = initialState, action: AppActions): State {
                 ...state,
                 loggedUser: action.payload
             };
-        case AppActionsTypes.LoginFail:
-            return {
-                ...state,
-                loggedUser: null,
-                error: action.payload
-            };
         case AppActionsTypes.LogoutSuccess:
             return {
                 ...state,

@@ -3,8 +3,6 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { State } from '../state/todo.state';
 import { Store } from '@ngrx/store';
 import * as todoActions from '../state/todo.actions';
-import { Todo } from '../models/todo.model';
-import { isNgTemplate } from '@angular/compiler';
 import { TodoService } from '../services/todo.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
@@ -43,7 +41,8 @@ export class EditTodoItemComponent implements OnInit {
         this.store.dispatch(new todoActions.Update({
             id: this.itemId,
             name: this.todoForm.value.name,
-            description: this.todoForm.value.description
+            description: this.todoForm.value.description,
+            isDone: false
         }));
         this.modalService.dismissAll();
     }
