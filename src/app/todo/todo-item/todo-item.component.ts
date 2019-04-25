@@ -6,7 +6,7 @@ import * as todoActions from '../state/todo.actions';
 import { EditTodoItemComponent } from '../edit-todo-item/edit-todo-item.component';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { FormControl } from '@angular/forms';
-import { debounceTime, tap } from 'rxjs/operators';
+import { debounceTime } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 import { getTodoActionInProgress } from '../state/todo.selectors';
 
@@ -37,10 +37,7 @@ export class TodoItemComponent implements OnInit {
         );
 
         this.actionInProgress$ = this.store.pipe(
-            select(getTodoActionInProgress),
-            tap(inProgress => inProgress
-                ? this.isDoneControl.disable({ emitEvent: false })
-                : this.isDoneControl.enable({ emitEvent: false }))
+            select(getTodoActionInProgress)
         );
     }
 

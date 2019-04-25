@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule, NoPreloading } from '@angular/router';
 import { GuardService } from './core/guard.service';
 import { AuthService } from './core/auth.service';
+import { UserGuardService } from './core/user.guard.service';
 
 const routes: Routes = [
     {
@@ -12,7 +13,7 @@ const routes: Routes = [
     {
         path: 'users',
         loadChildren: './users/users.module#UsersModule',
-        canActivate: [GuardService]
+        canActivate: [UserGuardService]
     }
 ];
 
@@ -29,6 +30,10 @@ const routes: Routes = [
     exports: [
         RouterModule
     ],
-    providers: [GuardService, AuthService]
+    providers: [
+        GuardService,
+        AuthService,
+        UserGuardService
+    ]
 })
 export class AppRoutingModule { }

@@ -6,6 +6,8 @@ import { Logout } from './state/app.actions';
 import { Observable } from 'rxjs';
 import { LoggedUser } from './models/logged-user.model';
 import { trigger, transition, animate, keyframes, style, state } from '@angular/animations';
+import { AuthService } from './core/auth.service';
+
 
 @Component({
     selector: 'kros-root',
@@ -24,9 +26,9 @@ export class AppComponent implements OnInit {
 
     constructor(
         private router: Router,
+        public authService: AuthService,
         private store: Store<State>
     ) {
-
     }
 
     loggedUser$: Observable<LoggedUser>;
@@ -34,7 +36,6 @@ export class AppComponent implements OnInit {
     state = 'left';
 
     ngOnInit(): void {
-
         this.isLoggedUser$ = this.store.select((store: any) => store.login.loggedUser != null);
         this.loggedUser$ = this.store.select((store: any) => store.login.loggedUser);
     }

@@ -1,0 +1,18 @@
+<div class="row px-2 align-items-center">
+
+    <div class="col-1">
+        {{user.id}}
+    </div>
+
+    <div class="col">
+        {{user.email}}
+    </div>
+
+    <div>
+        <label  class="switch">
+            <input [formControl]="isAdmin" type="checkbox" style="visibility: hidden">
+            <span class="slider round"></span>
+        </label>
+    </div>
+
+</div>

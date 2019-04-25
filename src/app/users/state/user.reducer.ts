@@ -1,27 +1,32 @@
-import { User } from '../models/user.model';
-
 import { UserActions, UserActionTypes } from './user.actions';
+import { initialState, UserState } from './users.state';
 
-// State for this feature (User)
-export interface UserState {
-  maskUserName: boolean;
-  currentUser: User;
-}
-
-const initialState: UserState = {
-  maskUserName: true,
-  currentUser: null
-};
 
 export function reducer(state = initialState, action: UserActions): UserState {
-  switch (action.type) {
-    case UserActionTypes.MaskUserName:
-      return {
-        ...state,
-        maskUserName: action.payload
-      };
+    switch (action.type) {
+        case UserActionTypes.LoadSuccess:
+            return {
+                ...state,
+                actionInProgress: false,
+                users: action.payload,
+                error: null
+            };
 
-    default:
-      return state;
-  }
+        case UserActionTypes.LoadFail:
+            return {
+                ...state,
+                users: [],
+                actionInProgress: false,
+                error: action.payload
+            };
+
+        case UserActionTypes.UpdateFail:
+            return {
+                ...state,
+                actionInProgress: false,
+                error: action.payload
+            };
+        default:
+            return state;
+    }
 }
