@@ -21,7 +21,6 @@ export class TodoService {
         return this.http
             .get<TodoItem[]>(this.createApiUrl('ToDos'))
             .pipe(
-                delay(1000),
                 catchError(handleHttpError)
             );
     }

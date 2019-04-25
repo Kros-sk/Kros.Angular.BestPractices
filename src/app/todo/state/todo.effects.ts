@@ -1,20 +1,18 @@
 import { Injectable } from '@angular/core';
-import { Action, Store } from '@ngrx/store';
+import { Action } from '@ngrx/store';
 import { Actions, Effect, ofType } from '@ngrx/effects';
 import { Observable, of } from 'rxjs';
 import * as todoActions from './todo.actions';
 import { mergeMap, map, catchError, switchMap, concatMap } from 'rxjs/operators';
 import { TodoService } from '../services/todo.service';
 import { LocalizedErrorInfo } from 'src/app/shared/models/error-info.model';
-import { TodoItem } from '../models/todo.model';
 
 
 @Injectable()
 export class TodoEffects {
     constructor(
         private actions$: Actions,
-        private todoService: TodoService,
-        private store: Store<TodoItem>
+        private todoService: TodoService
     ) {
     }
 

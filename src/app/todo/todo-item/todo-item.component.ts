@@ -1,12 +1,14 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { TodoItem } from '../models/todo.model';
-import { Store } from '@ngrx/store';
+import { Store, select } from '@ngrx/store';
 import { State } from '../state/todo.state';
 import * as todoActions from '../state/todo.actions';
 import { EditTodoItemComponent } from '../edit-todo-item/edit-todo-item.component';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { FormControl } from '@angular/forms';
-import { debounceTime } from 'rxjs/operators';
+import { debounceTime, tap } from 'rxjs/operators';
+import { Observable } from 'rxjs';
+import { getTodoActionInProgress } from '../state/todo.selectors';
 
 
 @Component({
@@ -22,17 +24,23 @@ export class TodoItemComponent implements OnInit {
     ) { }
 
     @Input() item: TodoItem;
-    @Input() disabled = false;
 
     isDoneControl: FormControl;
+    actionInProgress$: Observable<boolean>;
 
     ngOnInit() {
         this.isDoneControl = new FormControl(this.item.isDone);
-
         this.isDoneControl.valueChanges.pipe(
             debounceTime(200)
         ).subscribe(
             (newValue: boolean) => this.setTodoState(this.item.id, newValue)
+        );
+
+        this.actionInProgress$ = this.store.pipe(
+            select(getTodoActionInProgress),
+            tap(inProgress => inProgress
+                ? this.isDoneControl.disable({ emitEvent: false })
+                : this.isDoneControl.enable({ emitEvent: false }))
         );
     }
 
@@ -40,9 +48,7 @@ export class TodoItemComponent implements OnInit {
         this.store.dispatch(new todoActions.Delete(id));
     }
 
-    openModal(id: number) {
-        if (this.disabled) { return; }
-
+    editTodo(id: number) {
         const modalRef = this.modalService.open(EditTodoItemComponent, {
             size: 'lg',
             centered: true
@@ -51,9 +57,8 @@ export class TodoItemComponent implements OnInit {
     }
 
     setTodoState(id: number, isDone: boolean) {
-        this.store.dispatch(new todoActions.SetState({
-            id: this.item.id,
-            isDone
-        }));
+        this.store.dispatch(
+            new todoActions.SetState({ id, isDone })
+        );
     }
 }

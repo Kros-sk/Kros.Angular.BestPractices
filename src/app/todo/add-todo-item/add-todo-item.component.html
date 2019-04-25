@@ -5,13 +5,11 @@
 <form [formGroup]="todoForm" (ngSubmit)="addTodo()" class="d-flex justify-content-between">
     <input class="col mr-4"
         type="text"
-        formControlName="name"
-        [attr.disabled]="disabled ? true : null">
+        formControlName="name">
 
     <input class="col mr-4"
         type="text"
-        formControlName="description"
-        [attr.disabled]="disabled ? true : null">
+        formControlName="description">
 
     <button class="btn btn-outline-success col-2"
         type="submit"

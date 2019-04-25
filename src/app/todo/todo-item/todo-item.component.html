@@ -1,6 +1,6 @@
 <div class="row px-3 align-items-center">
 
-    <label class="btn-outline-success col-1 mr-4 mb-0 font-weight-bold" ngbButtonLabel>
+    <label class="btn-primary col-1 mr-4 mb-0 font-weight-bold" ngbButtonLabel>
         <input type="checkbox"
             style="display: none"
             [formControl]="isDoneControl"
@@ -8,28 +8,24 @@
         {{ isDoneControl.value ? "✓" : "&nbsp;" }}
     </label>
 
-    <!-- <input class="col-1"
-        type="checkbox"
-        [disabled]="disabled"> -->
-
-    <div class="col-1" [ngClass]="{ 'text-black-50': disabled }">
+    <div class="col-1">
         {{item.id}}
     </div>
 
-    <div class="col" [ngClass]="{ 'text-black-50': disabled }">
+    <div class="col">
         {{item.name}}
     </div>
 
     <div class="col-2">
         <div class="row justify-content-between">
             <button class="btn btn-outline-primary col-5"
-                (click)="openModal(item.id)"
-                [disabled]="disabled">
+                (click)="editTodo(item.id)"
+                [disabled]="actionInProgress$ | async">
                 Edit
             </button>
             <button class="btn btn-outline-danger col-5"
                 (click)="deleteTodo(item.id)"
-                [disabled]="disabled">
+                [disabled]="actionInProgress$ | async">
                 Delete
             </button>
         </div>
