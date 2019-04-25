@@ -11,8 +11,8 @@
     <div class="col-3">
         {{user.isAdmin}}
     </div>
-
     <div>
-        <input class="col-1" type="checkbox" [attr.checked]="user.isAdmin ? 'true' : null">
+        <input [formControl]="isAdmin" type="checkbox">
     </div>
+
 </div>

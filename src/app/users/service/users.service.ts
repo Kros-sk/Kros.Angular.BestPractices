@@ -27,6 +27,8 @@ export class UsersService {
     }
 
     public updateUser(updateUser: User): Observable<any> {
+        console.log(updateUser);
+        console.log(this.createApiUrl('users', updateUser.id.toString()));
         return this.http.put(this.createApiUrl('users', updateUser.id.toString()), updateUser)
         .pipe(
             catchError(handleHttpError)
