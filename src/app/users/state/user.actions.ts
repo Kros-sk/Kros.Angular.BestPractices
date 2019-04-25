@@ -6,6 +6,9 @@ export enum UserActionTypes {
     Load = '[User] Load',
     LoadSuccess = '[User] Load Success',
     LoadFail = '[User] Load Fail',
+    Update = '[User] Update',
+    UpdateSuccess = '[User] Update Success',
+    UpdateFail = '[User] Update Fail',
 }
 
 
@@ -25,9 +28,30 @@ export class LoadFail implements Action {
     constructor(public payload: LocalizedErrorInfo) { }
 }
 
+export class Update implements Action {
+    readonly type = UserActionTypes.Update;
+
+    constructor(public payload: User) { }
+}
+
+export class UpdateSuccess implements Action {
+    readonly type = UserActionTypes.UpdateSuccess;
+
+    constructor() { }
+}
+
+export class UpdateFail implements Action {
+    readonly type = UserActionTypes.UpdateFail;
+
+    constructor(public payload: LocalizedErrorInfo) { }
+}
+
 export type UserActions =
     | Load
     | LoadSuccess
-    | LoadFail;
+    | LoadFail
+    | Update
+    | UpdateSuccess
+    | UpdateFail;
 
 

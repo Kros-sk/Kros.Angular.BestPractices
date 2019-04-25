@@ -16,10 +16,13 @@
                     routerLinkActive="active">
                     Todo list
                 </button>
+
                 <button type="button" class="btn btn-outline-primary col" [routerLink]="['/users']"
-                    routerLinkActive="active">
+                    routerLinkActive="active" placement="top" [ngbPopover]="authService.isAdmin ? 'You are Admin' : 'You are not Admin'"
+                    #popover="ngbPopover" (mouseenter)="popover.open()" (mouseleave)="popover.close()">
                     Users management
                 </button>
+
             </div>
             <div class="badge badge-pill badge-success" [@animationKros] = 'state' (click)="animateMe()">
                 <div>

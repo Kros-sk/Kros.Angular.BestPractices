@@ -3,8 +3,8 @@ import { initialState, UserState } from './users.state';
 
 
 export function reducer(state = initialState, action: UserActions): UserState {
-  switch (action.type) {
-    case UserActionTypes.LoadSuccess:
+    switch (action.type) {
+        case UserActionTypes.LoadSuccess:
             return {
                 ...state,
                 actionInProgress: false,
@@ -19,7 +19,14 @@ export function reducer(state = initialState, action: UserActions): UserState {
                 actionInProgress: false,
                 error: action.payload
             };
-    default:
-      return state;
-  }
+
+        case UserActionTypes.UpdateFail:
+            return {
+                ...state,
+                actionInProgress: false,
+                error: action.payload
+            };
+        default:
+            return state;
+    }
 }

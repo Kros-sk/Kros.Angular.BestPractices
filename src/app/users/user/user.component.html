@@ -8,11 +8,11 @@
         {{user.email}}
     </div>
 
-    <div class="col-3">
-        {{user.isAdmin}}
-    </div>
     <div>
-        <input [formControl]="isAdmin" type="checkbox">
+        <label  class="switch">
+            <input [formControl]="isAdmin" type="checkbox" style="visibility: hidden">
+            <span class="slider round"></span>
+        </label>
     </div>
 
 </div>

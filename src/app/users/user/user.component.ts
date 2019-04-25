@@ -1,8 +1,10 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { User } from '../models/user.model';
-import { FormGroup, FormBuilder, FormControl } from '@angular/forms';
+import { FormControl } from '@angular/forms';
 import { debounceTime } from 'rxjs/operators';
-import { UsersService } from '../service/users.service';
+import { StateUser } from '../state/users.state';
+import { Store } from '@ngrx/store';
+import * as userActions from '../state/user.actions';
 
 @Component({
     selector: 'kros-user',
@@ -14,7 +16,7 @@ export class UserComponent implements OnInit {
     isAdmin: FormControl;
 
     constructor(
-        private userService: UsersService
+        private store: Store<StateUser>
     ) {
         this.isAdmin = new FormControl(false);
     }
@@ -22,14 +24,16 @@ export class UserComponent implements OnInit {
     @Input() user: User;
 
     ngOnInit() {
+        this.isAdmin.setValue(this.user.isAdmin);
         this.isAdmin.valueChanges.pipe(
             debounceTime(500)
         ).subscribe(
             value => {
-                this.userService.updateUser({
-                    ...this.user,
+                this.store.dispatch(new userActions.Update({
+                    id: this.user.id,
+                    email: this.user.email,
                     isAdmin: value
-                }).subscribe();
+                }));
             },
             err => console.log('error', err)
         );
