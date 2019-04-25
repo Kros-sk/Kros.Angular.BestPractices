@@ -1,35 +1,34 @@
-<div class="row px-2 align-items-center" (dblclick)="openModal(item.id)" >
+<div class="row px-3 align-items-center">
 
-    <label class="btn-outline-success col-1 ml-2 mr-4 mb-0 font-weight-bold" ngbButtonLabel>
+    <label class="btn-primary col-1 mr-4 mb-0 font-weight-bold" ngbButtonLabel>
         <input type="checkbox"
             style="display: none"
-            [formControl]="done"
+            [formControl]="isDoneControl"
             ngbButton>
-        {{ done.value ? "✓" : "&nbsp;" }}
+        {{ isDoneControl.value ? "✓" : "&nbsp;" }}
     </label>
 
-    <!-- <input class="col-1"
-        type="checkbox"
-        [disabled]="disabled"> -->
-
-    <div class="col-1" [ngClass]="{ 'text-black-50': disabled }">
+    <div class="col-1">
         {{item.id}}
     </div>
 
-    <div class="col" [ngClass]="{ 'text-black-50': disabled }">
+    <div class="col">
         {{item.name}}
     </div>
 
-    <div class="col-3" [ngClass]="{ 'text-black-50': disabled }">
-        {{item.created}}
-    </div>
-
-    <div class="col-1 text-right">
-        <button class="btn btn-outline-danger"
-            (click)="deleteTodo(item.id)"
-            [disabled]="disabled">
-            X
-        </button>
+    <div class="col-2">
+        <div class="row justify-content-between">
+            <button class="btn btn-outline-primary col-5"
+                (click)="editTodo(item.id)"
+                [disabled]="actionInProgress$ | async">
+                Edit
+            </button>
+            <button class="btn btn-outline-danger col-5"
+                (click)="deleteTodo(item.id)"
+                [disabled]="actionInProgress$ | async">
+                Delete
+            </button>
+        </div>
     </div>
 
 </div>

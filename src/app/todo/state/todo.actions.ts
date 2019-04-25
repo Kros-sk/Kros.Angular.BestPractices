@@ -1,4 +1,4 @@
-import { Todo, NewTodo } from '../models/todo.model';
+import { NewTodoItem, TodoListItem, UpdateTodoItem, UpdateTodoItemState } from '../models/todo.model';
 import { Action } from '@ngrx/store';
 import { LocalizedErrorInfo } from 'src/app/shared/models/error-info.model';
 
@@ -17,6 +17,9 @@ export enum TodoActionsTypes {
     Update = '[Todo] Update',
     UpdateSuccess = '[Todo] Update Success',
     UpdateFail = '[Todo] Update Fail',
+    SetState = '[Todo] Set State',
+    SetStateSuccess = '[Todo] Set State Success',
+    SetStateFail = '[Todo] Set State Fail',
 }
 
 export class Load implements Action {
@@ -26,7 +29,7 @@ export class Load implements Action {
 export class LoadSuccess implements Action {
     readonly type = TodoActionsTypes.LoadSuccess;
 
-    constructor(public payload: Todo[]) { }
+    constructor(public payload: TodoListItem[]) { }
 }
 
 export class LoadFail implements Action {
@@ -38,7 +41,7 @@ export class LoadFail implements Action {
 export class Add implements Action {
     readonly type = TodoActionsTypes.Add;
 
-    constructor(public payload: NewTodo) { }
+    constructor(public payload: NewTodoItem) { }
 }
 
 export class AddSuccess implements Action {
@@ -80,7 +83,7 @@ export class DeleteFail implements Action {
 export class Update implements Action {
     readonly type = TodoActionsTypes.Update;
 
-    constructor(public payload: Todo) { }
+    constructor(public payload: UpdateTodoItem) { }
 }
 
 export class UpdateSuccess implements Action {
@@ -91,6 +94,24 @@ export class UpdateSuccess implements Action {
 
 export class UpdateFail implements Action {
     readonly type = TodoActionsTypes.UpdateFail;
+
+    constructor(public payload: LocalizedErrorInfo) { }
+}
+
+export class SetState implements Action {
+    readonly type = TodoActionsTypes.SetState;
+
+    constructor(public payload: UpdateTodoItemState) { }
+}
+
+export class SetStateSuccess implements Action {
+    readonly type = TodoActionsTypes.SetStateSuccess;
+
+    constructor() { }
+}
+
+export class SetStateFail implements Action {
+    readonly type = TodoActionsTypes.SetStateFail;
 
     constructor(public payload: LocalizedErrorInfo) { }
 }
@@ -107,4 +128,7 @@ export type TodoActions =
     | Update
     | UpdateSuccess
     | UpdateFail
-    | SetActionInProgress;
+    | SetActionInProgress
+    | SetState
+    | SetStateSuccess
+    | SetStateFail;

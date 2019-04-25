@@ -15,7 +15,6 @@
         <li class="list-group-item" *ngFor="let item of todoList$ | async">
             <kros-todo-item
                 [item]="item"
-                [disabled]="actionInProgress$ | async"
             >
             </kros-todo-item>
         </li>
@@ -41,7 +40,7 @@
         </div>
 
         <button class="btn btn-outline-danger col-2">
-            Clear completed
+            Delete completed
         </button>
 
     </div>

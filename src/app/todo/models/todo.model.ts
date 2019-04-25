@@ -1,15 +1,34 @@
-export class Todo {
+export class TodoItem {
     id: number;
     name: string;
     description: string;
-    userId?: number;
-    created?: Date;
-    lastChange?: Date;
+    created: string;
+    lastChange: string;
+    userId: number;
+    isDone: boolean;
 }
 
-export class NewTodo {
+export class TodoListItem {
+    id: number;
+    name: string;
+    isDone: boolean;
+}
+
+export class NewTodoItem {
     name: string;
     description: string;
+}
+
+export class UpdateTodoItem {
+    id: number;
+    name: string;
+    description: string;
+    isDone: boolean;
+}
+
+export class UpdateTodoItemState {
+    id: number;
+    isDone: boolean;
 }
 
 export enum TodoListFilter {
