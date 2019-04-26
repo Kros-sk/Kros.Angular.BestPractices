@@ -22,7 +22,7 @@ const routes: Routes = [
         RouterModule.forRoot(
             routes,
             {
-                useHash: true,
+                useHash: false,
                 preloadingStrategy: NoPreloading
             }
         )
