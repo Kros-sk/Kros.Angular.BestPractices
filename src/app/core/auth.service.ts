@@ -4,7 +4,7 @@ import * as Oidc from 'oidc-client';
 import { LoggedUser } from '../models/logged-user.model';
 import { Store } from '@ngrx/store';
 import { State } from '../state/app.state';
-import { LoginSuccess } from '../state/app.actions';
+import { LoginSuccess } from '../state/login/login.actions';
 import { environment } from 'src/environments/environment';
 import { HttpClient } from '@angular/common/http';
 
@@ -73,7 +73,7 @@ export class AuthService {
 
     loadUserInfo() {
         this.http
-            .get(`${environment.usersApiUrl}/api/users/IsAdmin`)
+            .get(`${environment.usersApiUrl}/api/Users/IsAdmin`)
             .subscribe(resp => {
                 if (resp) {
                     this.isAdmin = (resp as boolean);

@@ -36,12 +36,6 @@ export function reducer(state = initialState, action: TodoActions): TodoState {
                 error: action.payload
             };
 
-        case TodoActionsTypes.SetActionInProgress:
-            return {
-                ...state,
-                actionInProgress: action.payload
-            };
-
         default:
             return state;
     }

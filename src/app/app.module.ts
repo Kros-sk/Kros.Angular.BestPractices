@@ -7,10 +7,11 @@ import { environment } from 'src/environments/environment';
 import { AppRoutingModule } from './app-routing.module';
 import { AuthService } from './core/auth.service';
 import { StoreModule } from '@ngrx/store';
-import { loginReducer } from './state/app.reducer';
+import { loginReducer } from './state/login/login.reducer';
+import { progressReducer } from './state/progress/progress.reducer';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { EffectsModule } from '@ngrx/effects';
-import { AppEffects } from './state/app.effects';
+import { AppEffects } from './state/login/login.effects';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptor } from './core/auth.interceptor';
@@ -22,7 +23,9 @@ import { AuthInterceptor } from './core/auth.interceptor';
         AppRoutingModule,
         SharedModule,
         ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
-        StoreModule.forRoot({login: loginReducer}),
+        StoreModule.forRoot({
+            login: loginReducer,
+            progress: progressReducer}),
         EffectsModule.forRoot([
             AppEffects
         ]),

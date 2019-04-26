@@ -10,7 +10,6 @@ export enum TodoActionsTypes {
     Add = '[Todo] Add',
     AddSuccess = '[Todo] Add Success',
     AddFail = '[Todo] Add Fail',
-    SetActionInProgress = '[Todo] Set Action in Progress',
     Delete = '[Todo] Delete',
     DeleteSuccess = '[Todo] Delete Success',
     DeleteFail= '[Todo] Delete Fail',
@@ -56,11 +55,6 @@ export class AddFail implements Action {
     constructor(public payload: LocalizedErrorInfo) { }
 }
 
-export class SetActionInProgress implements Action {
-    readonly type = TodoActionsTypes.SetActionInProgress;
-
-    constructor(public payload: boolean) { }
-}
 
 export class Delete implements Action {
     readonly type = TodoActionsTypes.Delete;
@@ -128,7 +122,6 @@ export type TodoActions =
     | Update
     | UpdateSuccess
     | UpdateFail
-    | SetActionInProgress
     | SetState
     | SetStateSuccess
     | SetStateFail;

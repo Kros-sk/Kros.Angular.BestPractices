@@ -1,13 +1,9 @@
-import { LoggedUser } from '../models/logged-user.model';
-import { LocalizedErrorInfo } from '../shared/models/error-info.model';
+import { LoginState } from './login/login.state';
+import { ProgressState } from './progress/progress.state';
 
 
 export interface State {
-    loggedUser: LoggedUser | null;
-    error: LocalizedErrorInfo;
+    login: LoginState;
+    progres: ProgressState;
 }
 
-export const initialState: State = {
-    loggedUser: null,
-    error: null
-};

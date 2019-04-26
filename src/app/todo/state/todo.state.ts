@@ -8,13 +8,11 @@ export interface State extends fromRoot.State {
 }
 
 export interface TodoState {
-    actionInProgress: boolean;
     todos: TodoListItem[];
     error: LocalizedErrorInfo | null;
 }
 
 export const initialState: TodoState = {
-    actionInProgress: false,
     todos: [],
     error: null
 };

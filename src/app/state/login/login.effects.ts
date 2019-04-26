@@ -2,9 +2,9 @@ import { Injectable } from '@angular/core';
 import { Action } from '@ngrx/store';
 import { Actions, Effect, ofType } from '@ngrx/effects';
 import { Observable, from } from 'rxjs';
-import * as appActions from './app.actions';
+import * as loginActions from './login.actions';
 import { mergeMap, map } from 'rxjs/operators';
-import { AuthService } from '../core/auth.service';
+import { AuthService } from '../../core/auth.service';
 
 
 @Injectable()
@@ -13,10 +13,10 @@ export class AppEffects {
                 private authService: AuthService) { }
     @Effect()
     logoutUser$: Observable<Action> = this.actions$.pipe(
-        ofType(appActions.AppActionsTypes.Logout),
+        ofType(loginActions.LoginActionsTypes.Logout),
         mergeMap(action => from(this.authService.logOut())
             .pipe(
-                map(() => new appActions.LogoutSuccess())
+                map(() => new loginActions.LogoutSuccess())
             )
         )
     );
