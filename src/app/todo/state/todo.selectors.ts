@@ -14,7 +14,3 @@ export const getError = createSelector(
     state => state.error
 );
 
-export const getTodoActionInProgress = createSelector(
-    getTodoFeatureState,
-    state => state.actionInProgress
-);

@@ -8,7 +8,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { FormControl } from '@angular/forms';
 import { debounceTime } from 'rxjs/operators';
 import { Observable } from 'rxjs';
-import { getTodoActionInProgress } from '../state/todo.selectors';
+import { getProgressActionInProgress } from '../../state/progress/progress.selector';
 
 
 @Component({
@@ -37,7 +37,7 @@ export class TodoItemComponent implements OnInit {
         );
 
         this.actionInProgress$ = this.store.pipe(
-            select(getTodoActionInProgress)
+            select(getProgressActionInProgress)
         );
     }
 

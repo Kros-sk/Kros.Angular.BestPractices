@@ -20,14 +20,14 @@ export class UsersService {
 
     public getAllUsers(): Observable<User[]> {
         return this.http
-            .get<User[]>(this.createApiUrl('users', 'getAllUsers'))
+            .get<User[]>(this.createApiUrl('Users'))
             .pipe(
                 catchError(handleHttpError)
             );
     }
 
     public updateUser(updateUser: User): Observable<any> {
-        return this.http.put(this.createApiUrl('users', updateUser.id.toString()), updateUser)
+        return this.http.put(this.createApiUrl('Users', updateUser.id.toString()), updateUser)
         .pipe(
             catchError(handleHttpError)
         );

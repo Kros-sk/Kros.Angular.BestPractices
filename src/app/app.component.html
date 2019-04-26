@@ -18,13 +18,14 @@
                 </button>
 
                 <button type="button" class="btn btn-outline-primary col" [routerLink]="['/users']"
-                    routerLinkActive="active" placement="top" [ngbPopover]="authService.isAdmin ? 'You are Admin' : 'You are not Admin'"
-                    #popover="ngbPopover" (mouseenter)="popover.open()" (mouseleave)="popover.close()">
+                    routerLinkActive="active" placement="top"
+                    [ngbPopover]="authService.isAdmin ? 'You are Admin' : 'You are not Admin'" #popover="ngbPopover"
+                    (mouseenter)="popover.open()" (mouseleave)="popover.close()">
                     Users management
                 </button>
 
             </div>
-            <div class="badge badge-pill badge-success" [@animationKros] = 'state' (click)="animateMe()">
+            <div class="badge badge-pill badge-success" [@animationKros]='state' (click)="animateMe()">
                 <div>
                     {{ (loggedUser$ | async).name }}
                 </div>
@@ -37,6 +38,9 @@
             </button>
         </div>
     </div>
-
-    <router-outlet></router-outlet>
+    <ngb-progressbar class="mt-4" type="secondary" [striped]="true" [animated]="true" [value]="100"
+        [ngClass]="{'hidden': !(actionInProgress$ | async)}">
+    </ngb-progressbar>
+    <router-outlet>
+    </router-outlet>
 </div>

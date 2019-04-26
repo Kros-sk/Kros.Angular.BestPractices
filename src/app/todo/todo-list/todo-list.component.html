@@ -1,14 +1,5 @@
 <ng-container *ngIf="!(errorMessage$ | async)">
 
-    <ngb-progressbar
-        class="mt-4"
-        type="secondary"
-        [striped]="true"
-        [animated]="true"
-        [value]="100"
-        [ngClass]="{'hidden': !(actionInProgress$ | async)}">
-    </ngb-progressbar>
-
     <kros-add-todo-item [disabled]="actionInProgress$ | async"></kros-add-todo-item>
 
     <ul class="list-group mt-4">

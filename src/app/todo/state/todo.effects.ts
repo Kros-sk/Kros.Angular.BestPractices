@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Action } from '@ngrx/store';
 import { Actions, Effect, ofType } from '@ngrx/effects';
 import { Observable, of } from 'rxjs';
+import * as progressActions from '../../state/progress/progress.actions';
 import * as todoActions from './todo.actions';
 import { mergeMap, map, catchError, switchMap, concatMap } from 'rxjs/operators';
 import { TodoService } from '../services/todo.service';
@@ -85,7 +86,7 @@ export class TodoEffects {
                todoActions.TodoActionsTypes.Delete,
                todoActions.TodoActionsTypes.Update,
                todoActions.TodoActionsTypes.SetState),
-        map(() => new todoActions.SetActionInProgress(true))
+        map(() => new progressActions.SetActionInProgress(true))
     );
 
     @Effect()
@@ -96,6 +97,6 @@ export class TodoEffects {
                todoActions.TodoActionsTypes.DeleteFail,
                todoActions.TodoActionsTypes.UpdateFail,
                todoActions.TodoActionsTypes.SetStateFail),
-        map(() => new todoActions.SetActionInProgress(false))
+        map(() => new progressActions.SetActionInProgress(false))
     );
 }
