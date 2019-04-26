@@ -49,6 +49,17 @@ export class TodoEffects {
     );
 
     @Effect()
+    deleteCompletedTodo$: Observable<Action> = this.actions$.pipe(
+        ofType(todoActions.TodoActionsTypes.DeleteCompleted),
+        mergeMap((action: todoActions.DeleteCompleted) =>
+            this.todoService.deleteCompletedTodo().pipe(
+                map(() => (new todoActions.DeleteCompletedSuccess())),
+                catchError((err: LocalizedErrorInfo) => of(new todoActions.DeleteCompletedFail(err)))
+            ),
+        )
+    );
+
+    @Effect()
     updateTodo$: Observable<Action> = this.actions$.pipe(
         ofType(todoActions.TodoActionsTypes.Update),
         concatMap((action: todoActions.Update) =>
@@ -73,30 +84,33 @@ export class TodoEffects {
     @Effect()
     reloadAfterChanges$: Observable<Action> = this.actions$.pipe(
         ofType(todoActions.TodoActionsTypes.AddSuccess,
-               todoActions.TodoActionsTypes.DeleteSuccess,
-               todoActions.TodoActionsTypes.UpdateSuccess,
-               todoActions.TodoActionsTypes.SetStateSuccess),
+            todoActions.TodoActionsTypes.DeleteSuccess,
+            todoActions.TodoActionsTypes.DeleteCompletedSuccess,
+            todoActions.TodoActionsTypes.UpdateSuccess,
+            todoActions.TodoActionsTypes.SetStateSuccess),
         map(() => new todoActions.Load())
     );
 
     @Effect()
     showProgressIndicator$: Observable<Action> = this.actions$.pipe(
         ofType(todoActions.TodoActionsTypes.Load,
-               todoActions.TodoActionsTypes.Add,
-               todoActions.TodoActionsTypes.Delete,
-               todoActions.TodoActionsTypes.Update,
-               todoActions.TodoActionsTypes.SetState),
+            todoActions.TodoActionsTypes.Add,
+            todoActions.TodoActionsTypes.Delete,
+            todoActions.TodoActionsTypes.DeleteCompleted,
+            todoActions.TodoActionsTypes.Update,
+            todoActions.TodoActionsTypes.SetState),
         map(() => new progressActions.SetActionInProgress(true))
     );
 
     @Effect()
     hideProgressIndicator$: Observable<Action> = this.actions$.pipe(
         ofType(todoActions.TodoActionsTypes.LoadSuccess,
-               todoActions.TodoActionsTypes.LoadFail,
-               todoActions.TodoActionsTypes.AddFail,
-               todoActions.TodoActionsTypes.DeleteFail,
-               todoActions.TodoActionsTypes.UpdateFail,
-               todoActions.TodoActionsTypes.SetStateFail),
+            todoActions.TodoActionsTypes.LoadFail,
+            todoActions.TodoActionsTypes.AddFail,
+            todoActions.TodoActionsTypes.DeleteFail,
+            todoActions.TodoActionsTypes.DeleteCompletedFail,
+            todoActions.TodoActionsTypes.UpdateFail,
+            todoActions.TodoActionsTypes.SetStateFail),
         map(() => new progressActions.SetActionInProgress(false))
     );
 }

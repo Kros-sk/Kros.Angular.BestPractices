@@ -9,8 +9,9 @@ import { AuthService } from '../../core/auth.service';
 
 @Injectable()
 export class AppEffects {
-    constructor(private actions$: Actions,
-                private authService: AuthService) { }
+    constructor(
+        private actions$: Actions,
+        private authService: AuthService) { }
     @Effect()
     logoutUser$: Observable<Action> = this.actions$.pipe(
         ofType(loginActions.LoginActionsTypes.Logout),

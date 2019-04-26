@@ -14,7 +14,7 @@ import { UserEffects } from './state/user.effects';
         UsersRoutingModule,
         StoreModule.forFeature('users', reducer),
         EffectsModule.forFeature(
-            [ UserEffects ]
+            [UserEffects]
         )
     ],
     declarations: [

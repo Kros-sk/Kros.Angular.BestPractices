@@ -25,7 +25,8 @@ import { AuthInterceptor } from './core/auth.interceptor';
         ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
         StoreModule.forRoot({
             login: loginReducer,
-            progress: progressReducer}),
+            progress: progressReducer
+        }),
         EffectsModule.forRoot([
             AppEffects
         ]),

@@ -4,9 +4,7 @@
 
     <ul class="list-group mt-4">
         <li class="list-group-item" *ngFor="let item of todoList$ | async">
-            <kros-todo-item
-                [item]="item"
-            >
+            <kros-todo-item [item]="item">
             </kros-todo-item>
         </li>
     </ul>
@@ -14,7 +12,7 @@
     <div class="d-flex justify-content-between mt-4">
 
         <div class="btn-group btn-group-toggle" ngbRadioGroup name="filterRadioGroup"
-    [formControl]="selectedFilterControl">
+            [formControl]="selectedFilterControl">
 
             <label ngbButtonLabel class="btn-outline-secondary">
                 <input ngbButton type="radio" [value]="0">
@@ -30,7 +28,7 @@
             </label>
         </div>
 
-        <button class="btn btn-outline-danger col-2">
+        <button class="btn btn-outline-danger col-2" (click)="deleteComplete()">
             Delete completed
         </button>
 

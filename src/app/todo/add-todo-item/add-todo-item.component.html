@@ -3,17 +3,11 @@
 </div>
 
 <form [formGroup]="todoForm" (ngSubmit)="addTodo()" class="d-flex justify-content-between">
-    <input class="col mr-4"
-        type="text"
-        formControlName="name">
+    <input class="col mr-4" type="text" formControlName="name">
 
-    <input class="col mr-4"
-        type="text"
-        formControlName="description">
+    <input class="col mr-4" type="text" formControlName="description">
 
-    <button class="btn btn-outline-success col-2"
-        type="submit"
-        [disabled]="disabled">
+    <button class="btn btn-outline-success col-2" type="submit" [disabled]="disabled">
         Add
     </button>
 </form>

@@ -28,6 +28,10 @@ describe('TodoItemComponent', () => {
         component = fixture.componentInstance;
         component.item = {
             id: 1,
+            created: '',
+            lastChange: '',
+            userId: 1,
+            isDone: false,
             name: 'Ahoj',
             description: 'OK'
         };

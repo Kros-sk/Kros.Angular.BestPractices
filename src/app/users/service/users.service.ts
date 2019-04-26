@@ -28,9 +28,9 @@ export class UsersService {
 
     public updateUser(updateUser: User): Observable<any> {
         return this.http.put(this.createApiUrl('Users', updateUser.id.toString()), updateUser)
-        .pipe(
-            catchError(handleHttpError)
-        );
+            .pipe(
+                catchError(handleHttpError)
+            );
     }
 
     private createApiUrl(controllerName: string, methodAndParameters?: string): string {

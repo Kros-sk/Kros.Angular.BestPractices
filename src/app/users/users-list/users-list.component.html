@@ -1,5 +1,4 @@
 <ng-container *ngIf="!(errorMessage$ | async)">
-
     <ul class="list-group mt-4">
         <li class="list-group-item" *ngFor="let user of usersList$ | async">
             <kros-user [user]="user"></kros-user>
