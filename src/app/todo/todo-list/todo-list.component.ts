@@ -22,20 +22,37 @@ export class TodoListComponent implements OnInit {
     }
 
     errorMessage$: Observable<LocalizedErrorInfo | null>;
-    todoList$: Observable<TodoListItem[]>;
     actionInProgress$: Observable<boolean>;
+
+    displayList: TodoListItem[];
 
     selectedFilterControl: FormControl;
 
     ngOnInit() {
         this.selectedFilterControl = new FormControl(TodoListFilter.All);
-        this.todoList$ = this.store.pipe(select(getTodoList));
         this.actionInProgress$ = this.store.pipe(select(getProgressActionInProgress));
         this.errorMessage$ = this.store.pipe(select(getError));
         this.store.dispatch(new todoActions.Load());
+        this.store.pipe(select(getTodoList)).subscribe(
+            (todoListItems: TodoListItem[]) => this.filterItem(todoListItems)
+        );
     }
 
     deleteComplete() {
         this.store.dispatch(new todoActions.DeleteCompleted());
+    }
+
+    setFilter() {
+        this.store.dispatch(new todoActions.SetFilter());
+    }
+
+    filterItem(allItems: TodoListItem[]) {
+        if (this.selectedFilterControl.value === TodoListFilter.Active) {
+            this.displayList = [...allItems.filter(x => !x.isDone)];
+        } else if (this.selectedFilterControl.value === TodoListFilter.Completed) {
+            this.displayList = [...allItems.filter(x => x.isDone)];
+        } else {
+            this.displayList = [...allItems];
+        }
     }
 }

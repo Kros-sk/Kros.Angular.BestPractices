@@ -1,6 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { StoreModule } from '@ngrx/store';
-import { ReactiveFormsModule, DefaultValueAccessor } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 import { TodoItemComponent } from './todo-item.component';
 import { TodoService } from '../services/todo.service';
 

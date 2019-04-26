@@ -22,6 +22,7 @@ export enum TodoActionsTypes {
     SetState = '[Todo] Set State',
     SetStateSuccess = '[Todo] Set State Success',
     SetStateFail = '[Todo] Set State Fail',
+    SetFilter = '[Todo] Set Filter',
 }
 
 export class Load implements Action {
@@ -129,9 +130,15 @@ export class SetStateFail implements Action {
     constructor(public payload: LocalizedErrorInfo) { }
 }
 
+export class SetFilter implements Action {
+    readonly type = TodoActionsTypes.SetFilter;
+
+}
+
 
 
 export type TodoActions =
+    | SetFilter
     | Load
     | LoadSuccess
     | LoadFail
