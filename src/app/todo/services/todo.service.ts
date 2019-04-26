@@ -39,6 +39,13 @@ export class TodoService {
         );
     }
 
+    public deleteCompletedTodo(): Observable<any> {
+        return this.http.delete(this.createApiUrl('ToDos', 'deleteCompleted'))
+        .pipe(
+            catchError(handleHttpError)
+        );
+    }
+
     public deleteTodo(id: number): Observable<any> {
         return this.http.delete(this.createApiUrl('ToDos', id.toString()))
         .pipe(

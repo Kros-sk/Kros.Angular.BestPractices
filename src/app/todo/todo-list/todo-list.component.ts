@@ -34,4 +34,8 @@ export class TodoListComponent implements OnInit {
         this.errorMessage$ = this.store.pipe(select(getError));
         this.store.dispatch(new todoActions.Load());
     }
+
+    deleteComplete() {
+        this.store.dispatch(new todoActions.DeleteCompleted());
+    }
 }

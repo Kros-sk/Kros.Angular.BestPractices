@@ -30,6 +30,12 @@ export function reducer(state = initialState, action: TodoActions): TodoState {
                 error: action.payload
             };
 
+        case TodoActionsTypes.DeleteCompletedFail:
+            return {
+                ...state,
+                error: action.payload
+            };
+
         case TodoActionsTypes.UpdateFail:
             return {
                 ...state,

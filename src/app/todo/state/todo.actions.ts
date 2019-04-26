@@ -13,6 +13,9 @@ export enum TodoActionsTypes {
     Delete = '[Todo] Delete',
     DeleteSuccess = '[Todo] Delete Success',
     DeleteFail= '[Todo] Delete Fail',
+    DeleteCompleted = '[Todo] Delete Completed',
+    DeleteCompletedSuccess = '[Todo] Delete Completed Success',
+    DeleteCompletedFail= '[Todo] Delete Completed Fail',
     Update = '[Todo] Update',
     UpdateSuccess = '[Todo] Update Success',
     UpdateFail = '[Todo] Update Fail',
@@ -74,6 +77,22 @@ export class DeleteFail implements Action {
     constructor(public payload: LocalizedErrorInfo) { }
 }
 
+export class DeleteCompleted implements Action {
+    readonly type = TodoActionsTypes.DeleteCompleted;
+}
+
+export class DeleteCompletedSuccess implements Action {
+    readonly type = TodoActionsTypes.DeleteCompletedSuccess;
+
+    constructor() { }
+}
+
+export class DeleteCompletedFail implements Action {
+    readonly type = TodoActionsTypes.DeleteCompletedFail;
+
+    constructor(public payload: LocalizedErrorInfo) { }
+}
+
 export class Update implements Action {
     readonly type = TodoActionsTypes.Update;
 
@@ -110,6 +129,8 @@ export class SetStateFail implements Action {
     constructor(public payload: LocalizedErrorInfo) { }
 }
 
+
+
 export type TodoActions =
     | Load
     | LoadSuccess
@@ -118,7 +139,11 @@ export type TodoActions =
     | AddSuccess
     | AddFail
     | Delete
+    | DeleteSuccess
     | DeleteFail
+    | DeleteCompleted
+    | DeleteCompletedSuccess
+    | DeleteCompletedFail
     | Update
     | UpdateSuccess
     | UpdateFail
