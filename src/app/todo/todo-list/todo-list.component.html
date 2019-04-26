@@ -3,7 +3,7 @@
     <kros-add-todo-item [disabled]="actionInProgress$ | async"></kros-add-todo-item>
 
     <ul class="list-group mt-4">
-        <li class="list-group-item" *ngFor="let item of todoList$ | async">
+        <li class="list-group-item" *ngFor="let item of displayList">
             <kros-todo-item [item]="item">
             </kros-todo-item>
         </li>
@@ -15,15 +15,15 @@
             [formControl]="selectedFilterControl">
 
             <label ngbButtonLabel class="btn-outline-secondary">
-                <input ngbButton type="radio" [value]="0">
+                <input ngbButton type="radio" [value]="0" (click)="setFilter()" >
                 All
             </label>
             <label ngbButtonLabel class="btn-outline-secondary">
-                <input ngbButton type="radio" [value]="1">
+                <input ngbButton type="radio" [value]="1" (click)="setFilter()">
                 Active
             </label>
             <label ngbButtonLabel class="btn-outline-secondary">
-                <input ngbButton type="radio" [value]="2">
+                <input ngbButton type="radio" [value]="2" (click)="setFilter()">
                 Completed
             </label>
         </div>

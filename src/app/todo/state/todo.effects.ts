@@ -83,7 +83,9 @@ export class TodoEffects {
 
     @Effect()
     reloadAfterChanges$: Observable<Action> = this.actions$.pipe(
-        ofType(todoActions.TodoActionsTypes.AddSuccess,
+        ofType(
+            todoActions.TodoActionsTypes.SetFilter,
+            todoActions.TodoActionsTypes.AddSuccess,
             todoActions.TodoActionsTypes.DeleteSuccess,
             todoActions.TodoActionsTypes.DeleteCompletedSuccess,
             todoActions.TodoActionsTypes.UpdateSuccess,
@@ -93,7 +95,8 @@ export class TodoEffects {
 
     @Effect()
     showProgressIndicator$: Observable<Action> = this.actions$.pipe(
-        ofType(todoActions.TodoActionsTypes.Load,
+        ofType(
+            todoActions.TodoActionsTypes.Load,
             todoActions.TodoActionsTypes.Add,
             todoActions.TodoActionsTypes.Delete,
             todoActions.TodoActionsTypes.DeleteCompleted,
@@ -104,7 +107,8 @@ export class TodoEffects {
 
     @Effect()
     hideProgressIndicator$: Observable<Action> = this.actions$.pipe(
-        ofType(todoActions.TodoActionsTypes.LoadSuccess,
+        ofType(
+            todoActions.TodoActionsTypes.LoadSuccess,
             todoActions.TodoActionsTypes.LoadFail,
             todoActions.TodoActionsTypes.AddFail,
             todoActions.TodoActionsTypes.DeleteFail,
