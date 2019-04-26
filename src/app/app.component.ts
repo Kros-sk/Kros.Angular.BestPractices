@@ -5,10 +5,10 @@ import { State } from './state/app.state';
 import { Logout } from './state/login/login.actions';
 import { Observable } from 'rxjs';
 import { LoggedUser } from './models/logged-user.model';
-import { trigger, transition, animate, keyframes, style, state } from '@angular/animations';
+import { trigger, transition, animate, keyframes, style } from '@angular/animations';
 import { AuthService } from './core/auth.service';
 import { getProgressActionInProgress } from './state/progress/progress.selector';
-import { delay, debounceTime } from 'rxjs/operators';
+import { debounceTime } from 'rxjs/operators';
 
 
 @Component({
@@ -17,12 +17,12 @@ import { delay, debounceTime } from 'rxjs/operators';
     styleUrls: ['./app.component.scss'],
     animations: [
         trigger('animationKros', [
-          transition('left <=> right', animate('4000ms ease-in', keyframes([
-            style({ opacity: 0, transform: 'translateX(-1750%)', offset: 0 }),
-            style({ opacity: 1, transform: 'translateX(0%)', offset: 1 }),
-          ])))
+            transition('left <=> right', animate('4000ms ease-in', keyframes([
+                style({ opacity: 0, transform: 'translateX(-1750%)', offset: 0 }),
+                style({ opacity: 1, transform: 'translateX(0%)', offset: 1 }),
+            ])))
         ])
-      ]
+    ]
 })
 export class AppComponent implements OnInit {
 
@@ -57,7 +57,7 @@ export class AppComponent implements OnInit {
 
     animateMe() {
         this.state = (this.state === 'left' ? 'right' : 'left');
-      }
+    }
 }
 
 

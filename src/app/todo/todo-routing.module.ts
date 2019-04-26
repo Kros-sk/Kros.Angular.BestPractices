@@ -17,4 +17,4 @@ const routes: Routes = [
         RouterModule
     ]
 })
-export class TodoRoutingModule {}
+export class TodoRoutingModule { }

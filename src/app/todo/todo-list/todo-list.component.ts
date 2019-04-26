@@ -1,10 +1,10 @@
 import { OnInit, Component } from '@angular/core';
 import { TodoListFilter, TodoListItem } from '../models/todo.model';
-import { Store,  select} from '@ngrx/store';
+import { Store, select } from '@ngrx/store';
 import * as todoActions from '../state/todo.actions';
 import { Observable } from 'rxjs';
 import { State } from '../state/todo.state';
-import { getTodoList , getError } from '../state/todo.selectors';
+import { getTodoList, getError } from '../state/todo.selectors';
 import { getProgressActionInProgress } from '../../state/progress/progress.selector';
 import { LocalizedErrorInfo } from 'src/app/shared/models/error-info.model';
 import { FormControl } from '@angular/forms';

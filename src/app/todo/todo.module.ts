@@ -17,7 +17,7 @@ import { EditTodoItemComponent } from './edit-todo-item/edit-todo-item.component
         TodoRoutingModule,
         StoreModule.forFeature('todos', reducer),
         EffectsModule.forFeature(
-            [ TodoEffects ]
+            [TodoEffects]
         )
     ],
     declarations: [

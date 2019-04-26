@@ -5,7 +5,7 @@ import * as userAction from '../state/user.actions';
 import { StateUser } from '../state/users.state';
 import { Observable } from 'rxjs';
 import { LocalizedErrorInfo } from 'src/app/shared/models/error-info.model';
-import { getAllUsers , getError} from '../state/user.selectors';
+import { getAllUsers, getError } from '../state/user.selectors';
 
 
 @Component({
@@ -28,5 +28,4 @@ export class UsersListComponent implements OnInit {
         this.errorMessage$ = this.store.pipe(select(getError));
         this.store.dispatch(new userAction.Load());
     }
-
 }

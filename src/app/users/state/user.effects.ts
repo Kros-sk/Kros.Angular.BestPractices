@@ -48,7 +48,7 @@ export class UserEffects {
         ofType(
             userActions.UserActionTypes.Load,
             userActions.UserActionTypes.Update
-            ),
+        ),
         map(() => new progressActions.SetActionInProgress(true))
     );
 
@@ -59,7 +59,7 @@ export class UserEffects {
             userActions.UserActionTypes.LoadFail,
             userActions.UserActionTypes.UpdateFail,
             userActions.UserActionTypes.UpdateSuccess
-            ),
+        ),
         map(() => new progressActions.SetActionInProgress(false))
     );
 }
