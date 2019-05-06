@@ -64,7 +64,7 @@ export class TodoEffects {
         ofType(todoActions.TodoActionsTypes.Update),
         concatMap((action: todoActions.Update) =>
             this.todoService.updateTodo(action.payload).pipe(
-                map(() => (new todoActions.UpdateSuccess())),
+                map( () => (new todoActions.UpdateSuccess(action.payload))),
                 catchError((err: LocalizedErrorInfo) => of(new todoActions.UpdateFail(err)))
             ),
         )
@@ -88,7 +88,6 @@ export class TodoEffects {
             todoActions.TodoActionsTypes.AddSuccess,
             todoActions.TodoActionsTypes.DeleteSuccess,
             todoActions.TodoActionsTypes.DeleteCompletedSuccess,
-            todoActions.TodoActionsTypes.UpdateSuccess,
             todoActions.TodoActionsTypes.SetStateSuccess),
         map(() => new todoActions.Load())
     );
@@ -114,6 +113,7 @@ export class TodoEffects {
             todoActions.TodoActionsTypes.DeleteFail,
             todoActions.TodoActionsTypes.DeleteCompletedFail,
             todoActions.TodoActionsTypes.UpdateFail,
+            todoActions.TodoActionsTypes.UpdateSuccess,
             todoActions.TodoActionsTypes.SetStateFail),
         map(() => new progressActions.SetActionInProgress(false))
     );

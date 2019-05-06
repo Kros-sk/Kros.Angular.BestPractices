@@ -36,6 +36,13 @@ export function reducer(state = initialState, action: TodoActions): TodoState {
                 error: action.payload
             };
 
+        case TodoActionsTypes.UpdateSuccess:
+            return {
+                ...state,
+                todos: state.todos.map(x => x.id === action.payload.id ? action.payload : x),
+                error: null
+            };
+
         case TodoActionsTypes.UpdateFail:
             return {
                 ...state,
