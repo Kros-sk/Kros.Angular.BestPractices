@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import { Store, select } from '@ngrx/store';
 import { State } from './state/app.state';
@@ -9,6 +9,7 @@ import { getProgressActionInProgress } from './state/progress/progress.selector'
 import { debounceTime } from 'rxjs/operators';
 import { AuthService } from './auth/service/auth.service';
 import { Logout } from './auth/state/login.actions';
+import { ButtonComponent } from './shared/button/button.component';
 
 
 @Component({
@@ -32,6 +33,7 @@ export class AppComponent implements OnInit {
         private store: Store<State>
     ) {
     }
+
 
     actionInProgress$: Observable<boolean>;
     loggedUser$: Observable<LoggedUser>;
