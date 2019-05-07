@@ -2,13 +2,13 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Store, select } from '@ngrx/store';
 import { State } from './state/app.state';
-import { Logout } from './state/login/login.actions';
 import { Observable } from 'rxjs';
 import { LoggedUser } from './models/logged-user.model';
 import { trigger, transition, animate, keyframes, style } from '@angular/animations';
-import { AuthService } from './core/auth.service';
 import { getProgressActionInProgress } from './state/progress/progress.selector';
 import { debounceTime } from 'rxjs/operators';
+import { AuthService } from './auth/service/auth.service';
+import { Logout } from './auth/state/login.actions';
 
 
 @Component({
