@@ -4,7 +4,6 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { ButtonComponent } from './button/button.component';
 
 
 @NgModule({
@@ -15,11 +14,8 @@ import { ButtonComponent } from './button/button.component';
         HttpClientModule,
         NgbModule,
     ],
-    declarations: [
-        ButtonComponent
-    ],
+    declarations: [],
     exports: [
-        ButtonComponent,
         CommonModule,
         ReactiveFormsModule,
         RouterModule,

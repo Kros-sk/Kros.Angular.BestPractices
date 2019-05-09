@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { Action } from '@ngrx/store';
 import { Actions, Effect, ofType } from '@ngrx/effects';
 import { Observable, of } from 'rxjs';
-import * as progressActions from '../../state/progress/progress.actions';
 import * as todoActions from './todo.actions';
 import { mergeMap, map, catchError, switchMap, concatMap } from 'rxjs/operators';
 import { TodoService } from '../services/todo.service';
@@ -116,19 +115,5 @@ export class TodoEffects {
             todoActions.TodoActionsTypes.AddFail,
             todoActions.TodoActionsTypes.AddSuccess),
         map(() => new todoActions.SetProgressFormAdd(false))
-    );
-
-    @Effect()
-    hideProgressIndicator$: Observable<Action> = this.actions$.pipe(
-        ofType(
-            todoActions.TodoActionsTypes.LoadSuccess,
-            todoActions.TodoActionsTypes.LoadFail,
-            todoActions.TodoActionsTypes.AddFail,
-            todoActions.TodoActionsTypes.DeleteFail,
-            todoActions.TodoActionsTypes.DeleteCompletedFail,
-            todoActions.TodoActionsTypes.UpdateFail,
-            todoActions.TodoActionsTypes.UpdateSuccess,
-            todoActions.TodoActionsTypes.SetStateFail),
-        map(() => new progressActions.SetActionInProgress(false))
     );
 }

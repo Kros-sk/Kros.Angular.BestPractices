@@ -1,15 +1,12 @@
-import { Component, OnInit, Input, Output } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Store, select } from '@ngrx/store';
+import { Store } from '@ngrx/store';
 import { State } from './state/app.state';
 import { Observable } from 'rxjs';
 import { LoggedUser } from './models/logged-user.model';
 import { trigger, transition, animate, keyframes, style } from '@angular/animations';
-import { getProgressActionInProgress } from './state/progress/progress.selector';
-import { debounceTime } from 'rxjs/operators';
 import { AuthService } from './auth/service/auth.service';
 import { Logout } from './auth/state/login.actions';
-import { ButtonComponent } from './shared/button/button.component';
 
 
 @Component({
@@ -31,9 +28,7 @@ export class AppComponent implements OnInit {
         private router: Router,
         public authService: AuthService,
         private store: Store<State>
-    ) {
-    }
-
+    ) { }
 
     actionInProgress = false;
     loggedUser$: Observable<LoggedUser>;
@@ -43,10 +38,6 @@ export class AppComponent implements OnInit {
     ngOnInit(): void {
         this.isLoggedUser$ = this.store.select((store: any) => store.login.loggedUser != null);
         this.loggedUser$ = this.store.select((store: any) => store.login.loggedUser);
-        // this.actionInProgress$ = this.store.pipe(
-        //     select(getProgressActionInProgress),
-        //     debounceTime(200) // TODO vyskumat... preco hadze ExpressionChangedAfterItHasBeenCheckedError bez tohto debounce
-        // );
     }
 
     login(pageName: string) {

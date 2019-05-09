@@ -32,7 +32,6 @@ export class AddTodoItemComponent implements OnInit {
         });
 
         this.progress$ = this.store.pipe(select(getProgressFormADD));
-
         this.actions$.pipe(
             ofType(todoActions.TodoActionsTypes.AddSuccess)
         ).subscribe(

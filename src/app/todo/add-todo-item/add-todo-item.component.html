@@ -2,11 +2,11 @@
     What needs to be done?
 </div>
 <div class="col" [ngStyle]="{'visibility': (progress$ | async) ? 'visible' : 'hidden'}">
-        <ngb-progressbar class="mt-4" type="secondary" [striped]="true" [animated]="true" [value]="100">
-        </ngb-progressbar>
-    </div>
-<form   [ngStyle]="{'visibility': !(progress$ | async) ? 'visible' : 'hidden'}"
-        [formGroup]="todoForm" (ngSubmit)="addTodo()" class="d-flex justify-content-between">
+    <ngb-progressbar class="mt-4" type="secondary" [striped]="true" [animated]="true" [value]="100">
+    </ngb-progressbar>
+</div>
+<form [ngStyle]="{'visibility': !(progress$ | async) ? 'visible' : 'hidden'}" [formGroup]="todoForm"
+    (ngSubmit)="addTodo()" class="d-flex justify-content-between">
     <input class="col mr-4" type="text" formControlName="name">
 
     <input class="col mr-4" type="text" formControlName="description">
@@ -15,4 +15,3 @@
         Add
     </button>
 </form>
-

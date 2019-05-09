@@ -1,6 +1,6 @@
 <ng-container *ngIf="!(errorMessage$ | async)">
 
-    <kros-add-todo-item [disabled]="actionInProgress$ | async"></kros-add-todo-item>
+    <kros-add-todo-item></kros-add-todo-item>
 
     <ul class="list-group mt-4">
         <li class="list-group-item" *ngFor="let item of displayList">
@@ -15,7 +15,7 @@
             [formControl]="selectedFilterControl">
 
             <label ngbButtonLabel class="btn-outline-secondary">
-                <input ngbButton type="radio" [value]="0" (click)="setFilter()" >
+                <input ngbButton type="radio" [value]="0" (click)="setFilter()">
                 All
             </label>
             <label ngbButtonLabel class="btn-outline-secondary">

@@ -3,12 +3,12 @@ import { LocalizedErrorInfo } from 'src/app/shared/models/error-info.model';
 import { User } from '../models/user.model';
 
 export enum UserActionTypes {
-    Load = '[User] Load',
-    LoadSuccess = '[User] Load Success',
-    LoadFail = '[User] Load Fail',
-    Update = '[User] Update',
-    UpdateSuccess = '[User] Update Success',
-    UpdateFail = '[User] Update Fail',
+    Load = '[User] Load all users',
+    LoadSuccess = '[User] Load all users Success',
+    LoadFail = '[User] Load all users Fail',
+    Update = '[User] Update user',
+    UpdateSuccess = '[User] Update user Success',
+    UpdateFail = '[User] Update user Fail',
 }
 
 

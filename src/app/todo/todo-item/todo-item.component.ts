@@ -8,7 +8,6 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { FormControl } from '@angular/forms';
 import { debounceTime } from 'rxjs/operators';
 import { Observable } from 'rxjs';
-import { getProgressActionInProgress } from '../../state/progress/progress.selector';
 
 
 @Component({
@@ -26,7 +25,6 @@ export class TodoItemComponent implements OnInit {
     @Input() item: TodoItem;
 
     isDoneControl: FormControl;
-    actionInProgress$: Observable<boolean>;
 
     ngOnInit() {
         this.isDoneControl = new FormControl(this.item.isDone);
@@ -34,10 +32,6 @@ export class TodoItemComponent implements OnInit {
             debounceTime(200)
         ).subscribe(
             (newValue: boolean) => this.setTodoState(this.item.id, newValue)
-        );
-
-        this.actionInProgress$ = this.store.pipe(
-            select(getProgressActionInProgress)
         );
     }
 

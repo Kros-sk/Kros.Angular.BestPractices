@@ -1,4 +1,4 @@
-<div >
+<div>
     <div class="text-right">
         <button type="button" class="btn btn-outline-danger col-1" (click)="close()">&times;</button>
     </div>
@@ -6,9 +6,9 @@
         <h4>Edit todo</h4>
     </div>
     <div class="col" [ngStyle]="{'visibility': !progress ? 'visible' : 'hidden'}">
-            <ngb-progressbar class="mt-4" type="secondary" [striped]="true" [animated]="true" [value]="100">
-            </ngb-progressbar>
-        </div>
+        <ngb-progressbar class="mt-4" type="secondary" [striped]="true" [animated]="true" [value]="100">
+        </ngb-progressbar>
+    </div>
     <div class="text m-3" [ngStyle]="{'visibility': progress ? 'visible' : 'hidden'}">
         <form [formGroup]="todoForm" (ngSubmit)="save()">
             <div class="d-flex justify-content-between">
