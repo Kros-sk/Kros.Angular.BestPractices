@@ -12,6 +12,7 @@ export class TodoListItem {
     id: number;
     name: string;
     isDone: boolean;
+    progress: boolean;
 }
 
 export class NewTodoItem {

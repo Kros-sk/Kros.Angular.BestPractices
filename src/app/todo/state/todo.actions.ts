@@ -23,6 +23,8 @@ export enum TodoActionsTypes {
     SetStateSuccess = '[Todo] Set State Success',
     SetStateFail = '[Todo] Set State Fail',
     SetFilter = '[Todo] Set Filter',
+    SetProgressItem = '[Todo] Set progress bar',
+    SetProgressFormAdd = '[Todo] Set progress bar at add form',
 }
 
 export class Load implements Action {
@@ -49,8 +51,6 @@ export class Add implements Action {
 
 export class AddSuccess implements Action {
     readonly type = TodoActionsTypes.AddSuccess;
-
-    constructor() { }
 }
 
 export class AddFail implements Action {
@@ -135,9 +135,22 @@ export class SetFilter implements Action {
 
 }
 
+export class SetProgressItem implements Action {
+    readonly type = TodoActionsTypes.SetProgressItem;
+
+    constructor(public payload: number) { }
+}
+
+export class SetProgressFormAdd implements Action {
+    readonly type = TodoActionsTypes.SetProgressFormAdd;
+
+    constructor(public payload: boolean) { }
+}
 
 
 export type TodoActions =
+    | SetProgressFormAdd
+    | SetProgressItem
     | SetFilter
     | Load
     | LoadSuccess

@@ -35,7 +35,7 @@ export class AppComponent implements OnInit {
     }
 
 
-    actionInProgress$: Observable<boolean>;
+    actionInProgress = false;
     loggedUser$: Observable<LoggedUser>;
     isLoggedUser$: Observable<boolean>;
     state = 'left';
@@ -43,10 +43,10 @@ export class AppComponent implements OnInit {
     ngOnInit(): void {
         this.isLoggedUser$ = this.store.select((store: any) => store.login.loggedUser != null);
         this.loggedUser$ = this.store.select((store: any) => store.login.loggedUser);
-        this.actionInProgress$ = this.store.pipe(
-            select(getProgressActionInProgress),
-            debounceTime(200) // TODO vyskumat... preco hadze ExpressionChangedAfterItHasBeenCheckedError bez tohto debounce
-        );
+        // this.actionInProgress$ = this.store.pipe(
+        //     select(getProgressActionInProgress),
+        //     debounceTime(200) // TODO vyskumat... preco hadze ExpressionChangedAfterItHasBeenCheckedError bez tohto debounce
+        // );
     }
 
     login(pageName: string) {
@@ -59,6 +59,14 @@ export class AppComponent implements OnInit {
 
     animateMe() {
         this.state = (this.state === 'left' ? 'right' : 'left');
+    }
+
+    buttonClick() {
+        this.actionInProgress = true;
+        setTimeout(() => {
+            this.actionInProgress = false;
+            console.log(this.actionInProgress);
+        }, 1000);
     }
 }
 

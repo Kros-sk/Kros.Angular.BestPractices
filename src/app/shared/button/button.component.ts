@@ -9,7 +9,7 @@ export class ButtonComponent implements OnInit {
 
     @Input() name: string;
     @Input() showProgress: boolean;
-    @Output() click = new EventEmitter();
+    @Output() clickEvent = new EventEmitter();
 
     constructor() { }
 
@@ -17,7 +17,6 @@ export class ButtonComponent implements OnInit {
     }
 
     emitEvent() {
-        console.log('CLICK');
-        this.click.emit({name: this.name});
+        this.clickEvent.emit({progress: this.showProgress});
     }
 }

@@ -19,12 +19,13 @@ export class EditTodoItemComponent implements OnInit {
         private modalService: NgbModal,
         private store: Store<State>
     ) { }
-
+    progress: boolean;
     todoForm: FormGroup;
 
     @Input() itemId: number;
 
     ngOnInit() {
+        this.progress = false;
         this.todoForm = this.formBuilder.group({
             name: '',
             description: ''
@@ -34,6 +35,7 @@ export class EditTodoItemComponent implements OnInit {
                 name: item.name,
                 description: item.description
             });
+            this.progress = true;
         });
     }
 

@@ -1,4 +1,4 @@
-<div class="row px-3 align-items-center">
+<div class="row px-3 align-items-center"  [ngStyle]="{'visibility': !item.progress ? 'visible' : 'hidden'}">
 
     <label class="btn-primary col-1 mr-4 mb-0 font-weight-bold" ngbButtonLabel>
         <input type="checkbox" style="display: none" [formControl]="isDoneControl" ngbButton>
@@ -12,7 +12,6 @@
     <div class="col">
         {{item.name}}
     </div>
-
     <div class="col-2">
         <div class="row justify-content-between">
             <button class="btn btn-outline-primary col-5" (click)="editTodo(item.id)"
@@ -26,4 +25,9 @@
         </div>
     </div>
 
+</div>
+
+<div class="col" [ngStyle]="{'visibility': item.progress ? 'visible' : 'hidden'}">
+    <ngb-progressbar class="mt-4" type="secondary" [striped]="true" [animated]="true" [value]="100">
+    </ngb-progressbar>
 </div>

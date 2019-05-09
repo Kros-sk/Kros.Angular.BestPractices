@@ -10,9 +10,11 @@ export interface State extends fromRoot.State {
 export interface TodoState {
     todos: TodoListItem[];
     error: LocalizedErrorInfo | null;
+    addProgres: boolean;
 }
 
 export const initialState: TodoState = {
     todos: [],
+    addProgres: false,
     error: null
 };
