@@ -1,0 +1,34 @@
+:host {
+    display: grid;
+    grid-template-columns: 20px 30px 1fr auto;
+    grid-template-areas:
+        "checkbox       id              name            actions"
+        "progressbar    progressbar     progressbar     progressbar";
+    grid-gap: 0 10px;
+    align-items: center;
+    align-content: center;
+
+}
+
+[type="checkbox"] {
+    grid-area: checkbox;
+}
+
+.id {
+    grid-area: id;
+}
+
+.name {
+    grid-area: name;
+}
+
+.actions {
+    display: grid;
+    grid-template-columns: auto auto;
+    grid-gap: 10px;
+    grid-area: actions;
+}
+
+.loader-container {
+    grid-area: progressbar;
+}
