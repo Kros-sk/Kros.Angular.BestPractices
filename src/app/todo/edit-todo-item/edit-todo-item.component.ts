@@ -1,10 +1,10 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { State } from '../state/todo.state';
 import { Store } from '@ngrx/store';
 import * as todoActions from '../state/todo.actions';
 import { TodoService } from '../services/todo.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { TodoState } from '../state/todo.state';
 
 @Component({
     selector: 'kros-edit-todo-item',
@@ -17,7 +17,7 @@ export class EditTodoItemComponent implements OnInit {
         private formBuilder: FormBuilder,
         private todoService: TodoService,
         private modalService: NgbModal,
-        private store: Store<State>
+        private store: Store<TodoState>
     ) { }
     progress: boolean;
     todoForm: FormGroup;

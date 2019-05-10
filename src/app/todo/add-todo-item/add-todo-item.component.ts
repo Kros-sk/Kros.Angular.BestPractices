@@ -1,11 +1,11 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Store, select } from '@ngrx/store';
-import { State } from '../state/todo.state';
 import * as todoActions from '../state/todo.actions';
 import { Observable } from 'rxjs';
 import { getProgressFormADD } from '../state/todo.selectors';
 import { Actions, ofType } from '@ngrx/effects';
+import { TodoState } from '../state/todo.state';
 
 
 @Component({
@@ -17,7 +17,7 @@ export class AddTodoItemComponent implements OnInit {
 
     constructor(
         private formBuilder: FormBuilder,
-        private store: Store<State>,
+        private store: Store<TodoState>,
         private actions$: Actions
     ) { }
 

@@ -1,13 +1,12 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { TodoItem } from '../models/todo.model';
 import { Store, select } from '@ngrx/store';
-import { State } from '../state/todo.state';
 import * as todoActions from '../state/todo.actions';
 import { EditTodoItemComponent } from '../edit-todo-item/edit-todo-item.component';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { FormControl } from '@angular/forms';
 import { debounceTime } from 'rxjs/operators';
-import { Observable } from 'rxjs';
+import { TodoState } from '../state/todo.state';
 
 
 @Component({
@@ -18,7 +17,7 @@ import { Observable } from 'rxjs';
 export class TodoItemComponent implements OnInit {
 
     constructor(
-        private store: Store<State>,
+        private store: Store<TodoState>,
         private modalService: NgbModal
     ) { }
 

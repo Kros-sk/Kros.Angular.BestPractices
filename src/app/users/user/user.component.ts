@@ -2,9 +2,9 @@ import { Component, OnInit, Input } from '@angular/core';
 import { User } from '../models/user.model';
 import { FormControl } from '@angular/forms';
 import { debounceTime } from 'rxjs/operators';
-import { StateUser } from '../state/users.state';
 import { Store } from '@ngrx/store';
 import * as userActions from '../state/user.actions';
+import { UserState } from '../state/users.state';
 
 @Component({
     selector: 'kros-user',
@@ -16,7 +16,7 @@ export class UserComponent implements OnInit {
     isAdmin: FormControl;
 
     constructor(
-        private store: Store<StateUser>
+        private store: Store<UserState>
     ) {
         this.isAdmin = new FormControl(false);
     }

@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
-import { State } from './state/app.state';
 import { Observable } from 'rxjs';
 import { LoggedUser } from './models/logged-user.model';
 import { trigger, transition, animate, keyframes, style } from '@angular/animations';
 import { AuthService } from './auth/service/auth.service';
 import { Logout } from './auth/state/login.actions';
+import { LoginState } from './auth/state/login.state';
 
 
 @Component({
@@ -27,7 +27,7 @@ export class AppComponent implements OnInit {
     constructor(
         private router: Router,
         public authService: AuthService,
-        private store: Store<State>
+        private store: Store<LoginState>
     ) { }
 
     actionInProgress = false;
