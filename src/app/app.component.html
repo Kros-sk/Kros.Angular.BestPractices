@@ -1,6 +1,6 @@
 <div class="container border rounded p-4 my-4 bg-light">
-    <h1 class="text-center">
-        KROS Todo list Test
+    <h1 class="text-center" *ngIf="appName$ | async as appName; else defaultAppName">
+        {{ appName }}
     </h1>
 
     <div *ngIf="!(isLoggedUser$ | async)" class="row px-4 py-4">
@@ -44,3 +44,7 @@
     <router-outlet>
     </router-outlet>
 </div>
+
+<ng-template #defaulAppName>
+    KROS Todo list Test
+</ng-template>
