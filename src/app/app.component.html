@@ -1,50 +1,83 @@
 <div class="container border rounded p-4 my-4 bg-light">
-    <h1 class="text-center" *ngIf="appName$ | async as appName; else defaultAppName">
-        {{ appName }}
-    </h1>
+    <ng-container *ngIf="(isLoggedUser$ | async) as isLoggedUser; else loginButton">
 
-    <div *ngIf="!(isLoggedUser$ | async)" class="row px-4 py-4">
-        <button class="btn btn-outline-primary col-2" (click)="login('todo')">
-            Login
-        </button>
-    </div>
+        <ng-container *ngTemplateOutlet="logoutHeader"></ng-container>
+        <ng-container *ngTemplateOutlet="appHeader"></ng-container>
 
-    <div>
-        <div *ngIf="(isLoggedUser$ | async)" class="row justify-content-between no-gutters px-0 py-4">
-            <div class="btn-group col-6" role="group">
-                <button type="button" class="btn btn-outline-primary col" [routerLink]="['/todo']"
-                    routerLinkActive="active">
+        <div class="row justify-content-center no-gutters px-0 py-4">
+            <div class="btn-group col-6"
+                 role="group">
+                <button type="button"
+                        class="btn btn-outline-primary col"
+                        [routerLink]="['/todo']"
+                        routerLinkActive="active">
                     Todo list
                 </button>
 
-                <button type="button" class="btn btn-outline-primary col" [routerLink]="['/users']"
-                    routerLinkActive="active" placement="top"
-                    [ngbPopover]="authService.isAdmin ? 'You are Admin' : 'You are not Admin'" #popover="ngbPopover"
-                    (mouseenter)="popover.open()" (mouseleave)="popover.close()">
+                <button type="button"
+                        class="btn btn-outline-primary col"
+                        [routerLink]="['/users']"
+                        routerLinkActive="active"
+                        placement="top"
+                        [ngbPopover]="authService.isAdmin ? 'You are Admin' : 'You are not Admin'"
+                        #popover="ngbPopover"
+                        (mouseenter)="popover.open()"
+                        (mouseleave)="popover.close()">
                     Users management
                 </button>
 
             </div>
-            <div class="badge badge-pill badge-success" [@animationKros]='state' (click)="animateMe()">
-                <div>
-                    {{ (loggedUser$ | async).name }}
-                </div>
-                <div>
-                    {{ (loggedUser$ | async).email }}
-                </div>
-            </div>
-            <button class="btn btn-outline-danger col-2" (click)="logout()">
-                Logout
-            </button>
+
         </div>
-    </div>
-    <ngb-progressbar class="mt-4" type="secondary" [striped]="true" [animated]="true" [value]="100"
-        [ngClass]="{'hidden': !(actionInProgress$ | async)}">
+    </ng-container>
+    <ngb-progressbar class="mt-4"
+                     type="secondary"
+                     [striped]="true"
+                     [animated]="true"
+                     [value]="100"
+                     [ngClass]="{'hidden': !(actionInProgress$ | async)}">
     </ngb-progressbar>
     <router-outlet>
     </router-outlet>
 </div>
 
-<ng-template #defaulAppName>
-    KROS Todo list Test
+<ng-template #appHeader>
+    <h1 class="text-center"
+        *ngIf="appName$ | async as appName; else defaultAppName">
+        {{ appName }}
+    </h1>
+
+    <ng-template #defaulAppName>
+        KROS Todo list Test
+    </ng-template>
+</ng-template>
+
+<ng-template #loginButton>
+    <ng-container *ngTemplateOutlet="appHeader"></ng-container>
+
+    <div class="row d-flex justify-content-center px-4 py-4">
+        <button class="btn btn-outline-primary"
+                (click)="login('todo')">
+            Login
+        </button>
+    </div>
+</ng-template>
+
+<ng-template #logoutHeader>
+    <div class="d-flex justify-content-between">
+        <div class="badge badge-pill badge-success"
+             [@animationKros]='state'
+             (click)="animateMe()">
+            <div>
+                {{ (loggedUser$ | async).name }}
+            </div>
+            <div>
+                {{ (loggedUser$ | async).email }}
+            </div>
+        </div>
+        <button class="btn btn-outline-danger"
+                (click)="logout()">
+            Logout
+        </button>
+    </div>
 </ng-template>

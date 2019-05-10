@@ -9,7 +9,7 @@
         </li>
     </ul>
 
-    <div class="d-flex justify-content-between mt-4">
+    <div class="actions mt-4">
 
         <div class="btn-group btn-group-toggle" ngbRadioGroup name="filterRadioGroup"
             [formControl]="selectedFilterControl">
@@ -28,7 +28,7 @@
             </label>
         </div>
 
-        <button class="btn btn-outline-danger col-2" (click)="deleteComplete()">
+        <button class="btn btn-outline-danger" (click)="deleteComplete()">
             Delete completed
         </button>
 
