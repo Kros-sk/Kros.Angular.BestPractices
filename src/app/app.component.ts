@@ -7,6 +7,7 @@ import { LoggedUser } from './models/logged-user.model';
 import { trigger, transition, animate, keyframes, style } from '@angular/animations';
 import { AuthService } from './auth/service/auth.service';
 import { Logout } from './auth/state/login.actions';
+import { ConfigService } from './core/config/config.service';
 
 
 @Component({
@@ -24,10 +25,13 @@ import { Logout } from './auth/state/login.actions';
 })
 export class AppComponent implements OnInit {
 
+    appName$ = this.config.appName$;
+
     constructor(
         private router: Router,
         public authService: AuthService,
-        private store: Store<State>
+        private store: Store<State>,
+        private config: ConfigService
     ) { }
 
     actionInProgress = false;
