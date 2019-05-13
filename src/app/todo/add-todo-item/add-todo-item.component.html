@@ -1,4 +1,5 @@
-<div [ngClass]="{ 'text-black-50': disabled }">
+<div [ngClass]="{ 'text-black-50': disabled }"
+    i18n="Add todo item component|Caption above inputs@@add-todo-item-inputs-caption">
     What needs to be done?
 </div>
 
@@ -7,7 +8,8 @@
 
     <input class="col mr-4" type="text" formControlName="description">
 
-    <button class="btn btn-outline-success col-2" type="submit" [disabled]="disabled">
+    <button class="btn btn-outline-success col-2" type="submit" [disabled]="disabled"
+        i18n="Add todo item component|Add button caption@@add-todo-item-button-label">
         Add
     </button>
 </form>

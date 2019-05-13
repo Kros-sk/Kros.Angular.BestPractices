@@ -4,6 +4,7 @@
     "scripts": {
         "ng": "ng",
         "start": "ng serve",
+        "start-sk": "ng serve --configuration=sk",
         "start-http": "http-server -p 8080 -c-1 dist/Kros.Angular.BestPractices",
         "build": "ng build --prod --stats-json",
         "analyze": "webpack-bundle-analyzer dist/Kros.Angular.BestPractices/stats.json",
