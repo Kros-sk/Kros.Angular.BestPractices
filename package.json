@@ -7,6 +7,7 @@
         "start-sk": "ng serve --configuration=sk",
         "start-http": "http-server -p 8080 -c-1 dist/Kros.Angular.BestPractices",
         "build": "ng build --prod --stats-json",
+        "build-sk": "ng build --configuration=production-sk --stats-json",
         "analyze": "webpack-bundle-analyzer dist/Kros.Angular.BestPractices/stats.json",
         "test": "ng test",
         "lint": "ng lint",
