@@ -40,7 +40,8 @@
                             "aot": true,
                             "i18nFile": "src/locale/messages.sk.xlf",
                             "i18nFormat": "xlf",
-                            "i18nLocale": "sk"
+                            "i18nLocale": "sk",
+                            "i18nMissingTranslation": "ignore"
                         },
                         "production": {
                             "fileReplacements": [
