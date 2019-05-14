@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { Store, select } from '@ngrx/store';
 import { State } from './state/app.state';
 import { Logout } from './state/login/login.actions';
-import { Observable } from 'rxjs';
+import { Observable, timer } from 'rxjs';
 import { LoggedUser } from './models/logged-user.model';
 import { trigger, transition, animate, keyframes, style } from '@angular/animations';
 import { AuthService } from './core/auth.service';
@@ -38,12 +38,18 @@ export class AppComponent implements OnInit {
     isLoggedUser$: Observable<boolean>;
     state = 'left';
 
+    seconds = 0;
+
     ngOnInit(): void {
         this.isLoggedUser$ = this.store.select((store: any) => store.login.loggedUser != null);
         this.loggedUser$ = this.store.select((store: any) => store.login.loggedUser);
         this.actionInProgress$ = this.store.pipe(
             select(getProgressActionInProgress),
             debounceTime(200) // TODO vyskumat... preco hadze ExpressionChangedAfterItHasBeenCheckedError bez tohto debounce
+        );
+
+        timer(1000, 1000).subscribe(
+            () => this.seconds += 1
         );
     }
 

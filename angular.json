@@ -38,7 +38,7 @@
                     "configurations": {
                         "sk": {
                             "aot": true,
-                            "i18nFile": "src/locale/messages.sk.xlf",
+                            "i18nFile": "src/locale/sk.xlf",
                             "i18nFormat": "xlf",
                             "i18nLocale": "sk",
                             "i18nMissingTranslation": "ignore"
@@ -94,7 +94,7 @@
                             ],
                             "serviceWorker": true,
                             "ngswConfigPath": "src/ngsw-config.json",
-                            "i18nFile": "src/locale/messages.sk.xlf",
+                            "i18nFile": "src/locale/sk.xlf",
                             "i18nFormat": "xlf",
                             "i18nLocale": "sk"
                         }

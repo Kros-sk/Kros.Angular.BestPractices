@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?><xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+  <file datatype="plaintext" original="ng2.template" source-language="en" target-language="SK-SK">
+    <body>
+      <trans-unit datatype="html" id="timer">
+        <source>Updated <x equiv-text="{seconds, plural, =0 {...} =1 {...} other {...}}" id="ICU"/></source>
+        <target>Aktualizované <x equiv-text="{seconds, plural, =0 {...} =1 {...} other {...}}" id="ICU"/></target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/app.component.html</context>
+          <context context-type="linenumber">47</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit datatype="html" id="66753bcda3324380ae56309beaa0d9d763f0598f">
+        <source>{VAR_PLURAL, plural, =0 {just now} =1 {one second ago} other {<x equiv-text="{{seconds}}" id="INTERPOLATION"/> seconds ago} }</source>
+        <target>{VAR_PLURAL, plural, =0 {práve teraz} =1 {pred sekundou} other {pred <x equiv-text="{{seconds}}" id="INTERPOLATION"/> sekundami} }</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/app.component.html</context>
+          <context context-type="linenumber">48</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit datatype="html" id="add-todo-item-inputs-caption">
+        <source>
+    What needs to be done?
+</source>
+        <target state="translated">Čo treba urobiť?
+</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/todo/add-todo-item/add-todo-item.component.html</context>
+          <context context-type="linenumber">2</context>
+        </context-group>
+        <note from="description" priority="1">Caption above inputs</note>
+        <note from="meaning" priority="1">Add todo item component</note>
+      </trans-unit>
+      <trans-unit datatype="html" id="add-todo-item-button-label">
+        <source>
+        Add
+    </source>
+        <target state="translated">Pridaj</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/todo/add-todo-item/add-todo-item.component.html</context>
+          <context context-type="linenumber">12</context>
+        </context-group>
+        <note from="description" priority="1">Add button caption</note>
+        <note from="meaning" priority="1">Add todo item component</note>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>
