@@ -1,4 +1,5 @@
-<div [ngClass]="{ 'text-black-50': disabled }">
+<div [ngClass]="{ 'text-black-50': disabled }"
+    i18n="@@add-todo-item-inputs-caption">
     What needs to be done?
 </div>
 <div class="col" [ngStyle]="{'visibility': (progress$ | async) ? 'visible' : 'hidden'}">
@@ -11,7 +12,8 @@
 
     <input class="col mr-4" type="text" formControlName="description">
 
-    <button class="btn btn-outline-success col-2" type="submit" [disabled]="!todoForm.valid">
+    <button class="btn btn-outline-success col-2" type="submit" [disabled]="!todoForm.valid"
+        i18n="@@add-todo-item-button">
         Add
     </button>
 </form>

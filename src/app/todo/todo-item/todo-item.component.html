@@ -12,11 +12,13 @@
 
 <div class="actions" [ngStyle]="{'visibility': !(item.progress) ? 'visible' : 'hidden'}">
     <button class="btn btn-outline-primary"
-            (click)="editTodo(item.id)">
+            (click)="editTodo(item.id)"
+            i18n="todo-item-edit-button">
         Edit
     </button>
     <button class="btn btn-outline-danger"
-            (click)="deleteTodo(item.id)">
+            (click)="deleteTodo(item.id)"
+            i18n="todo-item-delete-button">
         Delete
     </button>
 </div>

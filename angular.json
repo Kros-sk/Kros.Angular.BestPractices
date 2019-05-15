@@ -36,6 +36,13 @@
                         "es5BrowserSupport": true
                     },
                     "configurations": {
+                        "sk": {
+                            "aot": true,
+                            "i18nFile": "src/locale/sk.xlf",
+                            "i18nFormat": "xlf",
+                            "i18nLocale": "sk",
+                            "i18nMissingTranslation": "ignore"
+                        },
                         "production": {
                             "fileReplacements": [
                                 {
@@ -61,6 +68,35 @@
                             ],
                             "serviceWorker": true,
                             "ngswConfigPath": "src/ngsw-config.json"
+                        },
+                        "production-sk": {
+                            "fileReplacements": [
+                                {
+                                    "replace": "src/environments/environment.ts",
+                                    "with": "src/environments/environment.prod.ts"
+                                }
+                            ],
+                            "optimization": true,
+                            "outputHashing": "all",
+                            "sourceMap": false,
+                            "extractCss": true,
+                            "namedChunks": false,
+                            "aot": true,
+                            "extractLicenses": true,
+                            "vendorChunk": false,
+                            "buildOptimizer": true,
+                            "budgets": [
+                                {
+                                    "type": "initial",
+                                    "maximumWarning": "2mb",
+                                    "maximumError": "5mb"
+                                }
+                            ],
+                            "serviceWorker": true,
+                            "ngswConfigPath": "src/ngsw-config.json",
+                            "i18nFile": "src/locale/sk.xlf",
+                            "i18nFormat": "xlf",
+                            "i18nLocale": "sk"
                         }
                     }
                 },
@@ -70,6 +106,9 @@
                         "browserTarget": "Kros.Angular.BestPractices:build"
                     },
                     "configurations": {
+                        "sk": {
+                            "browserTarget": "Kros.Angular.BestPractices:build:sk"
+                        },
                         "production": {
                             "browserTarget": "Kros.Angular.BestPractices:build:production"
                         }

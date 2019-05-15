@@ -39,6 +39,8 @@ export class AppComponent implements OnInit {
     isLoggedUser$: Observable<boolean>;
     state = 'left';
 
+    seconds = 0;
+
     ngOnInit(): void {
         this.isLoggedUser$ = this.store.select((store: any) => store.login.loggedUser != null);
         this.loggedUser$ = this.store.select((store: any) => store.login.loggedUser);

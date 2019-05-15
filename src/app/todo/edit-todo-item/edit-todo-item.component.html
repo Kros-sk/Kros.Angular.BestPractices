@@ -3,7 +3,7 @@
         <button type="button" class="btn btn-outline-danger col-1" (click)="close()">&times;</button>
     </div>
     <div class="text m-3">
-        <h4>Edit todo</h4>
+        <h4 i18n="@@edit-todo-header">Edit todo</h4>
     </div>
     <div class="col" [ngStyle]="{'visibility': !progress ? 'visible' : 'hidden'}">
         <ngb-progressbar class="mt-4" type="secondary" [striped]="true" [animated]="true" [value]="100">
@@ -12,12 +12,26 @@
     <div class="text m-3" [ngStyle]="{'visibility': progress ? 'visible' : 'hidden'}">
         <form [formGroup]="todoForm" (ngSubmit)="save()">
             <div class="d-flex justify-content-between">
-                Name: <input class="col mr-4" type="text" formControlName="name">
-                Description: <input class="col mr-4" type="text" formControlName="description">
+                <span i18n="@@edit-todo-name-label">Name:</span>
+                <input class="col mr-4" type="text" formControlName="name">
+                <span i18n="@@edit-todo-description-label">Description:</span>
+                <input class="col mr-4" type="text" formControlName="description">
             </div>
             <div class="text-right m-3 d-flex justify-content-between">
-                <button type="button" class="btn btn-outline-danger col-2" (click)="close()">Close</button>
-                <button type="submit" class="btn btn-outline-success col-2" [disabled]="!todoForm.valid">Save</button>
+                <button
+                    type="button"
+                    class="btn btn-outline-danger col-2"
+                    (click)="close()"
+                    i18n="@@edit-todo-close-button">
+                    Close
+                </button>
+                <button
+                    type="submit"
+                    class="btn btn-outline-success col-2"
+                    [disabled]="!todoForm.valid"
+                    i18n="@@edit-todo-save-button">
+                    Save
+                </button>
             </div>
         </form>
     </div>

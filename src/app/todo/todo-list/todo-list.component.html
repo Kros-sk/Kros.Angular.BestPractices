@@ -2,8 +2,6 @@
 
     <kros-add-todo-item></kros-add-todo-item>
 
-
-
     <ul class="list-group mt-4">
         <ngb-progressbar *ngIf="progress" class="mt-4" type="secondary" [striped]="true" [animated]="true"
             [value]="100">
@@ -21,19 +19,27 @@
 
             <label ngbButtonLabel class="btn-outline-secondary">
                 <input ngbButton type="radio" [value]="0" (click)="setFilter()">
-                All
+                <span i18n="@@todo-list-filter-all">
+                    All
+                </span>
             </label>
             <label ngbButtonLabel class="btn-outline-secondary">
                 <input ngbButton type="radio" [value]="1" (click)="setFilter()">
-                Active
+                <span i18n="@@todo-list-filter-active">
+                    Active
+                </span>
             </label>
             <label ngbButtonLabel class="btn-outline-secondary">
                 <input ngbButton type="radio" [value]="2" (click)="setFilter()">
-                Completed
+                <span i18n="@@todo-list-filter-completed">
+                    Completed
+                </span>
             </label>
         </div>
 
-        <button class="btn btn-outline-danger" (click)="deleteComplete()">
+        <button class="btn btn-outline-danger"
+                (click)="deleteComplete()"
+                i18n="@@todo-list-delete-completed-button">
             Delete completed
         </button>
 
