@@ -3,7 +3,12 @@ import { TodoListComponent } from './todo-list.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { AddTodoItemComponent } from '../add-todo-item/add-todo-item.component';
 import { TodoItemComponent } from '../todo-item/todo-item.component';
-import { StoreModule } from '@ngrx/store';
+import { StoreModule, Store } from '@ngrx/store';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { reducer } from '../state/todo.reducer';
+import { EffectsModule } from '@ngrx/effects';
+
+
 
 describe('TodoListComponent', () => {
     let component: TodoListComponent;
@@ -12,10 +17,12 @@ describe('TodoListComponent', () => {
     beforeEach(async(() => {
         TestBed.configureTestingModule({
             imports: [
+                NgbModule,
                 ReactiveFormsModule,
                 FormsModule,
-                StoreModule.forRoot({
-                }),
+                EffectsModule.forRoot([]),
+                StoreModule.forRoot({}),
+                StoreModule.forFeature('todos', reducer),
             ],
             declarations: [
                 TodoListComponent,

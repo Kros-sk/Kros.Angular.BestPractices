@@ -2,6 +2,8 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AddTodoItemComponent } from './add-todo-item.component';
 import { StoreModule } from '@ngrx/store';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap' ;
+import { EffectsModule } from '@ngrx/effects';
 
 describe('AddTodoItemComponent', () => {
     let component: AddTodoItemComponent;
@@ -10,7 +12,9 @@ describe('AddTodoItemComponent', () => {
     beforeEach(async(() => {
         TestBed.configureTestingModule({
             imports: [
+                NgbModule,
                 ReactiveFormsModule,
+                EffectsModule.forRoot([]),
                 StoreModule.forRoot({
                 }),
             ],

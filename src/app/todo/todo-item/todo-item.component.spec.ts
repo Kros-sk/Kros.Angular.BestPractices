@@ -3,6 +3,7 @@ import { StoreModule } from '@ngrx/store';
 import { ReactiveFormsModule } from '@angular/forms';
 import { TodoItemComponent } from './todo-item.component';
 import { TodoService } from '../services/todo.service';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap' ;
 
 describe('TodoItemComponent', () => {
     let component: TodoItemComponent;
@@ -11,6 +12,7 @@ describe('TodoItemComponent', () => {
     beforeEach(async(() => {
         TestBed.configureTestingModule({
             imports: [
+                NgbModule,
                 ReactiveFormsModule,
                 StoreModule.forRoot({
                 }),
@@ -28,12 +30,9 @@ describe('TodoItemComponent', () => {
         component = fixture.componentInstance;
         component.item = {
             id: 1,
-            created: '',
-            lastChange: '',
-            userId: 1,
             isDone: false,
             name: 'Ahoj',
-            description: 'OK'
+            progress: false,
         };
         fixture.detectChanges();
     });

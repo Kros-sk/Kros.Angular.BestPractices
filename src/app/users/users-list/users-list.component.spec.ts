@@ -1,5 +1,12 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { UsersListComponent } from './users-list.component';
+import { UserComponent } from '../user/user.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { StoreModule } from '@ngrx/store';
+import { reducer } from '../state/user.reducer';
+
+
 
 describe('UsersListComponent', () => {
     let component: UsersListComponent;
@@ -7,7 +14,17 @@ describe('UsersListComponent', () => {
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
-            declarations: [UsersListComponent]
+            imports: [
+                NgbModule,
+                ReactiveFormsModule,
+                FormsModule,
+                StoreModule.forRoot({}),
+                StoreModule.forFeature('users', reducer),
+            ],
+            declarations: [
+                UsersListComponent,
+                UserComponent
+            ]
         })
             .compileComponents();
     }));

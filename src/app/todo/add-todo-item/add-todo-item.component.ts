@@ -21,7 +21,6 @@ export class AddTodoItemComponent implements OnInit {
         private actions$: Actions
     ) { }
 
-    @Input() disabled = false;
     todoForm: FormGroup;
     progress$: Observable<boolean>;
 

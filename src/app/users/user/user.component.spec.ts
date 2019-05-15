@@ -23,12 +23,20 @@ describe('UserComponent', () => {
     beforeEach(() => {
         fixture = TestBed.createComponent(UserComponent);
         component = fixture.componentInstance;
-        component.isAdmin = new FormControl();
-        component.isAdmin.setValue(false);
+        component.user = {
+            email: '',
+            id: 1,
+            isAdmin: false,
+            userName: ''
+        } ;
         fixture.detectChanges();
     });
 
-    fit('should create', () => {
+    it('should create', () => {
+        expect(component).toBeTruthy();
+    });
+
+    fit('should same email and name', () => {
         expect(component).toBeTruthy();
     });
 });
