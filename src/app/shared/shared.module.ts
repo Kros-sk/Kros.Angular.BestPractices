@@ -14,9 +14,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
         HttpClientModule,
         NgbModule,
     ],
-    declarations: [
-        // shared components
-    ],
+    declarations: [],
     exports: [
         CommonModule,
         ReactiveFormsModule,

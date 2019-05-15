@@ -1,29 +1,30 @@
-<div class="row px-3 align-items-center">
 
-    <label class="btn-primary col-1 mr-4 mb-0 font-weight-bold" ngbButtonLabel>
-        <input type="checkbox" style="display: none" [formControl]="isDoneControl" ngbButton>
-        {{ isDoneControl.value ? "✓" : "&nbsp;" }}
-    </label>
+<input type="checkbox"
+       [formControl]="isDoneControl">
 
-    <div class="col-1">
-        {{item.id}}
-    </div>
-
-    <div class="col">
-        {{item.name}}
-    </div>
-
-    <div class="col-2">
-        <div class="row justify-content-between">
-            <button class="btn btn-outline-primary col-5" (click)="editTodo(item.id)"
-                [disabled]="actionInProgress$ | async">
-                Edit
-            </button>
-            <button class="btn btn-outline-danger col-5" (click)="deleteTodo(item.id)"
-                [disabled]="actionInProgress$ | async">
-                Delete
-            </button>
-        </div>
-    </div>
-
+<div class="id">
+    {{item.id}}
 </div>
+
+<div class="name">
+    {{item.name}}
+</div>
+
+<div class="actions" [ngStyle]="{'visibility': !(item.progress) ? 'visible' : 'hidden'}">
+    <button class="btn btn-outline-primary"
+            (click)="editTodo(item.id)">
+        Edit
+    </button>
+    <button class="btn btn-outline-danger"
+            (click)="deleteTodo(item.id)">
+        Delete
+    </button>
+</div>
+
+<ngb-progressbar class="loader-container"
+                 [ngStyle]="{'visibility': (item.progress) ? 'visible' : 'hidden'}"
+                 type="secondary"
+                 [striped]="true"
+                 [animated]="true"
+                 [value]="100">
+</ngb-progressbar>

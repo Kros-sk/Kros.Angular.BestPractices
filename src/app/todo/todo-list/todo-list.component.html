@@ -1,21 +1,26 @@
 <ng-container *ngIf="!(errorMessage$ | async)">
 
-    <kros-add-todo-item [disabled]="actionInProgress$ | async"></kros-add-todo-item>
+    <kros-add-todo-item></kros-add-todo-item>
+
+
 
     <ul class="list-group mt-4">
+        <ngb-progressbar *ngIf="progress" class="mt-4" type="secondary" [striped]="true" [animated]="true"
+            [value]="100">
+        </ngb-progressbar>
         <li class="list-group-item" *ngFor="let item of displayList">
             <kros-todo-item [item]="item">
             </kros-todo-item>
         </li>
     </ul>
 
-    <div class="d-flex justify-content-between mt-4">
+    <div class="actions mt-4">
 
         <div class="btn-group btn-group-toggle" ngbRadioGroup name="filterRadioGroup"
             [formControl]="selectedFilterControl">
 
             <label ngbButtonLabel class="btn-outline-secondary">
-                <input ngbButton type="radio" [value]="0" (click)="setFilter()" >
+                <input ngbButton type="radio" [value]="0" (click)="setFilter()">
                 All
             </label>
             <label ngbButtonLabel class="btn-outline-secondary">
@@ -28,7 +33,7 @@
             </label>
         </div>
 
-        <button class="btn btn-outline-danger col-2" (click)="deleteComplete()">
+        <button class="btn btn-outline-danger" (click)="deleteComplete()">
             Delete completed
         </button>
 

@@ -1,14 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Store, select } from '@ngrx/store';
-import { State } from './state/app.state';
-import { Logout } from './state/login/login.actions';
+import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { LoggedUser } from './models/logged-user.model';
 import { trigger, transition, animate, keyframes, style } from '@angular/animations';
-import { AuthService } from './core/auth.service';
-import { getProgressActionInProgress } from './state/progress/progress.selector';
-import { debounceTime } from 'rxjs/operators';
+import { AuthService } from './auth/service/auth.service';
+import { Logout } from './auth/state/login.actions';
+import { LoginState } from './auth/state/login.state';
+import { ConfigService } from './core/config/config.service';
 
 
 @Component({
@@ -26,14 +25,16 @@ import { debounceTime } from 'rxjs/operators';
 })
 export class AppComponent implements OnInit {
 
+    appName$ = this.config.appName$;
+
     constructor(
         private router: Router,
         public authService: AuthService,
-        private store: Store<State>
-    ) {
-    }
+        private store: Store<LoginState>,
+        private config: ConfigService
+    ) { }
 
-    actionInProgress$: Observable<boolean>;
+    actionInProgress = false;
     loggedUser$: Observable<LoggedUser>;
     isLoggedUser$: Observable<boolean>;
     state = 'left';
@@ -41,10 +42,6 @@ export class AppComponent implements OnInit {
     ngOnInit(): void {
         this.isLoggedUser$ = this.store.select((store: any) => store.login.loggedUser != null);
         this.loggedUser$ = this.store.select((store: any) => store.login.loggedUser);
-        this.actionInProgress$ = this.store.pipe(
-            select(getProgressActionInProgress),
-            debounceTime(200) // TODO vyskumat... preco hadze ExpressionChangedAfterItHasBeenCheckedError bez tohto debounce
-        );
     }
 
     login(pageName: string) {
@@ -57,6 +54,14 @@ export class AppComponent implements OnInit {
 
     animateMe() {
         this.state = (this.state === 'left' ? 'right' : 'left');
+    }
+
+    buttonClick() {
+        this.actionInProgress = true;
+        setTimeout(() => {
+            this.actionInProgress = false;
+            console.log(this.actionInProgress);
+        }, 1000);
     }
 }
 

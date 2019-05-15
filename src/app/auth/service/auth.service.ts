@@ -3,8 +3,8 @@ import { UserManager, UserManagerSettings, User } from 'oidc-client';
 import * as Oidc from 'oidc-client';
 import { LoggedUser } from '../models/logged-user.model';
 import { Store } from '@ngrx/store';
-import { State } from '../state/app.state';
-import { LoginSuccess } from '../state/login/login.actions';
+import { State } from '../state/login.state';
+import { LoginSuccess } from '../state/login.actions';
 import { environment } from 'src/environments/environment';
 import { HttpClient } from '@angular/common/http';
 
