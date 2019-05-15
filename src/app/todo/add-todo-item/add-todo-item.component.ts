@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Store, select } from '@ngrx/store';
 import * as todoActions from '../state/todo.actions';
 import { Observable } from 'rxjs';
@@ -27,8 +27,8 @@ export class AddTodoItemComponent implements OnInit {
 
     ngOnInit() {
         this.todoForm = this.formBuilder.group({
-            name: '',
-            description: ''
+            name: ['', Validators.required],
+            description: ['', Validators.required],
         });
 
         this.progress$ = this.store.pipe(select(getProgressFormADD));

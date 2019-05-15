@@ -17,7 +17,7 @@
             </div>
             <div class="text-right m-3 d-flex justify-content-between">
                 <button type="button" class="btn btn-outline-danger col-2" (click)="close()">Close</button>
-                <button type="submit" class="btn btn-outline-success col-2">Save</button>
+                <button type="submit" class="btn btn-outline-success col-2" [disabled]="!todoForm.valid">Save</button>
             </div>
         </form>
     </div>

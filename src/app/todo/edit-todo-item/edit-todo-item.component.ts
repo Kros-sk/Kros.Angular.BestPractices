@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import * as todoActions from '../state/todo.actions';
 import { TodoService } from '../services/todo.service';
@@ -27,8 +27,8 @@ export class EditTodoItemComponent implements OnInit {
     ngOnInit() {
         this.progress = false;
         this.todoForm = this.formBuilder.group({
-            name: '',
-            description: ''
+            name: ['', Validators.required],
+            description: ['', Validators.required],
         });
         this.todoService.getTodo(this.itemId).subscribe(item => {
             this.todoForm.patchValue({
