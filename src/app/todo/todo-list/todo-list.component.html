@@ -2,7 +2,12 @@
 
     <kros-add-todo-item></kros-add-todo-item>
 
+
+
     <ul class="list-group mt-4">
+        <ngb-progressbar *ngIf="progress" class="mt-4" type="secondary" [striped]="true" [animated]="true"
+            [value]="100">
+        </ngb-progressbar>
         <li class="list-group-item" *ngFor="let item of displayList">
             <kros-todo-item [item]="item">
             </kros-todo-item>

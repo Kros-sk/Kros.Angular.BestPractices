@@ -3,7 +3,7 @@
     grid-template-columns: 20px 30px 1fr auto;
     grid-template-areas:
         "checkbox       id              name            actions"
-        "progressbar    progressbar     progressbar     progressbar";
+        "   .            .                .             progressbar";
     grid-gap: 0 10px;
     align-items: center;
     align-content: center;

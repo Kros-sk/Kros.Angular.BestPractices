@@ -7,6 +7,7 @@ import { getTodoList, getError } from '../state/todo.selectors';
 import { LocalizedErrorInfo } from 'src/app/shared/models/error-info.model';
 import { FormControl } from '@angular/forms';
 import { TodoState } from '../state/todo.state';
+import { Actions, ofType } from '@ngrx/effects';
 
 @Component({
     selector: 'kros-todo-list',
@@ -16,10 +17,12 @@ import { TodoState } from '../state/todo.state';
 export class TodoListComponent implements OnInit {
 
     constructor(
-        private store: Store<TodoState>
+        private store: Store<TodoState>,
+        private action$: Actions
     ) {
     }
 
+    progress: boolean;
     errorMessage$: Observable<LocalizedErrorInfo | null>;
     displayList: TodoListItem[];
     selectedFilterControl: FormControl;
@@ -28,8 +31,14 @@ export class TodoListComponent implements OnInit {
         this.selectedFilterControl = new FormControl(TodoListFilter.All);
         this.errorMessage$ = this.store.pipe(select(getError));
         this.store.dispatch(new todoActions.Load());
+        this.progress = true;
         this.store.pipe(select(getTodoList)).subscribe(
             (todoListItems: TodoListItem[]) => this.filterItem(todoListItems)
+        );
+        this.action$.pipe(
+            ofType(todoActions.TodoActionsTypes.LoadFail, todoActions.TodoActionsTypes.LoadSuccess)
+        ).subscribe(
+            () => this.progress = false
         );
     }
 
