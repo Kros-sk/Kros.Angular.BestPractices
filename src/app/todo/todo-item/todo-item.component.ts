@@ -1,14 +1,12 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { TodoItem } from '../models/todo.model';
-import { Store, select } from '@ngrx/store';
-import { State } from '../state/todo.state';
+import { TodoListItem } from '../models/todo.model';
+import { Store } from '@ngrx/store';
 import * as todoActions from '../state/todo.actions';
 import { EditTodoItemComponent } from '../edit-todo-item/edit-todo-item.component';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { FormControl } from '@angular/forms';
 import { debounceTime } from 'rxjs/operators';
-import { Observable } from 'rxjs';
-import { getProgressActionInProgress } from '../../state/progress/progress.selector';
+import { TodoState } from '../state/todo.state';
 
 
 @Component({
@@ -19,14 +17,13 @@ import { getProgressActionInProgress } from '../../state/progress/progress.selec
 export class TodoItemComponent implements OnInit {
 
     constructor(
-        private store: Store<State>,
+        private store: Store<TodoState>,
         private modalService: NgbModal
     ) { }
 
-    @Input() item: TodoItem;
+    @Input() item: TodoListItem;
 
     isDoneControl: FormControl;
-    actionInProgress$: Observable<boolean>;
 
     ngOnInit() {
         this.isDoneControl = new FormControl(this.item.isDone);
@@ -34,10 +31,6 @@ export class TodoItemComponent implements OnInit {
             debounceTime(200)
         ).subscribe(
             (newValue: boolean) => this.setTodoState(this.item.id, newValue)
-        );
-
-        this.actionInProgress$ = this.store.pipe(
-            select(getProgressActionInProgress)
         );
     }
 

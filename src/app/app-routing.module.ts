@@ -1,8 +1,9 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule, NoPreloading } from '@angular/router';
-import { GuardService } from './core/guard.service';
-import { AuthService } from './core/auth.service';
-import { UserGuardService } from './core/user.guard.service';
+import { GuardService } from './auth/service/guard.service';
+import { UserGuardService } from './auth/service/user.guard.service';
+import { AuthService } from './auth/service/auth.service';
+
 
 const routes: Routes = [
     {

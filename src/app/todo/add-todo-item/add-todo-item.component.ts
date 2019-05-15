@@ -1,8 +1,11 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
-import { Store } from '@ngrx/store';
-import { State } from '../state/todo.state';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Store, select } from '@ngrx/store';
 import * as todoActions from '../state/todo.actions';
+import { Observable } from 'rxjs';
+import { getProgressFormADD } from '../state/todo.selectors';
+import { Actions, ofType } from '@ngrx/effects';
+import { TodoState } from '../state/todo.state';
 
 
 @Component({
@@ -14,18 +17,26 @@ export class AddTodoItemComponent implements OnInit {
 
     constructor(
         private formBuilder: FormBuilder,
-        private store: Store<State>
+        private store: Store<TodoState>,
+        private actions$: Actions
     ) { }
 
     @Input() disabled = false;
-
     todoForm: FormGroup;
+    progress$: Observable<boolean>;
 
     ngOnInit() {
         this.todoForm = this.formBuilder.group({
-            name: '',
-            description: ''
+            name: ['', Validators.required],
+            description: ['', Validators.required],
         });
+
+        this.progress$ = this.store.pipe(select(getProgressFormADD));
+        this.actions$.pipe(
+            ofType(todoActions.TodoActionsTypes.AddSuccess)
+        ).subscribe(
+            () => this.todoForm.reset()
+        );
     }
 
     addTodo() {

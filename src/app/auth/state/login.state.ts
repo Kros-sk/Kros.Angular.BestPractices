@@ -1,4 +1,8 @@
-import { LoggedUser } from 'src/app/models/logged-user.model';
+import { LoggedUser } from '../models/logged-user.model';
+
+export interface State {
+    login: LoginState;
+}
 
 export interface LoginState {
     loggedUser: LoggedUser | null;

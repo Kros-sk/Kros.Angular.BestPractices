@@ -14,3 +14,7 @@ export const getError = createSelector(
     state => state.error
 );
 
+export const getProgressFormADD = createSelector(
+    getTodoFeatureState,
+    state => state.addProgres
+);

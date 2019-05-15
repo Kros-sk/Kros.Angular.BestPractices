@@ -2,27 +2,28 @@ import { NewTodoItem, TodoListItem, UpdateTodoItem, UpdateTodoItemState } from '
 import { Action } from '@ngrx/store';
 import { LocalizedErrorInfo } from 'src/app/shared/models/error-info.model';
 
-
 export enum TodoActionsTypes {
-    Load = '[Todo] Load',
-    LoadSuccess = '[Todo] Load Success',
-    LoadFail = '[Todo] Load Fail',
-    Add = '[Todo] Add',
-    AddSuccess = '[Todo] Add Success',
-    AddFail = '[Todo] Add Fail',
-    Delete = '[Todo] Delete',
-    DeleteSuccess = '[Todo] Delete Success',
-    DeleteFail = '[Todo] Delete Fail',
-    DeleteCompleted = '[Todo] Delete Completed',
-    DeleteCompletedSuccess = '[Todo] Delete Completed Success',
-    DeleteCompletedFail = '[Todo] Delete Completed Fail',
-    Update = '[Todo] Update',
-    UpdateSuccess = '[Todo] Update Success',
-    UpdateFail = '[Todo] Update Fail',
-    SetState = '[Todo] Set State',
-    SetStateSuccess = '[Todo] Set State Success',
-    SetStateFail = '[Todo] Set State Fail',
-    SetFilter = '[Todo] Set Filter',
+    Load = '[Todo] Load todo items',
+    LoadSuccess = '[Todo] Load todo items Success',
+    LoadFail = '[Todo] Load todo items Fail',
+    Add = '[Todo] Add new todo item',
+    AddSuccess = '[Todo] Add new todo item Success',
+    AddFail = '[Todo] Add new todo item Fail',
+    Delete = '[Todo] Delete todo item',
+    DeleteSuccess = '[Todo] Delete todo item Success',
+    DeleteFail = '[Todo] Delete todo item Fail',
+    DeleteCompleted = '[Todo] Delete all completed todo items',
+    DeleteCompletedSuccess = '[Todo] Delete all completed todo items Success',
+    DeleteCompletedFail = '[Todo] Delete all completed todo items Fail',
+    Update = '[Todo] Update todo item',
+    UpdateSuccess = '[Todo] Update todo item Success',
+    UpdateFail = '[Todo] Update todo item Fail',
+    SetState = '[Todo] Set todo item is done State',
+    SetStateSuccess = '[Todo] Set todo item is done State Success',
+    SetStateFail = '[Todo] Set todo item is done State Fail',
+    SetFilter = '[Todo] Set todo items Filter ',
+    SetProgressItem = '[Todo] Set progress bar at item',
+    SetProgressFormAdd = '[Todo] Set progress bar at add form',
 }
 
 export class Load implements Action {
@@ -49,8 +50,6 @@ export class Add implements Action {
 
 export class AddSuccess implements Action {
     readonly type = TodoActionsTypes.AddSuccess;
-
-    constructor() { }
 }
 
 export class AddFail implements Action {
@@ -103,7 +102,7 @@ export class Update implements Action {
 export class UpdateSuccess implements Action {
     readonly type = TodoActionsTypes.UpdateSuccess;
 
-    constructor() { }
+    constructor(public payload: UpdateTodoItem) { }
 }
 
 export class UpdateFail implements Action {
@@ -135,9 +134,22 @@ export class SetFilter implements Action {
 
 }
 
+export class SetProgressItem implements Action {
+    readonly type = TodoActionsTypes.SetProgressItem;
+
+    constructor(public payload: number) { }
+}
+
+export class SetProgressFormAdd implements Action {
+    readonly type = TodoActionsTypes.SetProgressFormAdd;
+
+    constructor(public payload: boolean) { }
+}
 
 
 export type TodoActions =
+    | SetProgressFormAdd
+    | SetProgressItem
     | SetFilter
     | Load
     | LoadSuccess

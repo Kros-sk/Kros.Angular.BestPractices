@@ -36,12 +36,34 @@ export function reducer(state = initialState, action: TodoActions): TodoState {
                 error: action.payload
             };
 
+        case TodoActionsTypes.UpdateSuccess:
+            return {
+                ...state,
+                todos: state.todos.map(x => x.id === action.payload.id
+                    ? { ...action.payload, progress: false }
+                    : x),
+                error: null
+            };
+
         case TodoActionsTypes.UpdateFail:
             return {
                 ...state,
                 error: action.payload
             };
 
+        case TodoActionsTypes.SetProgressItem:
+            return {
+                ...state,
+                todos: state.todos.map(x => x.id === action.payload
+                    ? { ...x, progress: true }
+                    : x)
+            };
+
+        case TodoActionsTypes.SetProgressFormAdd:
+            return {
+                ...state,
+                addProgres: action.payload
+            };
         default:
             return state;
     }

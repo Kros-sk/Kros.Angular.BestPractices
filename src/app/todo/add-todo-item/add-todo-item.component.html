@@ -2,14 +2,17 @@
     i18n="Add todo item component|Caption above inputs@@add-todo-item-inputs-caption">
     What needs to be done?
 </div>
-
-<form [formGroup]="todoForm" (ngSubmit)="addTodo()" class="d-flex justify-content-between">
+<div class="col" [ngStyle]="{'visibility': (progress$ | async) ? 'visible' : 'hidden'}">
+    <ngb-progressbar class="mt-4" type="secondary" [striped]="true" [animated]="true" [value]="100">
+    </ngb-progressbar>
+</div>
+<form [ngStyle]="{'visibility': !(progress$ | async) ? 'visible' : 'hidden'}" [formGroup]="todoForm"
+    (ngSubmit)="addTodo()" class="d-flex justify-content-between">
     <input class="col mr-4" type="text" formControlName="name">
 
     <input class="col mr-4" type="text" formControlName="description">
 
-    <button class="btn btn-outline-success col-2" type="submit" [disabled]="disabled"
+    <button class="btn btn-outline-success col-2" type="submit" [disabled]="!todoForm.valid"
         i18n="Add todo item component|Add button caption@@add-todo-item-button-label">
-        Add
     </button>
 </form>

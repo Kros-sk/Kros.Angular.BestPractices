@@ -3,9 +3,9 @@ import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { TodoItem, NewTodoItem, TodoListItem, UpdateTodoItem } from '../models/todo.model';
 import { HttpClient } from '@angular/common/http';
-import { AuthService } from 'src/app/core/auth.service';
 import { catchError } from 'rxjs/operators';
 import { handleHttpError } from 'src/app/shared/helpers/api.helper';
+import { AuthService } from 'src/app/auth/service/auth.service';
 
 @Injectable({
     providedIn: 'root'
