@@ -10,7 +10,8 @@
                 <button type="button"
                         class="btn btn-outline-primary col"
                         [routerLink]="['/todo']"
-                        routerLinkActive="active">
+                        routerLinkActive="active"
+                        i18n="@@app-component-todo-list-menu">
                     Todo list
                 </button>
 
@@ -22,7 +23,8 @@
                         [ngbPopover]="authService.isAdmin ? 'You are Admin' : 'You are not Admin'"
                         #popover="ngbPopover"
                         (mouseenter)="popover.open()"
-                        (mouseleave)="popover.close()">
+                        (mouseleave)="popover.close()"
+                        i18n="@@app-component-todo-users-management-menu">
                     Users management
                 </button>
 
@@ -50,7 +52,8 @@
 
     <div class="row d-flex justify-content-center px-4 py-4">
         <button class="btn btn-outline-primary"
-                (click)="login('todo')">
+                (click)="login('todo')"
+                i18n="@@app-component-login-button">
             Login
         </button>
     </div>
@@ -69,7 +72,8 @@
             </div>
         </div>
         <button class="btn btn-outline-danger"
-                (click)="logout()">
+                (click)="logout()"
+                i18n="@@app-component-logout-button">
             Logout
         </button>
     </div>

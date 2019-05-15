@@ -1,5 +1,5 @@
 <div [ngClass]="{ 'text-black-50': disabled }"
-    i18n="Add todo item component|Caption above inputs@@add-todo-item-inputs-caption">
+    i18n="@@add-todo-item-inputs-caption">
     What needs to be done?
 </div>
 <div class="col" [ngStyle]="{'visibility': (progress$ | async) ? 'visible' : 'hidden'}">
@@ -13,6 +13,7 @@
     <input class="col mr-4" type="text" formControlName="description">
 
     <button class="btn btn-outline-success col-2" type="submit" [disabled]="!todoForm.valid"
-        i18n="Add todo item component|Add button caption@@add-todo-item-button-label">
+        i18n="@@add-todo-item-button">
+        Add
     </button>
 </form>

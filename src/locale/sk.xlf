@@ -1,26 +1,202 @@
-<?xml version="1.0" encoding="utf-8"?><xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
-  <file datatype="plaintext" original="ng2.template" source-language="en" target-language="SK-SK">
-    <body>
-      <trans-unit datatype="html" id="add-todo-item-inputs-caption">
-        <source>What needs to be done?</source>
-        <target state="translated">Čo treba urobiť?</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/todo/add-todo-item/add-todo-item.component.html</context>
-          <context context-type="linenumber">2</context>
-        </context-group>
-        <note from="description" priority="1">Caption above inputs</note>
-        <note from="meaning" priority="1">Add todo item component</note>
-      </trans-unit>
-      <trans-unit datatype="html" id="add-todo-item-button-label">
-        <source>Add</source>
-        <target state="translated">Pridaj</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/todo/add-todo-item/add-todo-item.component.html</context>
-          <context context-type="linenumber">12</context>
-        </context-group>
-        <note from="description" priority="1">Add button caption</note>
-        <note from="meaning" priority="1">Add todo item component</note>
-      </trans-unit>
-    </body>
-  </file>
+<?xml version="1.0" encoding="UTF-8" ?>
+<xliff version="1.2"
+    xmlns="urn:oasis:names:tc:xliff:document:1.2">
+    <file source-language="en" datatype="plaintext" original="ng2.template">
+        <body>
+            <trans-unit id="app-component-todo-list-menu" datatype="html">
+                <source>
+                    Todo list
+                </source>
+                <target>
+                    Zoznam Todo
+                </target>
+                <context-group purpose="location">
+                    <context context-type="sourcefile">app/app.component.html</context>
+                    <context context-type="linenumber">14</context>
+                </context-group>
+            </trans-unit>
+            <trans-unit id="app-component-todo-users-management-menu" datatype="html">
+                <source>
+                    Users management
+                </source>
+                <target>
+                    Menežment užívateľov
+                </target>
+                <context-group purpose="location">
+                    <context context-type="sourcefile">app/app.component.html</context>
+                    <context context-type="linenumber">27</context>
+                </context-group>
+            </trans-unit>
+            <trans-unit id="app-component-login-button" datatype="html">
+                <source>
+            Login
+                </source>
+                <target>
+            Prihlásenie
+                </target>
+                <context-group purpose="location">
+                    <context context-type="sourcefile">app/app.component.html</context>
+                    <context context-type="linenumber">56</context>
+                </context-group>
+            </trans-unit>
+            <trans-unit id="app-component-logout-button" datatype="html">
+                <source>
+            Logout
+                </source>
+                <target>
+            Odhlásenie
+                </target>
+                <context-group purpose="location">
+                    <context context-type="sourcefile">app/app.component.html</context>
+                    <context context-type="linenumber">76</context>
+                </context-group>
+            </trans-unit>
+            <trans-unit id="todo-list-filter-all" datatype="html">
+                <source>
+                    All
+                </source>
+                <target>
+                    Všetko
+                </target>
+                <context-group purpose="location">
+                    <context context-type="sourcefile">app/todo/todo-list/todo-list.component.html</context>
+                    <context context-type="linenumber">22</context>
+                </context-group>
+            </trans-unit>
+            <trans-unit id="todo-list-filter-active" datatype="html">
+                <source>
+                    Active
+                </source>
+                <target>
+                    Aktívne
+                </target>
+                <context-group purpose="location">
+                    <context context-type="sourcefile">app/todo/todo-list/todo-list.component.html</context>
+                    <context context-type="linenumber">28</context>
+                </context-group>
+            </trans-unit>
+            <trans-unit id="todo-list-filter-completed" datatype="html">
+                <source>
+                    Completed
+                </source>
+                <target>
+                    Dokončené
+                </target>
+                <context-group purpose="location">
+                    <context context-type="sourcefile">app/todo/todo-list/todo-list.component.html</context>
+                    <context context-type="linenumber">34</context>
+                </context-group>
+            </trans-unit>
+            <trans-unit id="todo-list-delete-completed-button" datatype="html">
+                <source>
+            Delete completed
+                </source>
+                <target>
+            Vymaž dokončené
+                </target>
+                <context-group purpose="location">
+                    <context context-type="sourcefile">app/todo/todo-list/todo-list.component.html</context>
+                    <context context-type="linenumber">42</context>
+                </context-group>
+            </trans-unit>
+            <trans-unit id="edit-todo-header" datatype="html">
+                <source>Edit todo</source>
+                <target>Edituj položku</target>
+                <context-group purpose="location">
+                    <context context-type="sourcefile">app/todo/edit-todo-item/edit-todo-item.component.html</context>
+                    <context context-type="linenumber">6</context>
+                </context-group>
+            </trans-unit>
+            <trans-unit id="edit-todo-name-label" datatype="html">
+                <source>Name:</source>
+                <target>Názov:</target>
+                <context-group purpose="location">
+                    <context context-type="sourcefile">app/todo/edit-todo-item/edit-todo-item.component.html</context>
+                    <context context-type="linenumber">15</context>
+                </context-group>
+            </trans-unit>
+            <trans-unit id="edit-todo-description-label" datatype="html">
+                <source>Description:</source>
+                <target>Popis:</target>
+                <context-group purpose="location">
+                    <context context-type="sourcefile">app/todo/edit-todo-item/edit-todo-item.component.html</context>
+                    <context context-type="linenumber">17</context>
+                </context-group>
+            </trans-unit>
+            <trans-unit id="edit-todo-close-button" datatype="html">
+                <source>
+                    Close
+                </source>
+                <target>
+                    Zatvor
+                </target>
+                <context-group purpose="location">
+                    <context context-type="sourcefile">app/todo/edit-todo-item/edit-todo-item.component.html</context>
+                    <context context-type="linenumber">25</context>
+                </context-group>
+            </trans-unit>
+            <trans-unit id="edit-todo-save-button" datatype="html">
+                <source>
+                    Save
+                </source>
+                <target>
+                    Ulož
+                </target>
+                <context-group purpose="location">
+                    <context context-type="sourcefile">app/todo/edit-todo-item/edit-todo-item.component.html</context>
+                    <context context-type="linenumber">32</context>
+                </context-group>
+            </trans-unit>
+            <trans-unit id="b47b8f44227f58ddf37028274717be3da11196ab" datatype="html">
+                <source>
+        Edit
+                </source>
+                <target>
+        Uprav
+                </target>
+                <context-group purpose="location">
+                    <context context-type="sourcefile">app/todo/todo-item/todo-item.component.html</context>
+                    <context context-type="linenumber">16</context>
+                </context-group>
+                <note priority="1" from="description">todo-item-edit-button</note>
+            </trans-unit>
+            <trans-unit id="682dbcfe092e36ca8c666a1f1e903fae7c629630" datatype="html">
+                <source>
+        Delete
+                </source>
+                <target>
+        Vymaž
+                </target>
+                <context-group purpose="location">
+                    <context context-type="sourcefile">app/todo/todo-item/todo-item.component.html</context>
+                    <context context-type="linenumber">21</context>
+                </context-group>
+                <note priority="1" from="description">todo-item-delete-button</note>
+            </trans-unit>
+            <trans-unit id="add-todo-item-inputs-caption" datatype="html">
+                <source>
+    What needs to be done?
+                </source>
+                <target>
+    Čo treba urobiť?
+                </target>
+                <context-group purpose="location">
+                    <context context-type="sourcefile">app/todo/add-todo-item/add-todo-item.component.html</context>
+                    <context context-type="linenumber">2</context>
+                </context-group>
+            </trans-unit>
+            <trans-unit id="add-todo-item-button" datatype="html">
+                <source>
+        Add
+                </source>
+                <target>
+        Pridaj
+                </target>
+                <context-group purpose="location">
+                    <context context-type="sourcefile">app/todo/add-todo-item/add-todo-item.component.html</context>
+                    <context context-type="linenumber">16</context>
+                </context-group>
+            </trans-unit>
+        </body>
+    </file>
 </xliff>
