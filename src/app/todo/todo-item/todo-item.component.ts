@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { TodoItem } from '../models/todo.model';
+import { TodoListItem } from '../models/todo.model';
 import { Store } from '@ngrx/store';
 import * as todoActions from '../state/todo.actions';
 import { EditTodoItemComponent } from '../edit-todo-item/edit-todo-item.component';
@@ -21,7 +21,7 @@ export class TodoItemComponent implements OnInit {
         private modalService: NgbModal
     ) { }
 
-    @Input() item: TodoItem;
+    @Input() item: TodoListItem;
 
     isDoneControl: FormControl;
 

@@ -1,4 +1,4 @@
-import { NewTodoItem, TodoListItem, UpdateTodoItem, UpdateTodoItemState, TodoItem } from '../models/todo.model';
+import { NewTodoItem, TodoListItem, UpdateTodoItem, UpdateTodoItemState } from '../models/todo.model';
 import { Action } from '@ngrx/store';
 import { LocalizedErrorInfo } from 'src/app/shared/models/error-info.model';
 
