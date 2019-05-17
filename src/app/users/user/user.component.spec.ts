@@ -24,10 +24,10 @@ describe('UserComponent', () => {
         fixture = TestBed.createComponent(UserComponent);
         component = fixture.componentInstance;
         component.user = {
-            email: '',
+            email: 'ahoj@cau.tg',
             id: 1,
             isAdmin: false,
-            userName: ''
+            userName: 'Jozef'
         } ;
         fixture.detectChanges();
     });
@@ -36,7 +36,8 @@ describe('UserComponent', () => {
         expect(component).toBeTruthy();
     });
 
-    fit('should same email and name', () => {
-        expect(component).toBeTruthy();
+    it('should be same email', () => {
+        const element: HTMLElement = fixture.nativeElement;
+        expect(element.textContent).toContain(component.user.email);
     });
 });

@@ -27,7 +27,7 @@ export class AddTodoItemComponent implements OnInit {
     ngOnInit() {
         this.todoForm = this.formBuilder.group({
             name: ['', Validators.required],
-            description: ['', Validators.required],
+            description: ['', Validators.required]
         });
 
         this.progress$ = this.store.pipe(select(getProgressFormADD));
@@ -39,6 +39,7 @@ export class AddTodoItemComponent implements OnInit {
     }
 
     addTodo() {
+        console.log('btn add clicked...');
         this.store.dispatch(new todoActions.Add({
             name: this.todoForm.value.name,
             description: this.todoForm.value.description
