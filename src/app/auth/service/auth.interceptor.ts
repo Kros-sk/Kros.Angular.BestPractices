@@ -20,8 +20,7 @@ export class AuthInterceptor implements HttpInterceptor {
         req: HttpRequest<any>,
         next: HttpHandler
     ): Observable<HttpEvent<any>> {
-        if (req.url.startsWith(`${environment.todoApiUrl}/api`) ||
-            (req.url.startsWith(`${environment.usersApiUrl}/api`))) {
+        if (req.url.startsWith(`${environment.apiUrl}`)) {
             const accessToken = this.authService.getAuthorizationHeaderValue();
             const headers = req.headers.set('Authorization', `${accessToken}`);
             const authReq = req.clone({ headers });

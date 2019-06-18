@@ -73,7 +73,7 @@ export class AuthService {
 
     loadUserInfo() {
         this.http
-            .get(`${environment.usersApiUrl}/api/Users/IsAdmin`)
+            .get(`${environment.apiUrl}/Users/IsAdmin`)
             .subscribe(resp => {
                 if (resp) {
                     this.isAdmin = (resp as boolean);
