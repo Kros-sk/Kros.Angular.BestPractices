@@ -1,14 +1,13 @@
-import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpResponse, HttpRequest } from '@angular/common/http';
 import { AuthInterceptor } from './auth.interceptor';
-import { TestBed, getTestBed } from '@angular/core/testing';
-import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
-import { TodoService } from '../../todo/services/todo.service';
+import { TestBed, async } from '@angular/core/testing';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { StoreModule } from '@ngrx/store';
+import { AuthService } from './auth.service';
+import { of } from 'rxjs';
+import { environment } from 'src/environments/environment';
 
 describe('Interceptor', () => {
-
-    let injector: TestBed;
-    let httpMock: HttpTestingController;
 
     beforeEach(() => {
         TestBed.configureTestingModule({
@@ -23,28 +22,26 @@ describe('Interceptor', () => {
                     useClass: AuthInterceptor,
                     multi: true
                 },
-                TodoService
+                //AuthService,
+                AuthInterceptor
             ]
         });
-        injector = getTestBed();
-        httpMock = injector.get(HttpTestingController);
     });
 
-    describe('#Iterceptor', () => {
-        it('should add an Authorization header', () => {
-
-
-            const req = httpMock.expectOne(`https://krostodos.azurewebsites.net/api/ToDos`);
-            expect(req.request.headers.has('Authorization')).toEqual(true);
-
-        });
-    });
-
-    it('should be created', () => {
-        const service: TodoService = TestBed.get(TodoService);
-        expect(service).toBeTruthy();
-
-        const interceptor = new AuthInterceptor(null);
-        const x = interceptor.intercept(null, null);
-    });
+    it('should set header authorization', async(() => {
+        const token = 't';
+        const service = TestBed.get(AuthService);
+        spyOn(service, 'getAuthorizationHeaderValue').and.returnValue('t');
+        let response: HttpResponse<any>;
+        const next: any = {
+            handle: responseHandle => {
+                response = responseHandle;
+                return of(null);
+            }
+        };
+        const request: HttpRequest<any> = new HttpRequest<any>('GET', `${environment.apiUrl}`);
+        const interceptor = TestBed.get(AuthInterceptor);
+        interceptor.intercept(request, next);
+        expect(response.headers.get('Authorization')).toEqual(token);
+    }));
 });

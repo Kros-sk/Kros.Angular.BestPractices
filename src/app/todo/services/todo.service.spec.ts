@@ -2,6 +2,7 @@ import { TestBed, getTestBed } from '@angular/core/testing';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { TodoService } from './todo.service';
 import { StoreModule } from '@ngrx/store';
+import { environment } from 'src/environments/environment';
 
 
 describe('TodoService', () => {
@@ -48,7 +49,7 @@ describe('TodoService', () => {
                 expect(todo).toEqual(todoList);
             });
 
-            const req = httpMock.expectOne(`https://krostodos.azurewebsites.net/api/ToDos`);
+            const req = httpMock.expectOne(`${environment.apiUrl}/ToDos`);
             expect(req.request.method).toBe('GET');
             req.flush(todoList);
         });
