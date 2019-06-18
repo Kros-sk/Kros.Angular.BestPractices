@@ -68,7 +68,7 @@ export class TodoService {
     }
 
     private createApiUrl(controllerName: string, methodAndParameters?: string): string {
-        const apiUrl = `${environment.todoApiUrl}/api/${controllerName}`;
+        const apiUrl = `${environment.apiUrl}/${controllerName}`;
         if (methodAndParameters) {
             return `${apiUrl}/${methodAndParameters}`;
         }

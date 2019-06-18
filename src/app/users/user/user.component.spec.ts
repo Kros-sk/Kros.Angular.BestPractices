@@ -23,12 +23,21 @@ describe('UserComponent', () => {
     beforeEach(() => {
         fixture = TestBed.createComponent(UserComponent);
         component = fixture.componentInstance;
-        component.isAdmin = new FormControl();
-        component.isAdmin.setValue(false);
+        component.user = {
+            email: 'ahoj@cau.tg',
+            id: 1,
+            isAdmin: false,
+            userName: 'Jozef'
+        } ;
         fixture.detectChanges();
     });
 
-    fit('should create', () => {
+    it('should create', () => {
         expect(component).toBeTruthy();
+    });
+
+    it('should be same email', () => {
+        const element: HTMLElement = fixture.nativeElement;
+        expect(element.textContent).toContain(component.user.email);
     });
 });

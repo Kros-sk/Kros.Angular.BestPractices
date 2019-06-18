@@ -26,7 +26,12 @@
                             "src/favicon.ico",
                             "src/assets",
                             "src/manifest.json",
-                            "src/web.config"
+                            "src/web.config",
+                            {
+                                "glob": "**/*.min.js",
+                                "input": "./node_modules/oidc-client/dist/",
+                                "output": "./assets/"
+                            }
                         ],
                         "styles": [
                             "node_modules/bootstrap/dist/css/bootstrap.min.css",
