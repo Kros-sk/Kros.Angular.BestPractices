@@ -58,7 +58,7 @@ describe('AddTodoItemComponent', () => {
         expect(component.addTodo).toHaveBeenCalled();
     }));
 
-    fit('should disable add button when inputs are empty', () => {
+    it('should disable add button when inputs are empty', () => {
         component.todoForm.get('name').setValue('');
         component.todoForm.get('description').setValue('');
         expect(component.todoForm.valid).toBeFalsy();
