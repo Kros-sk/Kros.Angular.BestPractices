@@ -28,8 +28,13 @@
                             "src/manifest.json",
                             "src/web.config",
                             {
-                                "glob": "**/*.min.js",
-                                "input": "./node_modules/oidc-client/dist/",
+                                "glob": "*.min.js",
+                                "input": "./node_modules/oidc-client/lib/",
+                                "output": "./assets/"
+                            },
+                            {
+                                "glob": "*.min.js",
+                                "input": "./node_modules/babel-polyfill/dist/",
                                 "output": "./assets/"
                             }
                         ],

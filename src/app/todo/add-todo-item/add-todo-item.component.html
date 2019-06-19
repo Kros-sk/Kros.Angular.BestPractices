@@ -1,5 +1,4 @@
-<div [ngClass]="{ 'text-black-50': disabled }"
-    i18n="@@add-todo-item-inputs-caption">
+<div i18n="@@add-todo-item-inputs-caption">
     What needs to be done?
 </div>
 <div class="col" [ngStyle]="{'visibility': (progress$ | async) ? 'visible' : 'hidden'}">
