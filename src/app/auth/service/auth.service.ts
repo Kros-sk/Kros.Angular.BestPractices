@@ -60,7 +60,7 @@ export class AuthService {
     }
 
     startAuthentication(): Promise<void> {
-        return this.manager.signinPopup();
+        return this.manager.signinRedirect();
     }
 
     getAccessToken(): string {
@@ -73,7 +73,7 @@ export class AuthService {
 
     loadUserInfo() {
         this.http
-            .get(`${environment.apiUrl}/Users/IsAdmin`)
+            .get(`${environment.apiUrl}/users/isadmin`)
             .subscribe(resp => {
                 if (resp) {
                     this.isAdmin = (resp as boolean);
@@ -85,7 +85,6 @@ export class AuthService {
 export function getClientSettings(): UserManagerSettings {
     return {
         userStore: new Oidc.WebStorageStateStore({ store: window.localStorage }),
-        popupWindowFeatures: 'location=no,toolbar=yes,width=800,height=600,left=100,top=100',
         authority: 'https://demo.identityserver.io/',
         client_id: 'spa',
         redirect_uri: `${environment.identityServerCallBackUri}/assets/login-redirect.html`,
