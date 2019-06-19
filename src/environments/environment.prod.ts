@@ -1,7 +1,6 @@
 export const environment = {
     production: true,
 
-    todoApiUrl: 'https://krostodos.azurewebsites.net',
-    usersApiUrl: 'https://krostodosusers.azurewebsites.net',
+    apiUrl: 'https://demo.todos.gateway.api.kros.wtf',
     identityServerCallBackUri: 'https://krostodosng.azurewebsites.net'
 };

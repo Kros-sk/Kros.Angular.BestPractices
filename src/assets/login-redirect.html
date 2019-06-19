@@ -14,7 +14,14 @@
             response_mode: 'query',
         };
         var mgr = new UserManager(config);
-        mgr.signinPopupCallback();
+        mgr.signinRedirectCallback().then(function() {
+            window.history.replaceState({},
+                window.document.title,
+                window.location.origin);
+            window.location = "/";
+        }, function(error) {
+            console.error(error);
+        });
     </script>
 </body>
 
