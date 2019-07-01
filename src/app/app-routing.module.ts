@@ -8,12 +8,12 @@ import { AuthService } from './auth/service/auth.service';
 const routes: Routes = [
     {
         path: 'todo',
-        loadChildren: './todo/todo.module#TodoModule',
+        loadChildren: () => import('./todo/todo.module').then(m => m.TodoModule),
         canActivate: [GuardService]
     },
     {
         path: 'users',
-        loadChildren: './users/users.module#UsersModule',
+        loadChildren: () => import('./users/users.module').then(m => m.UsersModule),
         canActivate: [UserGuardService]
     }
 ];
