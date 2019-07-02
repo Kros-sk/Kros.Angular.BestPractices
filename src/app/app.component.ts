@@ -25,13 +25,10 @@ import { ConfigService } from './core/config/config.service';
 })
 export class AppComponent implements OnInit {
 
-    appName$ = this.config.appName$;
-
     constructor(
         private router: Router,
         public authService: AuthService,
         private store: Store<LoginState>,
-        private config: ConfigService
     ) { }
 
     actionInProgress = false;

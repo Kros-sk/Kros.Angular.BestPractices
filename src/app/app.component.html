@@ -37,14 +37,9 @@
 </div>
 
 <ng-template #appHeader>
-    <h1 class="text-center"
-        *ngIf="appName$ | async as appName; else defaultAppName">
-        {{ appName }}
+    <h1 class="text-center" i18n="@@app-component-header-name">
+        KROS Todo list
     </h1>
-
-    <ng-template #defaultAppName>
-        KROS Todo list Test
-    </ng-template>
 </ng-template>
 
 <ng-template #loginButton>
