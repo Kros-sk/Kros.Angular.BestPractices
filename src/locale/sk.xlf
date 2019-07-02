@@ -15,20 +15,6 @@
                     <context context-type="linenumber">41</context>
                 </context-group>
         </trans-unit>
-
-        <trans-unit id="popover" datatype="html">
-                <source>
-                    KROS Todo list
-                </source>
-                <target>
-                    Ahoj
-                </target>
-                <context-group purpose="location">
-                    <context context-type="sourcefile">app/app.component.html</context>
-                    <context context-type="linenumber">23</context>
-                </context-group>
-        </trans-unit>
-
         <trans-unit id="app-component-todo-list-menu" datatype="html">
                 <source>
                     Todo list

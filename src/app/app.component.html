@@ -21,7 +21,6 @@
                         routerLinkActive="active"
                         placement="top"
                         [ngbPopover]="authService.isAdmin ? 'You are Admin' : 'You are not Admin'"
-                        i18n-ngbPopover="@@popover"
                         #popover="ngbPopover"
                         (mouseenter)="popover.open()"
                         (mouseleave)="popover.close()"
