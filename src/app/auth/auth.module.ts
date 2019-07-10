@@ -1,14 +1,18 @@
 import { CommonModule } from '@angular/common';
-import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { ServiceWorkerModule } from '@angular/service-worker';
-import { AuthService } from './service/auth.service';
-import { StoreModule } from '@ngrx/store';
-import { StoreDevtoolsModule } from '@ngrx/store-devtools';
-import { EffectsModule } from '@ngrx/effects';
-import { AppEffects } from './state/login.effects';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { NgModule } from '@angular/core';
+
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+
+import { ServiceWorkerModule } from '@angular/service-worker';
+
+import { EffectsModule } from '@ngrx/effects';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { StoreModule } from '@ngrx/store';
+
+import { AppEffects } from './state/login.effects';
+import { AuthService } from './service/auth.service';
 import { AuthInterceptor } from './service/auth.interceptor';
 import { environment } from 'src/environments/environment';
 import { loginReducer } from './state/login.reducer';

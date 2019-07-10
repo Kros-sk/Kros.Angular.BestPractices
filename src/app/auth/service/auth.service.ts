@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { UserManager, UserManagerSettings, User } from 'oidc-client';
+import { UserManager, UserManagerSettings, User, WebStorageStateStore } from 'oidc-client';
 import * as Oidc from 'oidc-client';
 import { LoggedUser } from '../models/logged-user.model';
 import { Store } from '@ngrx/store';
@@ -14,7 +14,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class AuthService {
 
-    private manager = null;
+    private manager: UserManager = null;
     private user: User = null;
     public isAdmin = false;
 
@@ -22,7 +22,7 @@ export class AuthService {
         private store: Store<State>,
         private http: HttpClient
     ) {
-        this.manager = new UserManager(getClientSettings());
+        this.manager = new UserManager(this.clientSettings);
 
         this.manager.getUser().then(user => {
             this.user = user;
@@ -43,6 +43,7 @@ export class AuthService {
         });
     }
 
+
     isLoggedIn(): boolean {
         return this.user != null && !this.user.expired;
     }
@@ -56,7 +57,7 @@ export class AuthService {
     }
 
     getAuthorizationHeaderValue(): string {
-        return `${this.user.token_type} ${this.user.access_token}`;
+        return this.user ? `${this.user.token_type} ${this.user.access_token}` : '';
     }
 
     startAuthentication(): Promise<void> {
@@ -80,20 +81,21 @@ export class AuthService {
                 }
             });
     }
+
+    private get clientSettings(): UserManagerSettings {
+        return {
+            userStore: new WebStorageStateStore({ store: window.localStorage }),
+            authority: 'https://demo.identityserver.io/',
+            client_id: 'spa',
+            redirect_uri: `${environment.identityServerCallBackUri}/assets/login-redirect.html`,
+            post_logout_redirect_uri: `${environment.identityServerCallBackUri}`,
+            response_type: 'code',
+            scope: 'openid profile email api',
+            filterProtocolClaims: true,
+            loadUserInfo: true,
+            automaticSilentRenew: true,
+            silent_redirect_uri: `${environment.identityServerCallBackUri}/assets/silent-refresh.html`,
+        };
+    }
 }
 
-export function getClientSettings(): UserManagerSettings {
-    return {
-        userStore: new Oidc.WebStorageStateStore({ store: window.localStorage }),
-        authority: 'https://demo.identityserver.io/',
-        client_id: 'spa',
-        redirect_uri: `${environment.identityServerCallBackUri}/assets/login-redirect.html`,
-        post_logout_redirect_uri: `${environment.identityServerCallBackUri}`,
-        response_type: 'code',
-        scope: 'openid profile email api',
-        filterProtocolClaims: true,
-        loadUserInfo: true,
-        automaticSilentRenew: true,
-        silent_redirect_uri: `${environment.identityServerCallBackUri}/assets/silent-refresh.html`,
-    };
-}
