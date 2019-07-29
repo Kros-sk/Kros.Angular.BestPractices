@@ -1,28 +1,28 @@
-import { initialState } from './company.state';
-import { CompanyActionsTypes } from './company.actions';
+import { initialState, CompanyState } from './company.state';
+import { CompanyActionsTypes, CompanyActions } from './company.actions';
 
-export function companyReducer(state = initialState, action: any): any {
+export function companyReducer(state = initialState, action: CompanyActions): CompanyState {
     switch (action.type) {
         case CompanyActionsTypes.LoadSuccess:
             return{
                 ...state,
-                company: action.payload,
+                companies: action.payload,
                 error: null                
             };
 
         case CompanyActionsTypes.LoadFail:
             return{
                 ...state,
-                company: [],
+                companies: [],
                 error: action.payload                
             };
         
-        /*case CompanyActionsTypes.AddSuccess:
-            return{
-                ...state,
-                company: action.payload,
-                error: null                
-            };*/
+        // case CompanyActionsTypes.AddSuccess:
+        //     return{
+        //         ...state,
+        //         companies: [...state.companies, action.payload],
+        //         error: null                
+        //     };
         
         case CompanyActionsTypes.LoadFail:
             return{

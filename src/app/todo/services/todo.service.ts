@@ -19,7 +19,7 @@ export class TodoService {
 
     public getTodoList(): Observable<TodoListItem[]> {
         return this.http
-            .get<TodoItem[]>(this.createApiUrl('ToDos'))
+            .get<TodoItem[]>(this.createApiUrl('organizations/1/ToDos'))
             .pipe(
                 catchError(handleHttpError)
             );

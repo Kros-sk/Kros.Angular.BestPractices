@@ -1,5 +1,5 @@
 import { Action } from '@ngrx/store';
-import { CompanyItem } from '../models/company.model';
+import { CompanyItem, AddCompanyItem } from '../models/company.model';
 import { LocalizedErrorInfo } from 'src/app/shared/models/error-info.model';
 
 export enum CompanyActionsTypes {
@@ -28,17 +28,25 @@ export class LoadFail implements Action {
 }
 
 export class Add implements Action {
-    readonly type = CompanyActionsTypes.Load
+    readonly type = CompanyActionsTypes.Add
     
-    constructor (public payload: CompanyItem){}
+    constructor (public payload: AddCompanyItem){}
 }
 
 export class AddSuccess implements Action {
-    readonly type = CompanyActionsTypes.LoadSuccess
+    readonly type = CompanyActionsTypes.AddSuccess
 }
 
 export class AddFail implements Action {
-    readonly type = CompanyActionsTypes.LoadFail
+    readonly type = CompanyActionsTypes.AddFail
 
     constructor (public payload: LocalizedErrorInfo){}
 }
+
+export type CompanyActions = 
+    | Load
+    | LoadSuccess
+    | LoadFail
+    | Add
+    | AddSuccess
+    | AddFail    

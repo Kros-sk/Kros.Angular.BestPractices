@@ -1,1 +1,12 @@
-<p>company-list works!</p>
+<ng-container *ngIf="!(errorMessage$ | async)">
+    <ul class="list-group mt-4">
+            <ngb-progressbar *ngIf="progress" class="mt-4" type="secondary" [striped]="true" [animated]="true"
+            [value]="100">
+        </ngb-progressbar>
+        <kros-add-company-item></kros-add-company-item>
+        <li class="list-group-item" *ngFor="let item of displayList">
+            <kros-company-item [item]="item">
+            </kros-company-item>
+        </li>
+    </ul>
+</ng-container>

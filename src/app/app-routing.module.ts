@@ -16,6 +16,11 @@ const routes: Routes = [
         path: 'users',
         loadChildren: () => import('./users/users.module').then(m => m.UsersModule),
         canActivate: [UserGuardService]
+    },
+    {
+        path: 'company',
+        loadChildren: () => import('./company/company.module').then(m => m.CompanyModule),
+        // canActivate: [GuardService]
     }
 ];
 

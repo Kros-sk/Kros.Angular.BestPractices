@@ -1,0 +1,17 @@
+<form [formGroup]="companyForm"
+    (ngSubmit)="addNewCompany()" class="d-flex justify-content-between">
+    <input class="col mr-4" type="text" placeholder="Názov firmy" formControlName="companyName">
+
+    <input class="col mr-4" type="text" placeholder="Ulica" formControlName="street">
+
+    <input class="col mr-4" type="text" placeholder="Číslo" formControlName="streetNumber">
+
+    <input class="col mr-4" type="text" placeholder="Mesto" formControlName="city">
+
+    <input class="col mr-4" type="text" placeholder="IČO" formControlName="businessId">
+
+    <button class="btn btn-outline-success col-2" type="submit" [disabled]="!companyForm.valid"
+        i18n="@@add-todo-item-button">
+        Add Company
+    </button>
+</form>

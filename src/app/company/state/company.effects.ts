@@ -34,4 +34,12 @@ export class CompanyEffects{
             ),
         )
     );
+
+    @Effect()
+    reloadAfterChanges$: Observable<Action> = this.actions$.pipe(
+        ofType(
+            companyActions.CompanyActionsTypes.AddSuccess,
+        ),
+        map(() => new companyActions.Load())
+    );
 }

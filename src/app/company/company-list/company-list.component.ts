@@ -18,8 +18,8 @@ export class CompanyListComponent implements OnInit {
 
   constructor(
     private store: Store<CompanyState>,
-    private action$: Actions,    
-  ) {     
+    private action$: Actions,
+  ) {
   }
 
   displayList: CompanyItem[];
@@ -27,16 +27,20 @@ export class CompanyListComponent implements OnInit {
   progress: boolean;
 
   ngOnInit() {
-    this.errorMessage$ = this.store.pipe(select(getError))
+    this.progress = true;
+    this.errorMessage$ = this.store.pipe(select(getError));
     this.store.dispatch(new companyActions.Load());
-    /*this.store.pipe(select(getCompanyList)).subscribe(
-      (companyItems: CompanyItem[]) => this.filterItem(companyItems)
-    );*/
+    this.store.pipe(select(getCompanyList)).subscribe(
+      (companyItems: CompanyItem[]) => {
+        this.displayList = companyItems;
+      });
     this.action$.pipe(
       ofType(companyActions.CompanyActionsTypes.LoadFail, companyActions.CompanyActionsTypes.LoadSuccess)
     ).subscribe(
-          () => this.progress =false
-    );    
+      () => {
+        this.progress = false;
+      }
+    );
   }
 
 }

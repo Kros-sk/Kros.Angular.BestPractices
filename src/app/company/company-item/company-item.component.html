@@ -1,1 +1,23 @@
-<p>company-item works!</p>
+<div class="company-grid">
+
+    <div class="id">
+        {{item.id}}
+    </div>
+
+    <div class="name">
+        {{item.companyName}}
+    </div>
+    <div class="actions" >
+            <button class="btn btn-outline-primary"
+                    (click)="editCompany(item.id)"
+                    i18n="todo-item-edit-button">
+                Edit
+            </button>
+            <button class="btn btn-outline-danger"
+                    (click)="deleteCompany(item.id)"
+                    i18n="todo-item-delete-button">
+                Delete
+            </button>
+        </div>
+    
+</div>

@@ -2,8 +2,8 @@ import { Injectable } from "@angular/core";
 import { AuthService } from 'src/app/auth/service/auth.service';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { CompanyItem } from '../models/company.model';
-import { catchError } from 'rxjs/operators';
+import { CompanyItem, AddCompanyItem } from '../models/company.model';
+import { catchError, tap } from 'rxjs/operators';
 import { handleHttpError } from 'src/app/shared/helpers/api.helper';
 import { environment } from 'src/environments/environment';
 
@@ -19,21 +19,21 @@ export class CompanyService{
 
     public getCompanyList(): Observable<CompanyItem[]> {
         return this.http
-        .get<CompanyItem[]>(this.createApiUrl('Company'))
-        .pipe(catchError(handleHttpError)
+        .get<CompanyItem[]>(this.createApiUrl('organizations'))
+        .pipe(tap(a => console.log(a)),catchError(handleHttpError)
         );
     }
 
     public getCompany(id: number): Observable<CompanyItem> {
         return this.http
-        .get<CompanyItem[]>(this.createApiUrl('Company',id.toString()))
+        .get<CompanyItem[]>(this.createApiUrl('organizations',id.toString()))
         .pipe(catchError(handleHttpError)
         );
     }
 
-    public addNewCompany(newCompany: CompanyItem): Observable<any>{
+    public addNewCompany(newCompany: AddCompanyItem): Observable<any>{
         return this.http
-        .post(this.createApiUrl('Company'), newCompany)
+        .post(this.createApiUrl('organizations'), newCompany)
         .pipe(
             catchError(handleHttpError)
         );
