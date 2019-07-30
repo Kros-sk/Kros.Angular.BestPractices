@@ -14,20 +14,21 @@ export function companyReducer(state = initialState, action: CompanyActions): Co
             return{
                 ...state,
                 companies: [],
+                currentCompany: null,
                 error: action.payload                
             };
         
         // case CompanyActionsTypes.AddSuccess:
-        //     return{
+        //     return {
         //         ...state,
-        //         companies: [...state.companies, action.payload],
-        //         error: null                
-        //     };
-        
-        case CompanyActionsTypes.LoadFail:
+        //         companies: [...state.companies, action.payload]
+        //     }    
+
+        case CompanyActionsTypes.SetCurrentCompany:
             return{
                 ...state,
-                error: action.payload                
+                currentCompany: action.currentCompany,
+                error: null                
             };
 
         default:

@@ -11,10 +11,11 @@ export enum CompanyActionsTypes {
     AddFail = '[Company] Add new company item Fail',
     Delete = '[Company] Delete company item',
     DeleteSuccess = '[Company] Delete company item Success',
-    DeleteFail = '[Company] Delete company item Fail',    
+    DeleteFail = '[Company] Delete company item Fail',
     Update = '[Company] Update company item',
     UpdateSuccess = '[Company] Update company item Success',
     UpdateFail = '[Company] Update company item Fail',
+    SetCurrentCompany = '[Company] Set current company'
 }
 
 export class Load implements Action {
@@ -35,12 +36,14 @@ export class LoadFail implements Action {
 
 export class Add implements Action {
     readonly type = CompanyActionsTypes.Add;
-    
+
     constructor (public payload: AddCompanyItem){}
 }
 
 export class AddSuccess implements Action {
     readonly type = CompanyActionsTypes.AddSuccess;
+
+    // constructor(public payload: CompanyItem){}
 }
 
 export class AddFail implements Action {
@@ -74,7 +77,7 @@ export class Delete implements Action{
 }
 
 export class DeleteSuccess implements Action{
-    readonly type = CompanyActionsTypes.DeleteSuccess;   
+    readonly type = CompanyActionsTypes.DeleteSuccess;
 }
 
 export class DeleteFail implements Action{
@@ -83,16 +86,23 @@ export class DeleteFail implements Action{
     constructor(public payload: LocalizedErrorInfo){}
 }
 
-export type CompanyActions = 
+export class SetCurrentCompany implements Action {
+    readonly type = CompanyActionsTypes.SetCurrentCompany;
+
+    constructor(public currentCompany: CompanyItem){}
+}
+
+export type CompanyActions =
     | Load
     | LoadSuccess
     | LoadFail
     | Add
     | AddSuccess
-    | AddFail    
+    | AddFail
     | Update
     | UpdateSuccess
     | UpdateFail
     | Delete
     | DeleteSuccess
     | DeleteFail
+    | SetCurrentCompany

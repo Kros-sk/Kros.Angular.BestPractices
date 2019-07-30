@@ -20,7 +20,12 @@ const routes: Routes = [
     {
         path: 'company',
         loadChildren: () => import('./company/company.module').then(m => m.CompanyModule),
-        // canActivate: [GuardService]
+        canActivate: [GuardService]
+    },
+    {
+        path: '**',
+        redirectTo: '/company',
+        pathMatch: 'full'
     }
 ];
 

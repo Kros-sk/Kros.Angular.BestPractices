@@ -6,8 +6,8 @@ import { Actions, ofType } from '@ngrx/effects';
 import { CompanyItem } from '../models/company.model';
 import { Observable } from 'rxjs';
 import { LocalizedErrorInfo } from 'src/app/shared/models/error-info.model';
-import { getError, getCompanyList } from '../state/company.selectors';
-import { CompanyActionsTypes } from '../state/company.actions';
+import { getError, getCompanyList, getCurrentCompany } from '../state/company.selectors';
+
 
 @Component({
   selector: 'kros-company-list',
@@ -25,6 +25,7 @@ export class CompanyListComponent implements OnInit {
   displayList: CompanyItem[];
   errorMessage$: Observable<LocalizedErrorInfo | null>;
   progress: boolean;
+  currentCompanyId: number;
 
   ngOnInit() {
     this.progress = true;
@@ -34,6 +35,18 @@ export class CompanyListComponent implements OnInit {
       (companyItems: CompanyItem[]) => {
         this.displayList = companyItems;
       });
+
+    this.store.pipe(select(getCurrentCompany)).subscribe(
+      (currentCompany: CompanyItem) => {
+        if(currentCompany != null) {
+          this.currentCompanyId = currentCompany.id;
+        }
+        else {
+          this.currentCompanyId = 0;
+        }
+      }
+    )
+
     this.action$.pipe(
       ofType(companyActions.CompanyActionsTypes.LoadFail, companyActions.CompanyActionsTypes.LoadSuccess)
     ).subscribe(
@@ -41,6 +54,10 @@ export class CompanyListComponent implements OnInit {
         this.progress = false;
       }
     );
+  }
+
+  companySelected(company: CompanyItem) {
+    this.store.dispatch(new companyActions.SetCurrentCompany(company))
   }
 
 }

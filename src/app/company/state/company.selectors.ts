@@ -12,3 +12,8 @@ export const getError = createSelector(
     getCompanyFeatureState,
     state => state.error
 );
+
+export const getCurrentCompany = createSelector(
+    getCompanyFeatureState,
+    state => state.currentCompany
+);

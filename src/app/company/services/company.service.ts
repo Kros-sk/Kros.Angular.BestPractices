@@ -3,7 +3,7 @@ import { AuthService } from 'src/app/auth/service/auth.service';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { CompanyItem, AddCompanyItem } from '../models/company.model';
-import { catchError, tap } from 'rxjs/operators';
+import { catchError, map } from 'rxjs/operators';
 import { handleHttpError } from 'src/app/shared/helpers/api.helper';
 import { environment } from 'src/environments/environment';
 
@@ -20,7 +20,7 @@ export class CompanyService{
     public getCompanyList(): Observable<CompanyItem[]> {
         return this.http
         .get<CompanyItem[]>(this.createApiUrl('organizations'))
-        .pipe(tap(a => console.log(a)),catchError(handleHttpError)
+        .pipe(catchError(handleHttpError)
         );
     }
 
@@ -33,8 +33,9 @@ export class CompanyService{
 
     public addNewCompany(newCompany: AddCompanyItem): Observable<number>{
         return this.http
-        .post(this.createApiUrl('organizations'), newCompany)
+        .post<{id: number}>(this.createApiUrl('organizations'), newCompany)
         .pipe(
+            map(ret => ret.id),
             catchError(handleHttpError)
         );
     }

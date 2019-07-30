@@ -4,8 +4,11 @@
             [value]="100">
         </ngb-progressbar>
         <kros-add-company-item></kros-add-company-item>
-        <li class="list-group-item" *ngFor="let item of displayList">
-            <kros-company-item [item]="item">
+        <li class="list-group-item" *ngFor="let company of displayList">
+            <kros-company-item 
+            [item]="company"
+            [class.current-item]="company.id === currentCompanyId"
+            (click)="companySelected(company)">
             </kros-company-item>
         </li>
     </ul>
