@@ -29,5 +29,7 @@ import { SharedModule } from '../shared/shared.module';
     AddCompanyItemComponent,
     EditCompanyItemComponent
   ],
+  entryComponents: [EditCompanyItemComponent],
+  exports: [EditCompanyItemComponent]  
 })
 export class CompanyModule { }

@@ -31,9 +31,24 @@ export class CompanyService{
         );
     }
 
-    public addNewCompany(newCompany: AddCompanyItem): Observable<any>{
+    public addNewCompany(newCompany: AddCompanyItem): Observable<number>{
         return this.http
         .post(this.createApiUrl('organizations'), newCompany)
+        .pipe(
+            catchError(handleHttpError)
+        );
+    }
+
+    public updateCompany(updatedCompany: CompanyItem): Observable<CompanyItem>{
+        return this.http
+        .put(this.createApiUrl('organizations', updatedCompany.id.toString()), updatedCompany)
+        .pipe(
+            catchError(handleHttpError));
+    }
+
+    public deleteCompany(id: number){
+        return this.http
+        .delete(this.createApiUrl('organizations', id.toString()))
         .pipe(
             catchError(handleHttpError)
         );

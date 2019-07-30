@@ -9,38 +9,78 @@ export enum CompanyActionsTypes {
     Add = '[Company] Add new company item',
     AddSuccess = '[Company] Add new company item Success',
     AddFail = '[Company] Add new company item Fail',
+    Delete = '[Company] Delete company item',
+    DeleteSuccess = '[Company] Delete company item Success',
+    DeleteFail = '[Company] Delete company item Fail',    
+    Update = '[Company] Update company item',
+    UpdateSuccess = '[Company] Update company item Success',
+    UpdateFail = '[Company] Update company item Fail',
 }
 
 export class Load implements Action {
-    readonly type = CompanyActionsTypes.Load
+    readonly type = CompanyActionsTypes.Load;
 }
 
 export class LoadSuccess implements Action {
-    readonly type = CompanyActionsTypes.LoadSuccess
+    readonly type = CompanyActionsTypes.LoadSuccess;
 
     constructor (public payload: CompanyItem[]){}
 }
 
 export class LoadFail implements Action {
-    readonly type = CompanyActionsTypes.LoadFail
+    readonly type = CompanyActionsTypes.LoadFail;
 
     constructor (public payload: LocalizedErrorInfo){}
 }
 
 export class Add implements Action {
-    readonly type = CompanyActionsTypes.Add
+    readonly type = CompanyActionsTypes.Add;
     
     constructor (public payload: AddCompanyItem){}
 }
 
 export class AddSuccess implements Action {
-    readonly type = CompanyActionsTypes.AddSuccess
+    readonly type = CompanyActionsTypes.AddSuccess;
 }
 
 export class AddFail implements Action {
-    readonly type = CompanyActionsTypes.AddFail
+    readonly type = CompanyActionsTypes.AddFail;
 
     constructor (public payload: LocalizedErrorInfo){}
+}
+
+export class Update implements Action{
+    readonly type = CompanyActionsTypes.Update;
+
+    constructor(public payload: CompanyItem){}
+}
+
+export class UpdateSuccess implements Action{
+    readonly type = CompanyActionsTypes.UpdateSuccess;
+
+    constructor(public payload: CompanyItem){}
+}
+
+export class UpdateFail implements Action{
+    readonly type = CompanyActionsTypes.UpdateFail;
+
+    constructor(public payload: LocalizedErrorInfo){}
+}
+
+export class Delete implements Action{
+    readonly type = CompanyActionsTypes.Delete;
+
+    constructor(public payload: number){}
+}
+
+export class DeleteSuccess implements Action{
+    readonly type = CompanyActionsTypes.DeleteSuccess;   
+}
+
+export class DeleteFail implements Action{
+    readonly type = CompanyActionsTypes.DeleteFail;
+
+    constructor(public payload: LocalizedErrorInfo){}
 }
 
 export type CompanyActions = 
@@ -50,3 +90,9 @@ export type CompanyActions =
     | Add
     | AddSuccess
     | AddFail    
+    | Update
+    | UpdateSuccess
+    | UpdateFail
+    | Delete
+    | DeleteSuccess
+    | DeleteFail

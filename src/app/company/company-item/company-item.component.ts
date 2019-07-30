@@ -24,7 +24,7 @@ export class CompanyItemComponent implements OnInit {
   ngOnInit() {
 
   }
-/*deleteCompany(id: number) {
+deleteCompany(id: number) {
   this.store.dispatch(new companyActions.Delete(id));
 }
 
@@ -35,11 +35,6 @@ editCompany(id: number) {
   });
   modalRef.componentInstance.itemId = id;
 }
-
-setCompanyState(id: number, isDone: boolean) {
-    this.store.dispatch(
-        new companyActions.SetState({ id, isDone })
-    );
-}*/
-
 }
+
+
