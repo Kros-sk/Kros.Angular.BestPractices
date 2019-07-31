@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Store, Selector, createSelector } from '@ngrx/store';
+import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { LoggedUser } from './models/logged-user.model';
 import { trigger, transition, animate, keyframes, style } from '@angular/animations';
@@ -34,7 +34,7 @@ export class AppComponent implements OnInit {
     actionInProgress = false;
     loggedUser$: Observable<LoggedUser>;
     isLoggedUser$: Observable<boolean>;
-    currentCompany$: Observable<CompanyItem>
+    currentCompany$: Observable<CompanyItem>;
     state = 'left';
 
     seconds = 0;
@@ -42,7 +42,7 @@ export class AppComponent implements OnInit {
     ngOnInit(): void {
         this.isLoggedUser$ = this.store.select((store: any) => store.login.loggedUser != null);
         this.loggedUser$ = this.store.select((store: any) => store.login.loggedUser);
-        this.currentCompany$ = this.store.select(getCurrentCompany)
+        this.currentCompany$ = this.store.select(getCurrentCompany);
     }
 
     login(pageName: string) {

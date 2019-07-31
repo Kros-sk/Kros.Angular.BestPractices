@@ -4,13 +4,14 @@ import { Routes, RouterModule, NoPreloading } from '@angular/router';
 import { AuthService } from './auth/service/auth.service';
 import { GuardService } from './auth/service/guard.service';
 import { UserGuardService } from './auth/service/user.guard.service';
+import { LoggedInCompanyGuardServiceService } from './auth/service/logged.in.company.guard.service';
 
 
 const routes: Routes = [
     {
         path: 'todo',
         loadChildren: () => import('./todo/todo.module').then(m => m.TodoModule),
-        canActivate: [GuardService]
+        canActivate: [LoggedInCompanyGuardServiceService]
     },
     {
         path: 'users',
