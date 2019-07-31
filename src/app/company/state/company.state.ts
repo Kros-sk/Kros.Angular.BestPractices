@@ -5,10 +5,12 @@ export interface CompanyState {
     companies: CompanyItem[];
     currentCompany: CompanyItem | null;
     error: LocalizedErrorInfo | null;
+    showProgressLoad: boolean;
 }
 
 export const initialState: CompanyState = {
     companies: [],
     currentCompany: null,
-    error: null
+    error: null,
+    showProgressLoad: false
 };

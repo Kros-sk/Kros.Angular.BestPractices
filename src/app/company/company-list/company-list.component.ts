@@ -6,8 +6,7 @@ import { Actions, ofType } from '@ngrx/effects';
 import { CompanyItem } from '../models/company.model';
 import { Observable } from 'rxjs';
 import { LocalizedErrorInfo } from 'src/app/shared/models/error-info.model';
-import { getError, getCompanyList, getCurrentCompany } from '../state/company.selectors';
-import { tap } from 'rxjs/operators';
+import { getError, getCompanyList, getCurrentCompany, getCompaniesLoadProgress } from '../state/company.selectors';
 
 
 @Component({
@@ -25,11 +24,10 @@ export class CompanyListComponent implements OnInit {
 
     displayList: CompanyItem[];
     errorMessage$: Observable<LocalizedErrorInfo | null>;
-    progress: boolean;
     currentCompanyId: number;
+    progress$: Observable<boolean>;
 
     ngOnInit() {
-        this.progress = true;
         this.errorMessage$ = this.store.pipe(select(getError));
         this.store.dispatch(new companyActions.Load());
         this.store.pipe(select(getCompanyList)).subscribe(
@@ -47,10 +45,7 @@ export class CompanyListComponent implements OnInit {
             }
         );
 
-        this.action$.pipe(
-            ofType(companyActions.CompanyActionsTypes.LoadFail,
-                   companyActions.CompanyActionsTypes.LoadSuccess),
-            ).subscribe(() => { this.progress = false; });
+        this.progress$ = this.store.pipe(select(getCompaniesLoadProgress));
     }
 
     companySelected(company: CompanyItem) {

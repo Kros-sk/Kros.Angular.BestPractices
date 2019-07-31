@@ -1,4 +1,4 @@
-import { createFeatureSelector, createSelector } from "@ngrx/store";
+import { createFeatureSelector, createSelector } from '@ngrx/store';
 import { CompanyState } from './company.state';
 
 const getCompanyFeatureState = createFeatureSelector<CompanyState>('company');
@@ -16,4 +16,9 @@ export const getError = createSelector(
 export const getCurrentCompany = createSelector(
     getCompanyFeatureState,
     state => state.currentCompany
+);
+
+export const getCompaniesLoadProgress = createSelector(
+    getCompanyFeatureState,
+    state => state.showProgressLoad
 );
