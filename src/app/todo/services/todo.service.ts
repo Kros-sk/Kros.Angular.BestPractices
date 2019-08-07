@@ -5,17 +5,13 @@ import { TodoItem, NewTodoItem, TodoListItem, UpdateTodoItem } from '../models/t
 import { HttpClient } from '@angular/common/http';
 import { catchError } from 'rxjs/operators';
 import { handleHttpError } from 'src/app/shared/helpers/api.helper';
-import { AuthService } from 'src/app/auth/service/auth.service';
 
 @Injectable({
     providedIn: 'root'
 })
 export class TodoService {
 
-    constructor(
-        private authService: AuthService,
-        private http: HttpClient
-    ) { }
+    constructor(private http: HttpClient) { }
 
     public getTodoList(): Observable<TodoListItem[]> {
         return this.http

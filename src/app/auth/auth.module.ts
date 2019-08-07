@@ -12,7 +12,6 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { StoreModule } from '@ngrx/store';
 
 import { AppEffects } from './state/login.effects';
-import { AuthService } from './service/auth.service';
 import { AuthInterceptor } from './service/auth.interceptor';
 import { environment } from 'src/environments/environment';
 import { loginReducer } from './state/login.reducer';
@@ -37,8 +36,7 @@ import { loginReducer } from './state/login.reducer';
     providers: [
         {
             provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true
-        },
-        AuthService
+        }
     ]
 })
 export class AuthModule { }
