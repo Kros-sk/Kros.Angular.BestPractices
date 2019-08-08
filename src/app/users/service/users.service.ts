@@ -5,7 +5,6 @@ import { Observable } from 'rxjs';
 import { User } from '../models/user.model';
 import { handleHttpError } from 'src/app/shared/helpers/api.helper';
 import { catchError } from 'rxjs/operators';
-import { AuthService } from 'src/app/auth/service/auth.service';
 
 
 @Injectable({
@@ -13,10 +12,7 @@ import { AuthService } from 'src/app/auth/service/auth.service';
 })
 export class UsersService {
 
-    constructor(
-        private authService: AuthService,
-        private http: HttpClient
-    ) { }
+    constructor(private http: HttpClient) { }
 
     public getAllUsers(): Observable<User[]> {
         return this.http
