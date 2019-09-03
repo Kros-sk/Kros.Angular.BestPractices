@@ -14,22 +14,22 @@ import { CompanyEffects } from './state/company.effects';
 import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
-  imports: [
-    CommonModule,
-    SharedModule,
-    CompanyRoutingModule,
-    StoreModule.forFeature(
-      'company', companyReducer),
-      EffectsModule.forFeature(
-        [CompanyEffects]),
-      ],
-  declarations: [
-    CompanyListComponent,
-    CompanyItemComponent,
-    AddCompanyItemComponent,
-    EditCompanyItemComponent
-  ],
-  entryComponents: [EditCompanyItemComponent],
-  exports: [EditCompanyItemComponent]  
+    imports: [
+        CommonModule,
+        SharedModule,
+        CompanyRoutingModule,
+        StoreModule.forFeature(
+            'company', companyReducer),
+        EffectsModule.forFeature(
+            [CompanyEffects]),
+    ],
+    declarations: [
+        CompanyListComponent,
+        CompanyItemComponent,
+        AddCompanyItemComponent,
+        EditCompanyItemComponent
+    ],
+    entryComponents: [EditCompanyItemComponent, AddCompanyItemComponent],
+    exports: [EditCompanyItemComponent]
 })
 export class CompanyModule { }

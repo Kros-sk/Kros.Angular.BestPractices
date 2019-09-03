@@ -1,4 +1,7 @@
 <div>
+    <div class="text-right">
+        <button type="button" class="btn btn-outline-danger col-1" (click)="close()">&times;</button>
+    </div>
     <form [formGroup]="companyForm" (ngSubmit)="addNewCompany()" class="d-flex justify-content-between">
         <div class="company-grid">
             <div class="name">

@@ -44,8 +44,6 @@ export class Add implements Action {
 
 export class AddSuccess implements Action {
     readonly type = CompanyActionsTypes.AddSuccess;
-
-    // constructor(public payload: CompanyItem){}
 }
 
 export class AddFail implements Action {

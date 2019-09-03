@@ -1,14 +1,15 @@
 <ng-container *ngIf="!(errorMessage$ | async)">
+        <button class="btn btn-outline-success" (click)="addCompany()">
+                    Add Company
+                </button>
     <ul class="list-group mt-4">
             <ngb-progressbar *ngIf="(progress$ | async)" class="mt-4" type="secondary" [striped]="true" [animated]="true"
             [value]="100">
         </ngb-progressbar>
-        <kros-add-company-item></kros-add-company-item>
         <li class="list-group-item" *ngFor="let company of displayList">
             <kros-company-item
             [item]="company"
-            [class.current-item]="company.id === currentCompanyId"
-            (click)="companySelected(company)">
+            [class.current-item]="company.id === currentCompanyId">
             </kros-company-item>
         </li>
     </ul>

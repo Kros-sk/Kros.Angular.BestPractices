@@ -8,33 +8,36 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { EditCompanyItemComponent } from '../edit-company-item/edit-company-item.component';
 
 @Component({
-  selector: 'kros-company-item',
-  templateUrl: './company-item.component.html',
-  styleUrls: ['./company-item.component.scss']
+    selector: 'kros-company-item',
+    templateUrl: './company-item.component.html',
+    styleUrls: ['./company-item.component.scss']
 })
 export class CompanyItemComponent implements OnInit {
 
-  constructor(
-    private store: Store<CompanyState>,
-    private modalService: NgbModal
-  ) { }
+    constructor(
+        private store: Store<CompanyState>,
+        private modalService: NgbModal
+    ) { }
 
-  @Input() item: CompanyItem;
+    @Input() item: CompanyItem;
 
-  ngOnInit() {
+    ngOnInit() {
 
-  }
-deleteCompany(id: number) {
-  this.store.dispatch(new companyActions.Delete(id));
-}
+    }
+    deleteCompany(id: number) {
+        this.store.dispatch(new companyActions.Delete(id));
+    }
 
-editCompany(id: number) {
-  const modalRef = this.modalService.open(EditCompanyItemComponent, {
-    size: 'lg',
-    centered: true
-  });
-  modalRef.componentInstance.itemId = id;
-}
+    editCompany(id: number) {
+        const modalRef = this.modalService.open(EditCompanyItemComponent, {
+            size: 'lg',
+            centered: true
+        });
+        modalRef.componentInstance.itemId = id;
+    }
+    companySelected(company: CompanyItem) {
+        this.store.dispatch(new companyActions.SetCurrentCompany(company));
+    }
 }
 
 

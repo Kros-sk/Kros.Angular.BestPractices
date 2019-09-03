@@ -2,7 +2,7 @@ export const environment = {
     production: false,
 
     apiUrl: 'http://localhost:9000',
-    //apiUrl: 'https://demo.todos.gateway.api.kros.wtf',
+    // apiUrl: 'https://demo.todos.gateway.api.kros.wtf',
     identityServerCallBackUri: 'http://localhost:4200',
 };
 

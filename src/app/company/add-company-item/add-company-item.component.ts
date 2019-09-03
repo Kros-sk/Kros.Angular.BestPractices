@@ -5,6 +5,7 @@ import { CompanyState } from '../state/company.state';
 import { Actions, ofType } from '@ngrx/effects';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Observable } from 'rxjs';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
     selector: 'kros-add-company-item',
@@ -16,7 +17,8 @@ export class AddCompanyItemComponent implements OnInit {
     constructor(
         private formBuilder: FormBuilder,
         private store: Store<CompanyState>,
-        private actions$: Actions
+        private actions$: Actions,
+        private modalService: NgbModal
     ) { }
 
     companyForm: FormGroup;
@@ -48,6 +50,10 @@ export class AddCompanyItemComponent implements OnInit {
             city: this.companyForm.value.city,
             zipCode: this.companyForm.value.zipCode,
         }));
+        this.modalService.dismissAll();
+    }
+    close(){
+        this.modalService.dismissAll();
     }
 
 }

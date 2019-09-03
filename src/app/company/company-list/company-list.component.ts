@@ -6,7 +6,9 @@ import { Actions, ofType } from '@ngrx/effects';
 import { CompanyItem } from '../models/company.model';
 import { Observable } from 'rxjs';
 import { LocalizedErrorInfo } from 'src/app/shared/models/error-info.model';
-import { getError, getCompanyList, getCurrentCompany, getCompaniesLoadProgress } from '../state/company.selectors';
+import * as fromCompany from '../state/company.selectors';
+import { AddCompanyItemComponent } from '../add-company-item/add-company-item.component';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 
 @Component({
@@ -19,6 +21,7 @@ export class CompanyListComponent implements OnInit {
     constructor(
         private store: Store<CompanyState>,
         private action$: Actions,
+        private modalService: NgbModal
     ) {
     }
 
@@ -28,14 +31,14 @@ export class CompanyListComponent implements OnInit {
     progress$: Observable<boolean>;
 
     ngOnInit() {
-        this.errorMessage$ = this.store.pipe(select(getError));
+        this.errorMessage$ = this.store.pipe(select(fromCompany.getError));
         this.store.dispatch(new companyActions.Load());
-        this.store.pipe(select(getCompanyList)).subscribe(
+        this.store.pipe(select(fromCompany.getCompanyList)).subscribe(
             (companyItems: CompanyItem[]) => {
                 this.displayList = companyItems;
             });
 
-        this.store.pipe(select(getCurrentCompany)).subscribe(
+        this.store.pipe(select(fromCompany.getCurrentCompany)).subscribe(
             (currentCompany: CompanyItem) => {
                 if (currentCompany != null) {
                     this.currentCompanyId = currentCompany.id;
@@ -45,11 +48,18 @@ export class CompanyListComponent implements OnInit {
             }
         );
 
-        this.progress$ = this.store.pipe(select(getCompaniesLoadProgress));
+        this.progress$ = this.store.pipe(select(fromCompany.getCompaniesLoadProgress));
     }
 
     companySelected(company: CompanyItem) {
         this.store.dispatch(new companyActions.SetCurrentCompany(company));
+    }
+
+    addCompany() {
+        const modalRef = this.modalService.open(AddCompanyItemComponent, {
+            size: 'lg',
+            centered: true
+          });
     }
 
 }

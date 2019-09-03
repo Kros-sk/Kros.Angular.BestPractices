@@ -9,6 +9,11 @@
     </div>
     <div class="actions" >
             <button class="btn btn-outline-primary"
+                    (click)="companySelected(item)"
+                    i18n="todo-item-add-button">
+                Select
+            </button>
+            <button class="btn btn-outline-primary"
                     (click)="editCompany(item.id)"
                     i18n="todo-item-edit-button">
                 Edit
@@ -19,5 +24,5 @@
                 Delete
             </button>
         </div>
-    
+
 </div>
