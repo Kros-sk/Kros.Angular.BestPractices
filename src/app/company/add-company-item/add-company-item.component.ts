@@ -50,9 +50,9 @@ export class AddCompanyItemComponent implements OnInit {
             city: this.companyForm.value.city,
             zipCode: this.companyForm.value.zipCode,
         }));
-        this.modalService.dismissAll();
+        this.close();
     }
-    close(){
+    close() {
         this.modalService.dismissAll();
     }
 

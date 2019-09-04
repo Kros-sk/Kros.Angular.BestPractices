@@ -18,11 +18,11 @@ export function companyReducer(state = initialState, action: CompanyActions): Co
                 error: action.payload
             };
 
-        // case CompanyActionsTypes.AddSuccess:
-        //     return {
-        //         ...state,
-        //         companies: [...state.companies, action.payload]
-        //     }
+        case CompanyActionsTypes.AddSuccess:
+            return {
+                ...state,
+                companies: [...state.companies, action.payload]
+            };
 
         case CompanyActionsTypes.SetCurrentCompany:
             return {
