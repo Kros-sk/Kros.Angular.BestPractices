@@ -1,14 +1,21 @@
 .company-grid {
     margin-left: auto;
-    margin-right: auto;   
-    margin-bottom: 15px; 
+    margin-right: auto;
+    margin-bottom: 15px;
+    margin-top: 15px;
     display: grid;
     grid-column-gap: 10px;
     grid-row-gap: 15px;
     grid-template-areas:
-        "name . organizationId"
-        "street streetNumber city"
-        ". . submit-btn"
+        "name ."
+        "organizationId ."
+        "street streetNumber"
+        "zipCode city"
+        "submit-btn ."
+}
+
+.flex-grow-1 {
+    text-align: center;
 }
 
 .name {
@@ -22,6 +29,10 @@
 
 .streetNumber {
     grid-area: streetNumber;
+}
+
+.zipCode {
+    grid-area: zipCode;
 }
 
 .city {

@@ -1,27 +1,34 @@
 <div [ngStyle]="{'visibility': progress ? 'visible' : 'hidden'}">
-        <form [formGroup]="companyForm" (ngSubmit)="save()" class="d-flex justify-content-between">
-            <div class="company-grid">
-                <div class="name">
-                    <input class="col mr-4" type="text" placeholder="Názov firmy" formControlName="companyName">
-                </div>
-                <div class="street">
-                    <input class="col mr-4" type="text" placeholder="Ulica" formControlName="street">
-                </div>
-                <div class="streetNumber">
-                    <input class="col mr-4" type="text" placeholder="Číslo" formControlName="streetNumber">
-                </div>
-                <div class="city">
-                    <input class="col mr-4" type="text" placeholder="Mesto" formControlName="city">
-                </div>
-                <div class="organizationId">
-                    <input class="col mr-4" type="text" placeholder="IČO" formControlName="businessId">
-                </div>
-                <div class="submit-btn">
-                    <button class="btn btn-outline-success" type="submit" [disabled]="!companyForm.valid"
-                        i18n="@@add-todo-item-button">
-                        Update Company
-                    </button>
-                </div>
-            </div>
-        </form>
+    <div class="d-flex">
+        <h3 class="flex-grow-1">Edit company details</h3>
+        <button type="button" class="btn btn-outline-danger" (click)="close()">&times;</button>
     </div>
+    <form [formGroup]="companyForm" (ngSubmit)="save()" class="d-flex justify-content-between">
+        <div class="company-grid">
+            <div class="name">
+                <input class="col mr-4" type="text" placeholder="Názov firmy" formControlName="companyName">
+            </div>
+            <div class="organizationId">
+                <input class="col mr-4" type="text" placeholder="IČO" formControlName="businessId">
+            </div>
+            <div class="street">
+                <input class="col mr-4" type="text" placeholder="Ulica" formControlName="street">
+            </div>
+            <div class="streetNumber">
+                <input class="col mr-4" type="text" placeholder="Číslo" formControlName="streetNumber">
+            </div>
+            <div class="zipCode">
+                <input class="col mr-4" type="text" placeholder="PSČ" formControlName="zipCode">
+            </div>
+            <div class="city">
+                <input class="col mr-4" type="text" placeholder="Mesto" formControlName="city">
+            </div>
+            <div class="submit-btn">
+                <button class="btn btn-outline-success" type="submit" [disabled]="!companyForm.valid"
+                    i18n="@@add-todo-item-button">
+                    Update Company
+                </button>
+            </div>
+        </div>
+    </form>
+</div>

@@ -1,11 +1,15 @@
 <div>
-    <div class="text-right">
-        <button type="button" class="btn btn-outline-danger col-1" (click)="close()">&times;</button>
+    <div class="d-flex">
+        <h3 class="flex-grow-1">Add new company</h3>
+        <button type="button" class="btn btn-outline-danger" (click)="close()">&times;</button>
     </div>
     <form [formGroup]="companyForm" (ngSubmit)="addNewCompany()" class="d-flex justify-content-between">
         <div class="company-grid">
             <div class="name">
                 <input class="col mr-4" type="text" placeholder="Názov firmy" formControlName="companyName">
+            </div>
+            <div class="organizationId">
+                <input class="col mr-4" type="text" placeholder="IČO" formControlName="businessId">
             </div>
             <div class="street">
                 <input class="col mr-4" type="text" placeholder="Ulica" formControlName="street">
@@ -13,11 +17,11 @@
             <div class="streetNumber">
                 <input class="col mr-4" type="text" placeholder="Číslo" formControlName="streetNumber">
             </div>
+            <div class="zipCode">
+                <input class="col mr-4" type="text" placeholder="PSČ" formControlName="zipCode">
+            </div>
             <div class="city">
                 <input class="col mr-4" type="text" placeholder="Mesto" formControlName="city">
-            </div>
-            <div class="organizationId">
-                <input class="col mr-4" type="text" placeholder="IČO" formControlName="businessId">
             </div>
             <div class="submit-btn">
                 <button class="btn btn-outline-success" type="submit" [disabled]="!companyForm.valid"
