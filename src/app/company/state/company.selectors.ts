@@ -13,9 +13,15 @@ export const getError = createSelector(
     state => state.error
 );
 
-export const getCurrentCompany = createSelector(
+export const getCurrentCompanyId = createSelector(
     getCompanyFeatureState,
-    state => state.currentCompany
+    state => state.currentCompanyId
+);
+
+export const getCurrentCompany = createSelector(
+    getCompanyList,
+    getCurrentCompanyId,
+    (companies, id) => companies.find(company => id === company.id)
 );
 
 export const getCompaniesLoadProgress = createSelector(

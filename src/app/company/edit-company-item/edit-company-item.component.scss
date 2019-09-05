@@ -19,16 +19,16 @@
 }
 
 .name {
-    grid-area: name;
-    font-weight: bold;
+  grid-area: name;
+  font-weight: bold;
 }
 
 .street {
-    grid-area: street;
+  grid-area: street;
 }
 
 .streetNumber {
-    grid-area: streetNumber;
+  grid-area: streetNumber;
 }
 
 .zipCode {
@@ -36,11 +36,11 @@
 }
 
 .city {
-    grid-area: city;
+  grid-area: city;
 }
 
 .organizationId {
-    grid-area: organizationId;
+  grid-area: organizationId;
 }
 
 .submit-btn {

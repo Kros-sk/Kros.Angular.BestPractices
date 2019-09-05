@@ -50,9 +50,9 @@ export class CompanyListComponent implements OnInit {
         this.store.dispatch(new companyActions.Load());
     }
 
-    companySelected(company: CompanyItem) {
-        this.store.dispatch(new companyActions.SetCurrentCompany(company));
-    }
+    // selectCompany(id: number) {
+    //     this.store.dispatch(new companyActions.SetCurrentCompany(id));
+    // }
 
     addCompany() {
         this.modalService.open(AddCompanyItemComponent, {

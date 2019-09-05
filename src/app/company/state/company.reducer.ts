@@ -14,7 +14,7 @@ export function companyReducer(state = initialState, action: CompanyActions): Co
             return {
                 ...state,
                 companies: [],
-                currentCompany: null,
+                currentCompanyId: null,
                 error: action.payload
             };
 
@@ -27,7 +27,7 @@ export function companyReducer(state = initialState, action: CompanyActions): Co
         case CompanyActionsTypes.SetCurrentCompany:
             return {
                 ...state,
-                currentCompany: action.currentCompany,
+                currentCompanyId: action.payload,
                 error: null
             };
 

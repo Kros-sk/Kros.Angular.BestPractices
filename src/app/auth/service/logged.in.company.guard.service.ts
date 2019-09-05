@@ -7,12 +7,13 @@ import { map, tap } from 'rxjs/internal/operators';
 import { CompanyItem } from 'src/app/company/models/company.model';
 
 @Injectable({
-  providedIn: 'root'
+    providedIn: 'root'
 })
 export class LoggedInCompanyGuardServiceService {
 
-    constructor(private authService: AuthService,
-                private store: Store<any>) { }
+    constructor(
+        private authService: AuthService,
+        private store: Store<any>) { }
 
     canActivate(): Observable<boolean> {
         if (this.authService.isLoggedIn()) {

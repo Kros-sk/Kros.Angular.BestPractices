@@ -35,9 +35,7 @@ export class CompanyItemComponent implements OnInit {
         });
         modalRef.componentInstance.itemId = id;
     }
-    companySelected(company: CompanyItem) {
-        this.store.dispatch(new companyActions.SetCurrentCompany(company));
+    selectCompany(id: number) {
+        this.store.dispatch(new companyActions.SetCurrentCompany(id));
     }
 }
-
-
