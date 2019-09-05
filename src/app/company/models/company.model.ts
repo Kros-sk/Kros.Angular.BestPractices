@@ -10,7 +10,6 @@ export class CompanyItem {
 }
 
 export class AddCompanyItem {
-    userId: number;
     companyName: string;
     businessId: string;
     street: string;

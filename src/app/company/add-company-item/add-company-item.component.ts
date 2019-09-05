@@ -42,7 +42,6 @@ export class AddCompanyItemComponent implements OnInit {
 
     addNewCompany() {
         this.store.dispatch(new companyActions.Add({
-            userId: 0,
             businessId: this.companyForm.value.businessId,
             companyName: this.companyForm.value.companyName,
             street: this.companyForm.value.street,

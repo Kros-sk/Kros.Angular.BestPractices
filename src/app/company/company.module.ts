@@ -15,7 +15,6 @@ import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
     imports: [
-        CommonModule,
         SharedModule,
         CompanyRoutingModule,
         StoreModule.forFeature(

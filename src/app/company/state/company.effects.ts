@@ -32,13 +32,8 @@ export class CompanyEffects {
         mergeMap((action: companyActions.Add) =>
             this.companyService.addNewCompany(action.payload).pipe(
                 map(newCompanyId => new companyActions.AddSuccess({
-                    id: newCompanyId,
-                    businessId: action.payload.businessId,
-                    companyName: action.payload.companyName,
-                    street: action.payload.street,
-                    streetNumber: action.payload.streetNumber,
-                    city: action.payload.city,
-                    zipCode: action.payload.zipCode
+                    ...action.payload,
+                    id: newCompanyId
                 } as CompanyItem)),
             ),
         ),
@@ -48,7 +43,7 @@ export class CompanyEffects {
     @Effect()
     setCurrentCompanyAfterAddSuccess$: Observable<Action> = this.actions$.pipe(
         ofType(companyActions.CompanyActionsTypes.AddSuccess),
-        map((action: companyActions.AddSuccess) => new companyActions.SetCurrentCompany(action.payload))
+        map((action: companyActions.AddSuccess) => new companyActions.SetCurrentCompany(action.payload.id))
 
     );
 

@@ -3,14 +3,14 @@ import { LocalizedErrorInfo } from 'src/app/shared/models/error-info.model';
 
 export interface CompanyState {
     companies: CompanyItem[];
-    currentCompany: CompanyItem | null;
+    currentCompanyId: number | null;
     error: LocalizedErrorInfo | null;
     showProgressLoad: boolean;
 }
 
 export const initialState: CompanyState = {
     companies: [],
-    currentCompany: null,
+    currentCompanyId: null,
     error: null,
     showProgressLoad: false
 };

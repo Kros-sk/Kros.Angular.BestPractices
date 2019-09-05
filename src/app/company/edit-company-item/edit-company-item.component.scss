@@ -1,35 +1,35 @@
 .company-grid {
-    margin: 10px 10px 10px 10px;
-    display: grid;
-    grid-column-gap: 10px;
-    grid-row-gap: 15px;
-    grid-template-areas:
-        "name . organizationId"
-        "street streetNumber city"
-        ". . submit-btn"
+  margin: 10px 10px 10px 10px;
+  display: grid;
+  grid-column-gap: 10px;
+  grid-row-gap: 15px;
+  grid-template-areas:
+    "name . organizationId"
+    "street streetNumber city"
+    ". . submit-btn";
 }
 
 .name {
-    grid-area: name;
-    font-weight: bold;
+  grid-area: name;
+  font-weight: bold;
 }
 
 .street {
-    grid-area: street;
+  grid-area: street;
 }
 
 .streetNumber {
-    grid-area: streetNumber;
+  grid-area: streetNumber;
 }
 
 .city {
-    grid-area: city;
+  grid-area: city;
 }
 
 .organizationId {
-    grid-area: organizationId;
+  grid-area: organizationId;
 }
 
 .submit-btn {
-    grid-area: submit-btn;
+  grid-area: submit-btn;
 }

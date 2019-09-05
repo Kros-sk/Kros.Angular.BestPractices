@@ -20,7 +20,6 @@ export class CompanyListComponent implements OnInit {
 
     constructor(
         private store: Store<CompanyState>,
-        private action$: Actions,
         private modalService: NgbModal
     ) {
     }
@@ -51,15 +50,15 @@ export class CompanyListComponent implements OnInit {
         this.progress$ = this.store.pipe(select(fromCompany.getCompaniesLoadProgress));
     }
 
-    companySelected(company: CompanyItem) {
-        this.store.dispatch(new companyActions.SetCurrentCompany(company));
-    }
+    // selectCompany(id: number) {
+    //     this.store.dispatch(new companyActions.SetCurrentCompany(id));
+    // }
 
     addCompany() {
         const modalRef = this.modalService.open(AddCompanyItemComponent, {
             size: 'lg',
             centered: true
-          });
+        });
     }
 
 }
