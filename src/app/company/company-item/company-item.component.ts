@@ -5,7 +5,7 @@ import { CompanyState } from '../state/company.state';
 import { Store } from '@ngrx/store';
 import * as companyActions from '../state/company.actions';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { EditCompanyItemComponent } from '../edit-company-item/edit-company-item.component';
+import { CompanyDetailComponent } from '../company-detail/company-detail.component';
 
 @Component({
     selector: 'kros-company-item',
@@ -29,11 +29,11 @@ export class CompanyItemComponent implements OnInit {
     }
 
     editCompany(id: number) {
-        const modalRef = this.modalService.open(EditCompanyItemComponent, {
+        const modalRef = this.modalService.open(CompanyDetailComponent, {
             size: 'lg',
             centered: true
         });
-        modalRef.componentInstance.itemId = id;
+        modalRef.componentInstance.companyId = id;
     }
     selectCompany(id: number) {
         this.store.dispatch(new companyActions.SetCurrentCompany(id));

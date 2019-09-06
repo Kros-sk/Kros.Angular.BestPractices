@@ -6,9 +6,9 @@ import { CompanyItem } from '../models/company.model';
 import { Observable } from 'rxjs';
 import { LocalizedErrorInfo } from 'src/app/shared/models/error-info.model';
 import * as fromCompany from '../state/company.selectors';
-import { AddCompanyItemComponent } from '../add-company-item/add-company-item.component';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { map } from 'rxjs/operators';
+import { CompanyDetailComponent } from '../company-detail/company-detail.component';
 
 
 @Component({
@@ -39,7 +39,7 @@ export class CompanyListComponent implements OnInit {
 
         this.store.pipe(select(fromCompany.getCurrentCompany)).subscribe(
             (currentCompany: CompanyItem) => {
-                if (currentCompany !== null) {
+                if (currentCompany) {
                     this.currentCompanyId = currentCompany.id;
                 } else {
                     this.currentCompanyId = 0;
@@ -50,12 +50,8 @@ export class CompanyListComponent implements OnInit {
         this.store.dispatch(new companyActions.Load());
     }
 
-    // selectCompany(id: number) {
-    //     this.store.dispatch(new companyActions.SetCurrentCompany(id));
-    // }
-
     addCompany() {
-        this.modalService.open(AddCompanyItemComponent, {
+        this.modalService.open(CompanyDetailComponent, {
             size: 'lg',
             centered: true
         });

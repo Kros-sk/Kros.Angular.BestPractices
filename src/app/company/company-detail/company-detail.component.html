@@ -1,9 +1,9 @@
-<div>
+<div [ngStyle]="{'visibility': isLoaded ? 'visible' : 'hidden'}">
     <div class="d-flex">
-        <h3 class="flex-grow-1">Add new company</h3>
+        <h3 class="flex-grow-1">Company details</h3>
         <button type="button" class="btn btn-outline-danger" (click)="close()">&times;</button>
     </div>
-    <form [formGroup]="companyForm" (ngSubmit)="addNewCompany()" class="d-flex justify-content-between">
+    <form [formGroup]="companyForm" (ngSubmit)="save()" class="d-flex justify-content-between">
         <div class="company-grid">
             <div class="name">
                 <input class="col mr-4" type="text" placeholder="Názov firmy" formControlName="companyName">
@@ -26,7 +26,7 @@
             <div class="submit-btn">
                 <button class="btn btn-outline-success" type="submit" [disabled]="!companyForm.valid"
                     i18n="@@add-todo-item-button">
-                    Add Company
+                    Save Company
                 </button>
             </div>
         </div>
