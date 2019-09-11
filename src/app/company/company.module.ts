@@ -9,6 +9,8 @@ import { CompanyDetailComponent } from './company-detail/company-detail.componen
 import { CompanyRoutingModule } from './company-routing.module';
 import { CompanyEffects } from './state/company.effects';
 import { SharedModule } from '../shared/shared.module';
+import { CompnayShellComponent } from './compnay-shell/compnay-shell.component';
+import { CompanySettingsComponent } from './company-settings/company-settings.component';
 
 @NgModule({
     imports: [
@@ -22,7 +24,9 @@ import { SharedModule } from '../shared/shared.module';
     declarations: [
         CompanyListComponent,
         CompanyItemComponent,
-        CompanyDetailComponent
+        CompanyDetailComponent,
+        CompnayShellComponent,
+        CompanySettingsComponent
     ],
     entryComponents: [CompanyDetailComponent],
     exports: [CompanyDetailComponent]
