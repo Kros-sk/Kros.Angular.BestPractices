@@ -11,6 +11,7 @@ import { CompanyEffects } from './state/company.effects';
 import { SharedModule } from '../shared/shared.module';
 import { CompnayShellComponent } from './compnay-shell/compnay-shell.component';
 import { CompanySettingsComponent } from './company-settings/company-settings.component';
+import { CompanyAddressComponent } from './company-address/company-address.component';
 
 @NgModule({
     imports: [
@@ -26,7 +27,8 @@ import { CompanySettingsComponent } from './company-settings/company-settings.co
         CompanyItemComponent,
         CompanyDetailComponent,
         CompnayShellComponent,
-        CompanySettingsComponent
+        CompanySettingsComponent,
+        CompanyAddressComponent
     ],
     entryComponents: [CompanyDetailComponent],
     exports: [CompanyDetailComponent]
