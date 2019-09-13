@@ -1,31 +1,33 @@
-import { Component, OnInit } from "@angular/core";
-import { FormBuilder, FormControl } from "@angular/forms";
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormControl } from '@angular/forms';
 
 @Component({
-    selector: "kros-company-settings",
-    templateUrl: "./company-settings.component.html",
-    styleUrls: ["./company-settings.component.scss"]
+    selector: 'kros-company-settings',
+    templateUrl: './company-settings.component.html',
+    styleUrls: ['./company-settings.component.scss']
 })
 export class CompanySettingsComponent implements OnInit {
     companyDetails = this.fb.group({
-        companyName: [""],
-        organizationId: [""],
+        companyIdentification: {
+            companyName: '',
+            organizationId: ''
+        },
         address: {
-            street: "",
-            streetNumber: "",
-            zipCode: "",
-            city: ""
+            street: '',
+            streetNumber: '',
+            zipCode: '',
+            city: ''
         }
     });
     companyBankAccounts = this.fb.group({
-        primaryBankAccount: this.fb.group({
-            iban: [""],
-            name: [""]
-        }),
-        secondaryBankAccount: this.fb.group({
-            iban: [""],
-            name: [""]
-        })
+        primaryBankAccount: {
+            name: '',
+            iban: ''
+        }
+        // secondaryBankAccount: {
+        //     name: '',
+        //     iban: ''
+        // }
     });
 
     companyDetailVisible: boolean;

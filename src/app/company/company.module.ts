@@ -12,6 +12,8 @@ import { SharedModule } from '../shared/shared.module';
 import { CompnayShellComponent } from './compnay-shell/compnay-shell.component';
 import { CompanySettingsComponent } from './company-settings/company-settings.component';
 import { CompanyAddressComponent } from './company-address/company-address.component';
+import { CompanyIdentificationComponent } from './company-identification/company-identification.component';
+import { CompanyBankAccountComponent } from './company-bank-account/company-bank-account.component';
 
 @NgModule({
     imports: [
@@ -28,7 +30,9 @@ import { CompanyAddressComponent } from './company-address/company-address.compo
         CompanyDetailComponent,
         CompnayShellComponent,
         CompanySettingsComponent,
-        CompanyAddressComponent
+        CompanyAddressComponent,
+        CompanyIdentificationComponent,
+        CompanyBankAccountComponent
     ],
     entryComponents: [CompanyDetailComponent],
     exports: [CompanyDetailComponent]

@@ -13,20 +13,12 @@
 
 
     <form *ngIf="companyDetailVisible" class="companyDetails" [formGroup]="companyDetails">
-        <div class="companyDetails-grid">
-            <div class="companyName">
-                <input class="col mr-4" type="text" formControlName="companyName" placeholder="Company Name">
-            </div>
-            <div class="organizationId">
-                <input class="col mr-4" type="text" formControlName="organizationId" placeholder="IČO">
-            </div>
-        </div>
-
+        <kros-company-identification formControlName="companyIdentification"></kros-company-identification>
         <kros-company-address formControlName="address"></kros-company-address>
     </form>
 
     <form *ngIf="bankAccountsVisible" class="companyBankAccounts" [formGroup]="companyBankAccounts">
-        <div class="companyPrimaryAccount-grid" formGroupName="primaryBankAccount">
+        <!-- <div class="companyPrimaryAccount-grid" formGroupName="primaryBankAccount">
             <div class="bankAccountName">
                 <input class="col mr-4" type="text" formControlName="name" placeholder="Primary account name">
             </div>
@@ -41,7 +33,8 @@
             <div class="bankAccountIBAN">
                 <input class="col mr-4" type="text" formControlName="iban" placeholder="Secondary IBAN">
             </div>
-        </div>
+        </div> -->
+        <kros-company-bank-account formControlName="primaryBankAccount"></kros-company-bank-account>
     </form>
 
 </div>
