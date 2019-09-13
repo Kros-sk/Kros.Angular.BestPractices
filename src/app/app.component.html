@@ -20,7 +20,8 @@
                 </button>
 
                 <button type="button" class="btn btn-outline-primary col" [routerLink]="['/company/list']"
-                    routerLinkActive="active" i18n="@@app-component-todo-list-menu">
+                    i18n="@@app-component-todo-list-menu"
+                    [ngClass]="{'active':router.url.includes('company')}">
                     Companies
                 </button>
 
