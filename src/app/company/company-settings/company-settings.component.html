@@ -11,38 +11,20 @@
         </button>
     </div>
 
-
     <form *ngIf="companyDetailVisible" class="companyDetails" [formGroup]="companyDetails">
         <kros-company-identification formControlName="companyIdentification"></kros-company-identification>
         <kros-company-address formControlName="address"></kros-company-address>
     </form>
 
     <form *ngIf="bankAccountsVisible" class="companyBankAccounts" [formGroup]="companyBankAccounts">
-        <!-- <div class="companyPrimaryAccount-grid" formGroupName="primaryBankAccount">
-            <div class="bankAccountName">
-                <input class="col mr-4" type="text" formControlName="name" placeholder="Primary account name">
-            </div>
-            <div class="bankAccountIBAN">
-                <input class="col mr-4" type="text" formControlName="iban" placeholder="Primary IBAN">
-            </div>
-        </div>
-        <div class="companySecondaryAccount-grid" formGroupName="secondaryBankAccount">
-            <div class="bankAccountName">
-                <input class="col mr-4" type="text" formControlName="name" placeholder="Secondary account name">
-            </div>
-            <div class="bankAccountIBAN">
-                <input class="col mr-4" type="text" formControlName="iban" placeholder="Secondary IBAN">
-            </div>
-        </div> -->
         <kros-company-bank-account formControlName="primaryBankAccount"></kros-company-bank-account>
     </form>
-
 </div>
 <div class="button-back-save">
     <button id="back" class="btn btn-outline-danger col-1" [routerLink]="['/company/list']">
         Back
     </button>
-    <button id="save" class="btn btn-outline-success col-1" (click)="save()">
+    <button type="submit" id="save" class="btn btn-outline-success col-1" (click)="save()">
         Save
     </button>
 </div>

@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import {
     FormBuilder,
     ControlValueAccessor,
-    NG_VALUE_ACCESSOR
+    NG_VALUE_ACCESSOR,
+    Validators
 } from '@angular/forms';
 
 @Component({
@@ -19,7 +20,7 @@ import {
 })
 export class CompanyAddressComponent implements OnInit, ControlValueAccessor {
     address = this.fb.group({
-        street: [''],
+        street: ['', Validators.required],
         streetNumber: [''],
         zipCode: [''],
         city: ['']

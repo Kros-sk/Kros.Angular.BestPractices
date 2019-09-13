@@ -1,4 +1,4 @@
-<div class="companyPrimaryAccount-grid" formGroupName="primaryBankAccount">
+<div class="companyPrimaryAccount-grid" [formGroup]="primaryBankAccount">
     <div class="bankAccountName">
         <input class="col mr-4" type="text" formControlName="name" placeholder="Primary account name">
     </div>
@@ -6,11 +6,3 @@
         <input class="col mr-4" type="text" formControlName="iban" placeholder="Primary IBAN">
     </div>
 </div>
-<!-- <div class="companySecondaryAccount-grid" formGroupName="secondaryBankAccount">
-    <div class="bankAccountName">
-        <input class="col mr-4" type="text" formControlName="name" placeholder="Secondary account name">
-    </div>
-    <div class="bankAccountIBAN">
-        <input class="col mr-4" type="text" formControlName="iban" placeholder="Secondary IBAN">
-    </div>
-</div> -->

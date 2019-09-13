@@ -1,12 +1,19 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl } from '@angular/forms';
-
+import {
+    FormBuilder,
+    FormControl,
+    Validators,
+    ValidatorFn,
+    FormGroup,
+    ValidationErrors
+} from '@angular/forms';
 @Component({
     selector: 'kros-company-settings',
     templateUrl: './company-settings.component.html',
     styleUrls: ['./company-settings.component.scss']
 })
 export class CompanySettingsComponent implements OnInit {
+    // private companyIdentification: FormControl;
     companyDetails = this.fb.group({
         companyIdentification: {
             companyName: '',
@@ -24,10 +31,6 @@ export class CompanySettingsComponent implements OnInit {
             name: '',
             iban: ''
         }
-        // secondaryBankAccount: {
-        //     name: '',
-        //     iban: ''
-        // }
     });
 
     companyDetailVisible: boolean;
