@@ -1,14 +1,14 @@
-import { Routes, RouterModule } from "@angular/router";
-import { NgModule } from "@angular/core";
+import { Routes, RouterModule } from '@angular/router';
+import { NgModule } from '@angular/core';
 
-import { CompanyListComponent } from "./company-list/company-list.component";
-import { CompanySettingsComponent } from "./company-settings/company-settings.component";
-import { CompnayShellComponent } from "./compnay-shell/compnay-shell.component";
+import { CompanyListComponent } from './company-list/company-list.component';
+import { CompanySettingsComponent } from './company-settings/company-settings.component';
+import { CompanyShellComponent } from './company-shell/company-shell.component';
 
 const routes: Routes = [
     {
         path: '',
-        component: CompnayShellComponent,
+        component: CompanyShellComponent,
         children: [
             {
                 path: 'list',
@@ -26,4 +26,4 @@ const routes: Routes = [
     imports: [RouterModule.forChild(routes)],
     exports: [RouterModule]
 })
-export class CompanyRoutingModule { }
+export class CompanyRoutingModule {}
