@@ -1,8 +1,18 @@
 <div class="companyDetails-grid" [formGroup]="companyIdentification">
     <div class="companyName">
         <input class="col mr-4" type="text" formControlName="companyName" placeholder="Company Name">
+        <div *ngIf="companyIdentification.get('companyName').invalid &&
+        (companyIdentification.get('companyName').dirty || companyIdentification.get('companyName').touched)"
+            class="alert alert-danger">
+            Company name is required
+        </div>
     </div>
     <div class="organizationId">
         <input class="col mr-4" type="text" formControlName="organizationId" placeholder="IČO">
+        <div *ngIf="companyIdentification.get('organizationId').invalid &&
+        (companyIdentification.get('organizationId').dirty || companyIdentification.get('organizationId').touched)"
+            class="alert alert-danger">
+            ICO is required
+        </div>
     </div>
 </div>

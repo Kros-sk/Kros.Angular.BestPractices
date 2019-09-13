@@ -1,14 +1,30 @@
 <div class="companyAddress-grid" [formGroup]="address">
     <div class="street">
         <input class="col mr-4" type="text" formControlName="street" placeholder="Street">
+        <div *ngIf="address.get('street').invalid &&
+        (address.get('street').dirty || address.get('street').touched)" class="alert alert-danger">
+            Street is required
+        </div>
     </div>
     <div class="streetNumber">
         <input class="col mr-4" type="text" formControlName="streetNumber" placeholder="Number">
+        <div *ngIf="address.get('streetNumber').invalid &&
+        (address.get('streetNumber').dirty || address.get('streetNumber').touched)" class="alert alert-danger">
+            Street number is required
+        </div>
     </div>
     <div class="zipCode">
         <input class="col mr-4" type="text" formControlName="zipCode" placeholder="PSČ">
+        <div *ngIf="address.get('zipCode').invalid &&
+        (address.get('zipCode').dirty || address.get('zipCode').touched)" class="alert alert-danger">
+            Zip code is required
+        </div>
     </div>
     <div class="city">
         <input class="col mr-4" type="text" formControlName="city" placeholder="City">
+        <div *ngIf="address.get('city').invalid &&
+        (address.get('city').dirty || address.get('city').touched)" class="alert alert-danger">
+            City is required
+        </div>
     </div>
 </div>

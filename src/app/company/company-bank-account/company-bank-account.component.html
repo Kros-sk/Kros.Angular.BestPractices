@@ -1,8 +1,16 @@
 <div class="companyPrimaryAccount-grid" [formGroup]="primaryBankAccount">
     <div class="bankAccountName">
         <input class="col mr-4" type="text" formControlName="name" placeholder="Primary account name">
+        <div *ngIf="primaryBankAccount.get('name').invalid &&
+        (primaryBankAccount.get('name').dirty || primaryBankAccount.get('name').touched)" class="alert alert-danger">
+            Account name is required
+        </div>
     </div>
     <div class="bankAccountIBAN">
         <input class="col mr-4" type="text" formControlName="iban" placeholder="Primary IBAN">
+        <div *ngIf="primaryBankAccount.get('iban').invalid &&
+        (primaryBankAccount.get('iban').dirty || primaryBankAccount.get('iban').touched)" class="alert alert-danger">
+            Iban is required
+        </div>
     </div>
 </div>
