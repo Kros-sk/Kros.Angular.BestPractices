@@ -5,19 +5,28 @@ import {
     Validators,
     ValidatorFn,
     FormGroup,
-    ValidationErrors
+    ValidationErrors,
+    ControlValueAccessor,
+    NG_VALUE_ACCESSOR
 } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
+import { CompanyState } from '../state/company.state';
+import * as companyActions from 'src/app/company/state/company.actions';
+import { Store, select } from '@ngrx/store';
+import { AddCompanyItem, CompanyItem } from '../models/company.model';
+import * as fromCompany from '../state/company.selectors';
+import { switchMap } from 'rxjs/operators';
+import { CompanyService } from '../services/company.service';
 @Component({
     selector: 'kros-company-settings',
     templateUrl: './company-settings.component.html',
     styleUrls: ['./company-settings.component.scss']
 })
 export class CompanySettingsComponent implements OnInit {
-    // private companyIdentification: FormControl;
     companyDetails = this.fb.group({
         companyIdentification: {
             companyName: '',
-            organizationId: ''
+            businessId: ''
         },
         address: {
             street: '',
@@ -35,11 +44,44 @@ export class CompanySettingsComponent implements OnInit {
 
     companyDetailVisible: boolean;
     bankAccountsVisible: boolean;
+    companyId;
 
-    constructor(private fb: FormBuilder) {}
+    writeValue(obj: any): void {}
+
+    constructor(
+        private fb: FormBuilder,
+        private store: Store<CompanyState>,
+        private route: ActivatedRoute,
+        private companyService: CompanyService
+    ) {}
 
     ngOnInit() {
         this.showCompanyDetails();
+        this.companyId = +this.route.snapshot.paramMap.get('id');
+        let editedCompany: CompanyItem;
+        this.store
+            .pipe(select(fromCompany.getCompanyList))
+            .subscribe(
+                companies =>
+                    (editedCompany = companies.find(
+                        company => this.companyId === company.id
+                    ))
+            );
+
+        this.companyService.getCompany(this.companyId).subscribe(item => {
+            if (this.companyId) {
+                this.companyDetails.get('companyIdentification').patchValue({
+                    companyName: item.companyName,
+                    businessId: item.businessId
+                });
+                this.companyDetails.get('address').patchValue({
+                    street: item.street,
+                    streetNumber: item.streetNumber,
+                    zipCode: item.zipCode,
+                    city: item.city
+                });
+            }
+        });
     }
 
     showCompanyDetails() {
@@ -50,5 +92,16 @@ export class CompanySettingsComponent implements OnInit {
         this.bankAccountsVisible = true;
         this.companyDetailVisible = false;
     }
-    save() {}
+    save() {
+        const companyItem = {
+            ...this.companyDetails.get('companyIdentification').value,
+            ...this.companyDetails.get('address').value
+        };
+
+        if (this.companyDetails.valid) {
+            this.store.dispatch(
+                new companyActions.Add(companyItem as AddCompanyItem)
+            );
+        }
+    }
 }

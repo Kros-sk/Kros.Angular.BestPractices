@@ -7,10 +7,10 @@
             Company name is required
         </div>
     </div>
-    <div class="organizationId">
-        <input class="col mr-4" type="text" formControlName="organizationId" placeholder="IČO">
-        <div *ngIf="companyIdentification.get('organizationId').invalid &&
-        (companyIdentification.get('organizationId').dirty || companyIdentification.get('organizationId').touched)"
+    <div class="businessId">
+        <input class="col mr-4" type="text" formControlName="businessId" placeholder="IČO">
+        <div *ngIf="companyIdentification.get('businessId').invalid &&
+        (companyIdentification.get('businessId').dirty || companyIdentification.get('businessId').touched)"
             class="alert alert-danger">
             ICO is required
         </div>

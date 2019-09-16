@@ -4,6 +4,8 @@ import { LocalizedErrorInfo } from 'src/app/shared/models/error-info.model';
 
 export enum CompanyActionsTypes {
     Load = '[Company] Load company items',
+    LoadCompany = '[Company] Load company item',
+    LoadCompanySuccess = '[Company] Load company item Success',
     LoadSuccess = '[Company] Load company items Success',
     LoadFail = '[Company] Load company items Fail',
     Add = '[Company] Add new company item',
@@ -24,58 +26,70 @@ export class Load implements Action {
     readonly type = CompanyActionsTypes.Load;
 }
 
+export class LoadCompany implements Action {
+    readonly type = CompanyActionsTypes.LoadCompany;
+
+    constructor(public payload: number) {}
+}
+
+export class LoadCompanySuccess implements Action {
+    readonly type = CompanyActionsTypes.LoadCompanySuccess;
+
+    constructor(public payload: CompanyItem) {}
+}
+
 export class LoadSuccess implements Action {
     readonly type = CompanyActionsTypes.LoadSuccess;
 
-    constructor(public payload: CompanyItem[]) { }
+    constructor(public payload: CompanyItem[]) {}
 }
 
 export class LoadFail implements Action {
     readonly type = CompanyActionsTypes.LoadFail;
 
-    constructor(public payload: LocalizedErrorInfo) { }
+    constructor(public payload: LocalizedErrorInfo) {}
 }
 
 export class Add implements Action {
     readonly type = CompanyActionsTypes.Add;
 
-    constructor(public payload: AddCompanyItem) { }
+    constructor(public payload: AddCompanyItem) {}
 }
 
 export class AddSuccess implements Action {
     readonly type = CompanyActionsTypes.AddSuccess;
 
-    constructor(public payload: CompanyItem) { }
+    constructor(public payload: CompanyItem) {}
 }
 
 export class AddFail implements Action {
     readonly type = CompanyActionsTypes.AddFail;
 
-    constructor(public payload: LocalizedErrorInfo) { }
+    constructor(public payload: LocalizedErrorInfo) {}
 }
 
 export class Update implements Action {
     readonly type = CompanyActionsTypes.Update;
 
-    constructor(public payload: CompanyItem) { }
+    constructor(public payload: CompanyItem) {}
 }
 
 export class UpdateSuccess implements Action {
     readonly type = CompanyActionsTypes.UpdateSuccess;
 
-    constructor(public payload: CompanyItem) { }
+    constructor(public payload: CompanyItem) {}
 }
 
 export class UpdateFail implements Action {
     readonly type = CompanyActionsTypes.UpdateFail;
 
-    constructor(public payload: LocalizedErrorInfo) { }
+    constructor(public payload: LocalizedErrorInfo) {}
 }
 
 export class Delete implements Action {
     readonly type = CompanyActionsTypes.Delete;
 
-    constructor(public payload: number) { }
+    constructor(public payload: number) {}
 }
 
 export class DeleteSuccess implements Action {
@@ -85,13 +99,13 @@ export class DeleteSuccess implements Action {
 export class DeleteFail implements Action {
     readonly type = CompanyActionsTypes.DeleteFail;
 
-    constructor(public payload: LocalizedErrorInfo) { }
+    constructor(public payload: LocalizedErrorInfo) {}
 }
 
 export class SetCurrentCompany implements Action {
     readonly type = CompanyActionsTypes.SetCurrentCompany;
 
-    constructor(public payload: number) { }
+    constructor(public payload: number) {}
 }
 
 export class StartProgress implements Action {
@@ -104,6 +118,8 @@ export class StopProgress implements Action {
 
 export type CompanyActions =
     | Load
+    | LoadCompany
+    | LoadCompanySuccess
     | LoadSuccess
     | LoadFail
     | Add

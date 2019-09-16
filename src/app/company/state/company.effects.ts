@@ -1,4 +1,3 @@
-
 import { Injectable } from '@angular/core';
 import { Actions, Effect, ofType } from '@ngrx/effects';
 import { CompanyService } from '../services/company.service';
@@ -15,15 +14,34 @@ export class CompanyEffects {
     constructor(
         private actions$: Actions,
         private companyService: CompanyService
-    ) { }
+    ) {}
+
+    @Effect()
+    loadCompanies$: Observable<Action> = this.actions$.pipe(
+        ofType(companyActions.CompanyActionsTypes.Load),
+        switchMap(() =>
+            this.companyService.getCompanyList().pipe(
+                map(company => new companyActions.LoadSuccess(company)),
+                catchError((err: LocalizedErrorInfo) =>
+                    of(new companyActions.LoadFail(err))
+                )
+            )
+        )
+    );
 
     @Effect()
     loadCompany$: Observable<Action> = this.actions$.pipe(
-        ofType(companyActions.CompanyActionsTypes.Load),
-        switchMap(() => this.companyService.getCompanyList().pipe(
-            map(company => (new companyActions.LoadSuccess(company))),
-            catchError((err: LocalizedErrorInfo) => of(new companyActions.LoadFail(err)))
-        ))
+        ofType(companyActions.CompanyActionsTypes.LoadCompany),
+        switchMap((action: companyActions.LoadCompany) =>
+            this.companyService
+                .getCompany(action.payload)
+                .pipe(
+                    map(
+                        company =>
+                            new companyActions.LoadCompanySuccess(company)
+                    )
+                )
+        )
     );
 
     @Effect()
@@ -31,31 +49,43 @@ export class CompanyEffects {
         ofType(companyActions.CompanyActionsTypes.Add),
         mergeMap((action: companyActions.Add) =>
             this.companyService.addNewCompany(action.payload).pipe(
-                map(newCompanyId => new companyActions.AddSuccess({
-                    ...action.payload,
-                    id: newCompanyId
-                } as CompanyItem)),
-            ),
+                map(
+                    newCompanyId =>
+                        new companyActions.AddSuccess({
+                            ...action.payload,
+                            id: newCompanyId
+                        } as CompanyItem)
+                )
+            )
         ),
-        catchError((err: LocalizedErrorInfo) => of(new companyActions.AddFail(err))),
+        catchError((err: LocalizedErrorInfo) =>
+            of(new companyActions.AddFail(err))
+        )
     );
 
     @Effect()
     setCurrentCompanyAfterAddSuccess$: Observable<Action> = this.actions$.pipe(
         ofType(companyActions.CompanyActionsTypes.AddSuccess),
-        map((action: companyActions.AddSuccess) => new companyActions.SetCurrentCompany(action.payload.id))
-
+        map(
+            (action: companyActions.AddSuccess) =>
+                new companyActions.SetCurrentCompany(action.payload.id)
+        )
     );
-
 
     @Effect()
     updateCompany$: Observable<Action> = this.actions$.pipe(
         ofType(companyActions.CompanyActionsTypes.Update),
         mergeMap((action: companyActions.Update) =>
             this.companyService.updateCompany(action.payload).pipe(
-                map((updatedCompany: CompanyItem) => (new companyActions.UpdateSuccess(updatedCompany))),
-                catchError((err: LocalizedErrorInfo) => of(new companyActions.UpdateFail(err)))
-            ))
+                map(
+                    (updatedCompany: CompanyItem) =>
+                        new companyActions.UpdateSuccess(updatedCompany)
+                ),
+                catchError((err: LocalizedErrorInfo) =>
+                    of(new companyActions.UpdateFail(err))
+                )
+            )
+        )
     );
 
     @Effect()
@@ -63,9 +93,12 @@ export class CompanyEffects {
         ofType(companyActions.CompanyActionsTypes.Delete),
         mergeMap((action: companyActions.Delete) =>
             this.companyService.deleteCompany(action.payload).pipe(
-                map(() => (new companyActions.DeleteSuccess())),
-                catchError((err: LocalizedErrorInfo) => of(new companyActions.DeleteFail(err)))
-            ))
+                map(() => new companyActions.DeleteSuccess()),
+                catchError((err: LocalizedErrorInfo) =>
+                    of(new companyActions.DeleteFail(err))
+                )
+            )
+        )
     );
 
     @Effect()
@@ -76,8 +109,10 @@ export class CompanyEffects {
 
     @Effect()
     stopProgress$: Observable<Action> = this.actions$.pipe(
-        ofType(companyActions.CompanyActionsTypes.LoadSuccess,
-            companyActions.CompanyActionsTypes.LoadFail),
+        ofType(
+            companyActions.CompanyActionsTypes.LoadSuccess,
+            companyActions.CompanyActionsTypes.LoadFail
+        ),
         map(() => new companyActions.StopProgress())
     );
 
@@ -87,7 +122,7 @@ export class CompanyEffects {
             LoginActionsTypes.LoginSuccess,
             companyActions.CompanyActionsTypes.AddSuccess,
             companyActions.CompanyActionsTypes.UpdateSuccess,
-            companyActions.CompanyActionsTypes.DeleteSuccess,
+            companyActions.CompanyActionsTypes.DeleteSuccess
         ),
         map(() => new companyActions.Load())
     );

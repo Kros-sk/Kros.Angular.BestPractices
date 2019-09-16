@@ -13,13 +13,12 @@ import { CompanyItem, AddCompanyItem } from '../models/company.model';
     styleUrls: ['./company-detail.component.scss']
 })
 export class CompanyDetailComponent implements OnInit {
-
     constructor(
         private formBuilder: FormBuilder,
         private companyService: CompanyService,
         private modalService: NgbModal,
         private store: Store<CompanyState>
-    ) { }
+    ) {}
 
     isLoaded: boolean;
     companyForm: FormGroup;
@@ -62,13 +61,17 @@ export class CompanyDetailComponent implements OnInit {
         };
 
         if (this.companyId) {
-            this.store.dispatch(new companyActions.Update({
-                ...companyItem,
-                id: this.companyId,
-                userId: this.userId
-            } as CompanyItem));
+            this.store.dispatch(
+                new companyActions.Update({
+                    ...companyItem,
+                    id: this.companyId,
+                    userId: this.userId
+                } as CompanyItem)
+            );
         } else {
-            this.store.dispatch(new companyActions.Add(companyItem as AddCompanyItem));
+            this.store.dispatch(
+                new companyActions.Add(companyItem as AddCompanyItem)
+            );
         }
 
         this.close();

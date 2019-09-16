@@ -4,8 +4,6 @@ import {
     ControlValueAccessor,
     NG_VALUE_ACCESSOR,
     Validators,
-    FormGroup,
-    FormControl,
     NG_VALIDATORS,
     Validator,
     AbstractControl,
@@ -34,7 +32,7 @@ export class CompanyIdentificationComponent
     implements OnInit, ControlValueAccessor, Validator {
     companyIdentification = this.fb.group({
         companyName: ['', [Validators.required, Validators.maxLength(50)]],
-        organizationId: [
+        businessId: [
             '',
             [Validators.required, Validators.pattern(new RegExp('^[0-9]*$'))]
         ]
@@ -52,7 +50,7 @@ export class CompanyIdentificationComponent
     writeValue(obj: any): void {
         this.companyIdentification.patchValue({
             companyName: obj.companyName,
-            organizationId: obj.organizationId
+            businessId: obj.businessId
         });
     }
     registerOnChange(fn: any): void {

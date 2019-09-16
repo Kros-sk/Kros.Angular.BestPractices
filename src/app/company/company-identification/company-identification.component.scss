@@ -7,9 +7,9 @@
   grid-row-gap: 15px;
   grid-template-areas:
     "companyName"
-    "organizationId";
+    "businessId";
 }
 
-.organizationId {
-  grid-area: organizationId;
+.businessId {
+  grid-area: businessId;
 }
