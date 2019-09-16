@@ -3,7 +3,11 @@ import {
     FormBuilder,
     ControlValueAccessor,
     NG_VALUE_ACCESSOR,
-    Validators
+    Validators,
+    NG_VALIDATORS,
+    Validator,
+    ValidationErrors,
+    AbstractControl
 } from '@angular/forms';
 
 @Component({
@@ -15,15 +19,20 @@ import {
             provide: NG_VALUE_ACCESSOR,
             useExisting: CompanyAddressComponent,
             multi: true
+        },
+        {
+            provide: NG_VALIDATORS,
+            useExisting: CompanyAddressComponent,
+            multi: true
         }
     ]
 })
-export class CompanyAddressComponent implements OnInit, ControlValueAccessor {
+export class CompanyAddressComponent implements OnInit, ControlValueAccessor, Validator {
     address = this.fb.group({
         street: ['', Validators.required],
-        streetNumber: [''],
-        zipCode: [''],
-        city: ['']
+        streetNumber: ['', Validators.required],
+        zipCode: ['', [Validators.required, Validators.pattern('[0-9]{5}')]],
+        city: ['', Validators.required]
     });
 
     constructor(private fb: FormBuilder) {}
@@ -49,5 +58,12 @@ export class CompanyAddressComponent implements OnInit, ControlValueAccessor {
     }
     setDisabledState?(isDisabled: boolean): void {
         isDisabled ? this.address.disable() : this.address.enable();
+    }
+
+    validate(control: AbstractControl): ValidationErrors | null {
+        if (this.address.status === 'VALID') {
+            return null;
+        }
+        return { error: this.address.status };
     }
 }
