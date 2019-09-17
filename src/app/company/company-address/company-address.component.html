@@ -15,9 +15,13 @@
     </div>
     <div class="zipCode">
         <input class="col mr-4" type="text" formControlName="zipCode" placeholder="PSČ">
-        <div *ngIf="address.get('zipCode').invalid &&
+        <div *ngIf="addressZipCodeErrors?.required &&
         (address.get('zipCode').dirty || address.get('zipCode').touched)" class="alert alert-danger">
             Zip code is required
+        </div>
+        <div *ngIf="addressZipCodeErrors?.pattern &&
+        (address.get('zipCode').dirty || address.get('zipCode').touched)" class="alert alert-danger">
+            Zip code has to be a number with 5 digits
         </div>
     </div>
     <div class="city">

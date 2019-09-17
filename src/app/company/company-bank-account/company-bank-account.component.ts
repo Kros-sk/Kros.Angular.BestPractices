@@ -7,7 +7,8 @@ import {
     NG_VALIDATORS,
     Validator,
     AbstractControl,
-    ValidationErrors
+    ValidationErrors,
+    FormGroup
 } from '@angular/forms';
 
 @Component({
@@ -29,10 +30,7 @@ import {
 })
 export class CompanyBankAccountComponent
     implements OnInit, ControlValueAccessor, Validator {
-    primaryBankAccount = this.fb.group({
-        iban: ['', Validators.required],
-        name: ['', Validators.required]
-    });
+    primaryBankAccount: FormGroup;
 
     validate(control: AbstractControl): ValidationErrors | null {
         if (this.primaryBankAccount.status === 'VALID') {
@@ -43,7 +41,12 @@ export class CompanyBankAccountComponent
 
     constructor(private fb: FormBuilder) {}
 
-    ngOnInit() {}
+    ngOnInit() {
+        this.primaryBankAccount = this.fb.group({
+            iban: ['', Validators.required],
+            name: ['', Validators.required]
+        });
+    }
 
     writeValue(obj: any): void {
         this.primaryBankAccount.patchValue({

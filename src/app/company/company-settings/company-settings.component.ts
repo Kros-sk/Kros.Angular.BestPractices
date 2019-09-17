@@ -1,21 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import {
-    FormBuilder,
-    FormControl,
-    Validators,
-    ValidatorFn,
-    FormGroup,
-    ValidationErrors,
-    ControlValueAccessor,
-    NG_VALUE_ACCESSOR
-} from '@angular/forms';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { CompanyState } from '../state/company.state';
 import * as companyActions from 'src/app/company/state/company.actions';
 import { Store, select } from '@ngrx/store';
-import { AddCompanyItem, CompanyItem } from '../models/company.model';
+import { CompanyItem } from '../models/company.model';
 import * as fromCompany from '../state/company.selectors';
-import { switchMap } from 'rxjs/operators';
 import { CompanyService } from '../services/company.service';
 @Component({
     selector: 'kros-company-settings',
@@ -23,24 +13,8 @@ import { CompanyService } from '../services/company.service';
     styleUrls: ['./company-settings.component.scss']
 })
 export class CompanySettingsComponent implements OnInit {
-    companyDetails = this.fb.group({
-        companyIdentification: {
-            companyName: '',
-            businessId: ''
-        },
-        address: {
-            street: '',
-            streetNumber: '',
-            zipCode: '',
-            city: ''
-        }
-    });
-    companyBankAccounts = this.fb.group({
-        primaryBankAccount: {
-            name: '',
-            iban: ''
-        }
-    });
+    companyDetails: FormGroup;
+    companyBankAccounts: FormGroup;
 
     companyDetailVisible: boolean;
     bankAccountsVisible: boolean;
@@ -57,6 +31,24 @@ export class CompanySettingsComponent implements OnInit {
 
     ngOnInit() {
         this.showCompanyDetails();
+        this.companyDetails = this.fb.group({
+            companyIdentification: {
+                companyName: '',
+                businessId: ''
+            },
+            address: {
+                street: '',
+                streetNumber: '',
+                zipCode: '',
+                city: ''
+            }
+        });
+        this.companyBankAccounts = this.fb.group({
+            primaryBankAccount: {
+                name: '',
+                iban: ''
+            }
+        });
         this.companyId = +this.route.snapshot.paramMap.get('id');
         let editedCompany: CompanyItem;
         this.store
@@ -95,12 +87,13 @@ export class CompanySettingsComponent implements OnInit {
     save() {
         const companyItem = {
             ...this.companyDetails.get('companyIdentification').value,
-            ...this.companyDetails.get('address').value
+            ...this.companyDetails.get('address').value,
+            id: this.companyId
         };
 
         if (this.companyDetails.valid) {
             this.store.dispatch(
-                new companyActions.Add(companyItem as AddCompanyItem)
+                new companyActions.Update(companyItem as CompanyItem)
             );
         }
     }

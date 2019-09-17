@@ -7,7 +7,8 @@ import {
     NG_VALIDATORS,
     Validator,
     ValidationErrors,
-    AbstractControl
+    AbstractControl,
+    FormGroup
 } from '@angular/forms';
 
 @Component({
@@ -27,17 +28,19 @@ import {
         }
     ]
 })
-export class CompanyAddressComponent implements OnInit, ControlValueAccessor, Validator {
-    address = this.fb.group({
-        street: ['', Validators.required],
-        streetNumber: ['', Validators.required],
-        zipCode: ['', [Validators.required, Validators.pattern('[0-9]{5}')]],
-        city: ['', Validators.required]
-    });
-
+export class CompanyAddressComponent
+    implements OnInit, ControlValueAccessor, Validator {
+    address: FormGroup;
     constructor(private fb: FormBuilder) {}
 
-    ngOnInit() {}
+    ngOnInit() {
+        this.address = this.fb.group({
+            street: ['', Validators.required],
+            streetNumber: ['', Validators.required],
+            zipCode: ['', [Validators.required, Validators.pattern(/^\d{5}$/)]],
+            city: ['', Validators.required]
+        });
+    }
 
     writeValue(obj: any): void {
         this.address.patchValue({
@@ -58,6 +61,13 @@ export class CompanyAddressComponent implements OnInit, ControlValueAccessor, Va
     }
     setDisabledState?(isDisabled: boolean): void {
         isDisabled ? this.address.disable() : this.address.enable();
+    }
+
+    get addressZipCodeErrors(): { required: any; pattern: any } {
+        return this.address.get('zipCode').errors as {
+            required: any;
+            pattern: any;
+        };
     }
 
     validate(control: AbstractControl): ValidationErrors | null {

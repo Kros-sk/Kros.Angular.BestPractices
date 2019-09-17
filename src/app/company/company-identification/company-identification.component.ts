@@ -7,9 +7,9 @@ import {
     NG_VALIDATORS,
     Validator,
     AbstractControl,
-    ValidationErrors
+    ValidationErrors,
+    FormGroup
 } from '@angular/forms';
-import { tap } from 'rxjs/operators';
 
 @Component({
     selector: 'kros-company-identification',
@@ -30,13 +30,7 @@ import { tap } from 'rxjs/operators';
 })
 export class CompanyIdentificationComponent
     implements OnInit, ControlValueAccessor, Validator {
-    companyIdentification = this.fb.group({
-        companyName: ['', [Validators.required, Validators.maxLength(50)]],
-        businessId: [
-            '',
-            [Validators.required, Validators.pattern(new RegExp('^[0-9]*$'))]
-        ]
-    });
+    companyIdentification: FormGroup;
     constructor(private fb: FormBuilder) {}
 
     validate(control: AbstractControl): ValidationErrors | null {
@@ -45,7 +39,18 @@ export class CompanyIdentificationComponent
         }
         return { error: this.companyIdentification.status };
     }
-    ngOnInit() {}
+    ngOnInit() {
+        this.companyIdentification = this.fb.group({
+            companyName: ['', [Validators.required, Validators.maxLength(50)]],
+            businessId: [
+                '',
+                [
+                    Validators.required,
+                    Validators.pattern(new RegExp('^[0-9]*$'))
+                ]
+            ]
+        });
+    }
 
     writeValue(obj: any): void {
         this.companyIdentification.patchValue({
