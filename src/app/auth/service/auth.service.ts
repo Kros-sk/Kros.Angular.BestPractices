@@ -85,12 +85,12 @@ export class AuthService {
     private get clientSettings(): UserManagerSettings {
         return {
             userStore: new WebStorageStateStore({ store: window.localStorage }),
-            authority: 'https://demo.identityserver.io/',
-            client_id: 'spa',
+            authority: 'https://login.kros.wtf/',
+            client_id: 'Demo.BestPractices',
             redirect_uri: `${environment.identityServerCallBackUri}/assets/login-redirect.html`,
             post_logout_redirect_uri: `${environment.identityServerCallBackUri}`,
             response_type: 'code',
-            scope: 'openid profile email api',
+            scope: 'openid profile email Demo.BestPractices',
             filterProtocolClaims: true,
             loadUserInfo: true,
             automaticSilentRenew: true,

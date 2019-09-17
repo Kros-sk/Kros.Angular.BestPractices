@@ -14,8 +14,8 @@ import { tap } from 'rxjs/operators';
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
-    constructor(
-        private authService: AuthService) { }
+
+    constructor(private authService: AuthService) { }
 
     intercept(
         req: HttpRequest<any>,
