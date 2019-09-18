@@ -1,19 +1,19 @@
 <div class="companyContainer">
     <div class="btn-group-vertical">
-        <button type="button" class="btn btn-outline-primary col"
-            i18n="@@app-component-todo-list-menu" (click)="showCompanyDetails()" [ngClass]="{'active':companyDetailVisible}">
+        <button type="button" class="btn btn-outline-primary col" i18n="@@app-component-todo-list-menu"
+            (click)="showCompanyDetails()" [ngClass]="{'active':companyDetailVisible}">
             Company settings
         </button>
 
-        <button type="button" class="btn btn-outline-primary col"
-            i18n="@@app-component-todo-list-menu" (click)="showBankAccounts()" [ngClass]="{'active':bankAccountsVisible}">
+        <button type="button" class="btn btn-outline-primary col" i18n="@@app-component-todo-list-menu"
+            (click)="showBankAccounts()" [ngClass]="{'active':bankAccountsVisible}">
             Bank accounts
         </button>
     </div>
 
     <form *ngIf="companyDetailVisible" class="companyDetails" [formGroup]="companyDetails">
         <kros-company-identification formControlName="companyIdentification"></kros-company-identification>
-        <kros-company-address formControlName="address"></kros-company-address>
+        <kros-company-address #comapnyAddress formControlName="address"></kros-company-address>
     </form>
 
     <form *ngIf="bankAccountsVisible" class="companyBankAccounts" [formGroup]="companyBankAccounts">
