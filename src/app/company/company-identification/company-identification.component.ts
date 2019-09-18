@@ -42,13 +42,7 @@ export class CompanyIdentificationComponent
     ngOnInit() {
         this.companyIdentification = this.fb.group({
             companyName: ['', [Validators.required, Validators.maxLength(50)]],
-            businessId: [
-                '',
-                [
-                    Validators.required,
-                    Validators.pattern(new RegExp('^[0-9]*$'))
-                ]
-            ]
+            businessId: ['', [Validators.required, Validators.pattern(/^\d*$/)]]
         });
     }
 

@@ -10,6 +10,7 @@ import {
     AbstractControl,
     FormGroup
 } from '@angular/forms';
+import { ZipCodeErrors } from './zip-code-validator';
 
 @Component({
     selector: 'kros-company-address',
@@ -54,6 +55,10 @@ export class CompanyAddressComponent
         this.address.valueChanges.subscribe(changedValue => fn(changedValue));
     }
 
+    setTouched() {
+        this.address.markAllAsTouched();
+    }
+
     onTouched: () => void = () => {};
 
     registerOnTouched(fn: any): void {
@@ -63,11 +68,8 @@ export class CompanyAddressComponent
         isDisabled ? this.address.disable() : this.address.enable();
     }
 
-    get addressZipCodeErrors(): { required: any; pattern: any } {
-        return this.address.get('zipCode').errors as {
-            required: any;
-            pattern: any;
-        };
+    get addressZipCodeErrors(): ZipCodeErrors {
+        return this.address.get('zipCode').errors as ZipCodeErrors;
     }
 
     validate(control: AbstractControl): ValidationErrors | null {

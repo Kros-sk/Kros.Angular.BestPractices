@@ -1,12 +1,15 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
+
+import { Store, select } from '@ngrx/store';
+
 import { CompanyState } from '../state/company.state';
 import * as companyActions from 'src/app/company/state/company.actions';
-import { Store, select } from '@ngrx/store';
 import { CompanyItem } from '../models/company.model';
 import * as fromCompany from '../state/company.selectors';
 import { CompanyService } from '../services/company.service';
+import { CompanyAddressComponent } from '../company-address/company-address.component';
 @Component({
     selector: 'kros-company-settings',
     templateUrl: './company-settings.component.html',
@@ -20,6 +23,8 @@ export class CompanySettingsComponent implements OnInit {
     bankAccountsVisible: boolean;
     companyId;
 
+    @ViewChild(CompanyAddressComponent, { static: false })
+    companyAddress;
     writeValue(obj: any): void {}
 
     constructor(
@@ -50,15 +55,6 @@ export class CompanySettingsComponent implements OnInit {
             }
         });
         this.companyId = +this.route.snapshot.paramMap.get('id');
-        let editedCompany: CompanyItem;
-        this.store
-            .pipe(select(fromCompany.getCompanyList))
-            .subscribe(
-                companies =>
-                    (editedCompany = companies.find(
-                        company => this.companyId === company.id
-                    ))
-            );
 
         this.companyService.getCompany(this.companyId).subscribe(item => {
             if (this.companyId) {
@@ -90,7 +86,7 @@ export class CompanySettingsComponent implements OnInit {
             ...this.companyDetails.get('address').value,
             id: this.companyId
         };
-
+        this.companyAddress.setTouched();
         if (this.companyDetails.valid) {
             this.store.dispatch(
                 new companyActions.Update(companyItem as CompanyItem)

@@ -1,9 +1,11 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { CompanyService } from '../services/company.service';
+
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { CompanyState } from '../state/company.state';
 import { Store } from '@ngrx/store';
+
+import { CompanyService } from '../services/company.service';
+import { CompanyState } from '../state/company.state';
 import * as companyActions from 'src/app/company/state/company.actions';
 import { CompanyItem, AddCompanyItem } from '../models/company.model';
 

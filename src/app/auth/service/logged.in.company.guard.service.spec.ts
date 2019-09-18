@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { LoggedInCompanyGuardServiceService } from './logged.in.company.guard.service';
+import { LoggedInCompanyGuardService } from './logged.in.company.guard.service';
 
 xdescribe('LoggedInCompanyGuardServiceService', () => {
     beforeEach(() => TestBed.configureTestingModule({}));
 
     it('should be created', () => {
-        const service: LoggedInCompanyGuardServiceService = TestBed.get(
-            LoggedInCompanyGuardServiceService
+        const service: LoggedInCompanyGuardService = TestBed.get(
+            LoggedInCompanyGuardService
         );
         expect(service).toBeTruthy();
     });
