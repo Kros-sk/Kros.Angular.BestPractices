@@ -6,6 +6,7 @@ import { LoggedUser } from './models/logged-user.model';
 import { trigger, transition, animate, keyframes, style } from '@angular/animations';
 import { AuthService } from './auth/service/auth.service';
 import { Logout } from './auth/state/login.actions';
+
 import { CompanyItem } from './company/models/company.model';
 import { getCurrentCompany } from './company/state/company.selectors';
 
@@ -65,5 +66,3 @@ export class AppComponent implements OnInit {
         }, 1000);
     }
 }
-
-

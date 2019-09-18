@@ -14,6 +14,7 @@ import { Store, select } from '@ngrx/store';
 import { getCurrentCompany } from 'src/app/company/state/company.selectors';
 import { CompanyItem } from 'src/app/company/models/company.model';
 
+
 @Injectable({
     providedIn: 'root'
 })
