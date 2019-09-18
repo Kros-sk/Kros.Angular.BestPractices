@@ -1,0 +1,30 @@
+<div class="companyContainer">
+    <div class="btn-group-vertical">
+        <button type="button" class="btn btn-outline-primary col" i18n="@@app-component-todo-list-menu"
+            (click)="showCompanyDetails()" [ngClass]="{'active':companyDetailVisible}">
+            Company settings
+        </button>
+
+        <button type="button" class="btn btn-outline-primary col" i18n="@@app-component-todo-list-menu"
+            (click)="showBankAccounts()" [ngClass]="{'active':bankAccountsVisible}">
+            Bank accounts
+        </button>
+    </div>
+
+    <form *ngIf="companyDetailVisible" class="companyDetails" [formGroup]="companyDetails">
+        <kros-company-identification formControlName="companyIdentification"></kros-company-identification>
+        <kros-company-address #comapnyAddress formControlName="address"></kros-company-address>
+    </form>
+
+    <form *ngIf="bankAccountsVisible" class="companyBankAccounts" [formGroup]="companyBankAccounts">
+        <kros-company-bank-account formControlName="primaryBankAccount"></kros-company-bank-account>
+    </form>
+</div>
+<div class="button-back-save">
+    <button id="back" class="btn btn-outline-danger col-1" [routerLink]="['/company/list']">
+        Back
+    </button>
+    <button type="submit" id="save" class="btn btn-outline-success col-1" (click)="save()">
+        Save
+    </button>
+</div>

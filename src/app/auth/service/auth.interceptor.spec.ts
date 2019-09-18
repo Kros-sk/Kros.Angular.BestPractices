@@ -1,4 +1,8 @@
-import { HTTP_INTERCEPTORS, HttpResponse, HttpRequest } from '@angular/common/http';
+import {
+    HTTP_INTERCEPTORS,
+    HttpResponse,
+    HttpRequest
+} from '@angular/common/http';
 import { AuthInterceptor } from './auth.interceptor';
 import { TestBed, async } from '@angular/core/testing';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
@@ -8,21 +12,16 @@ import { of } from 'rxjs';
 import { environment } from 'src/environments/environment';
 
 describe('Interceptor', () => {
-
     beforeEach(() => {
         TestBed.configureTestingModule({
-            imports: [
-                HttpClientTestingModule,
-                StoreModule.forRoot({
-                }),
-            ],
+            imports: [HttpClientTestingModule, StoreModule.forRoot({})],
             providers: [
                 {
                     provide: HTTP_INTERCEPTORS,
                     useClass: AuthInterceptor,
                     multi: true
                 },
-                //AuthService,
+                // AuthService,
                 AuthInterceptor
             ]
         });
@@ -39,7 +38,10 @@ describe('Interceptor', () => {
                 return of(null);
             }
         };
-        const request: HttpRequest<any> = new HttpRequest<any>('GET', `${environment.apiUrl}`);
+        const request: HttpRequest<any> = new HttpRequest<any>(
+            'GET',
+            `${environment.apiUrl}`
+        );
         const interceptor = TestBed.get(AuthInterceptor);
         interceptor.intercept(request, next);
         expect(response.headers.get('Authorization')).toEqual(token);

@@ -10,6 +10,7 @@ import { AppStoreModule } from './store/store.module';
 import { AuthModule } from './auth/auth.module';
 import { environment } from 'src/environments/environment';
 import { SharedModule } from './shared/shared.module';
+import { CompanyModule } from './company/company.module';
 
 @NgModule({
     imports: [
@@ -18,6 +19,7 @@ import { SharedModule } from './shared/shared.module';
         AppRoutingModule,
         SharedModule,
         AuthModule,
+        CompanyModule,
         AppStoreModule,
         ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
     ],

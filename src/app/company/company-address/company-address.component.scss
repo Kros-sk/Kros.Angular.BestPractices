@@ -1,0 +1,28 @@
+.companyAddress-grid {
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 15px;
+  margin-top: 15px;
+  display: grid;
+  grid-column-gap: 10px;
+  grid-row-gap: 15px;
+  grid-template-areas:
+    "street streetNumber"
+    "zipCode city";
+}
+
+.street {
+  grid-area: street;
+}
+
+.streetNumber {
+  grid-area: streetNumber;
+}
+
+.zipCode {
+  grid-area: zipCode;
+}
+
+.city {
+  grid-area: city;
+}

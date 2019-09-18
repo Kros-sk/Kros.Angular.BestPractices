@@ -3,7 +3,6 @@ import * as todoActions from './todo.actions';
 import { TodoListItem, NewTodoItem } from '../models/todo.model';
 import { TodoState } from './todo.state';
 
-
 describe('Todo Reducer and Action', () => {
     const todoList: TodoListItem[] = [
         {
@@ -13,8 +12,7 @@ describe('Todo Reducer and Action', () => {
             progress: true
         }
     ];
-    const todo: NewTodoItem =
-    {
+    const todo: NewTodoItem = {
         description: 'Create',
         name: 'New todo'
     };
@@ -30,9 +28,8 @@ describe('Todo Reducer and Action', () => {
         expect(result).toEqual({
             ...initialState,
             todos: todoList,
-            error: null,
+            error: null
         });
-
     });
 
     it('should mutate state correctly with Add Success Action', () => {
@@ -42,9 +39,8 @@ describe('Todo Reducer and Action', () => {
         expect(result).toEqual({
             ...initialState,
             // todos: todoList,
-            error: null,
+            error: null
         });
-
     });
 
     it('should mutate state correctly with SetProgressFormAdd Action', () => {
@@ -55,6 +51,5 @@ describe('Todo Reducer and Action', () => {
             ...initialState,
             addProgres: false
         });
-
     });
 });

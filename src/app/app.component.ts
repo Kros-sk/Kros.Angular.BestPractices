@@ -6,7 +6,9 @@ import { LoggedUser } from './models/logged-user.model';
 import { trigger, transition, animate, keyframes, style } from '@angular/animations';
 import { AuthService } from './auth/service/auth.service';
 import { Logout } from './auth/state/login.actions';
-import { LoginState } from './auth/state/login.state';
+
+import { CompanyItem } from './company/models/company.model';
+import { getCurrentCompany } from './company/state/company.selectors';
 
 
 @Component({
@@ -27,12 +29,13 @@ export class AppComponent implements OnInit {
     constructor(
         private router: Router,
         public authService: AuthService,
-        private store: Store<LoginState>
+        private store: Store<any>,
     ) { }
 
     actionInProgress = false;
     loggedUser$: Observable<LoggedUser>;
     isLoggedUser$: Observable<boolean>;
+    currentCompany$: Observable<CompanyItem>;
     state = 'left';
 
     seconds = 0;
@@ -40,6 +43,7 @@ export class AppComponent implements OnInit {
     ngOnInit(): void {
         this.isLoggedUser$ = this.store.select((store: any) => store.login.loggedUser != null);
         this.loggedUser$ = this.store.select((store: any) => store.login.loggedUser);
+        this.currentCompany$ = this.store.select(getCurrentCompany);
     }
 
     login(pageName: string) {
