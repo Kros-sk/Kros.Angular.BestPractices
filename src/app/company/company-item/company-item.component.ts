@@ -13,7 +13,9 @@ import * as companyActions from '../state/company.actions';
     styleUrls: ['./company-item.component.scss']
 })
 export class CompanyItemComponent implements OnInit {
-    constructor(private store: Store<CompanyState>, private router: Router) {}
+    constructor(
+    private store: Store<CompanyState>, 
+     private router: Router) {}
 
     @Input() item: CompanyItem;
 
