@@ -7,7 +7,6 @@ import { Store, select } from '@ngrx/store';
 import { CompanyState } from '../state/company.state';
 import * as companyActions from 'src/app/company/state/company.actions';
 import { CompanyItem } from '../models/company.model';
-import * as fromCompany from '../state/company.selectors';
 import { CompanyService } from '../services/company.service';
 import { CompanyAddressComponent } from '../company-address/company-address.component';
 @Component({

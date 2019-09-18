@@ -10,7 +10,7 @@ import {
     AbstractControl,
     FormGroup
 } from '@angular/forms';
-import { ZipCodeErrors } from './zip-code-validator';
+import { ZipCodeErrors } from './zip-code-errors';
 
 @Component({
     selector: 'kros-company-address',
