@@ -1,24 +1,27 @@
 
 <input type="checkbox"
-       [formControl]="isDoneControl">
+       [formControl]="isDoneControl"
+       data-test="todo-item-is-done">
 
-<div class="id">
+<div class="id" data-test="todo-item-id">
     {{item.id}}
 </div>
 
-<div class="name">
+<div class="name" data-test="todo-item-name">
     {{item.name}}
 </div>
 
 <div class="actions" [ngStyle]="{'visibility': !(item.progress) ? 'visible' : 'hidden'}">
     <button class="btn btn-outline-primary"
             (click)="editTodo(item.id)"
-            i18n="todo-item-edit-button">
+            i18n="todo-item-edit-button"
+            data-test="todo-item-edit-button">
         Edit
     </button>
     <button class="btn btn-outline-danger"
             (click)="deleteTodo(item.id)"
-            i18n="todo-item-delete-button">
+            i18n="todo-item-delete-button"
+            data-test="todo-item-delete-button">
         Delete
     </button>
 </div>
@@ -28,5 +31,6 @@
                  type="secondary"
                  [striped]="true"
                  [animated]="true"
-                 [value]="100">
+                 [value]="100"
+                 data-test="todo-item-loader">
 </ngb-progressbar>

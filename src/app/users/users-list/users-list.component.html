@@ -1,11 +1,13 @@
 <ng-container *ngIf="!(errorMessage$ | async)">
-    <ul class="list-group mt-4">
-        <li class="list-group-item" *ngFor="let user of usersList$ | async">
+    <ul class="list-group mt-4" data-test="user-list-all-users">
+        <li class="list-group-item"
+            *ngFor="let user of usersList$ | async"
+            data-test="user-list-user-info">
             <kros-user [user]="user"></kros-user>
         </li>
     </ul>
 </ng-container>
 
-<div class="text-danger">
+<div class="text-danger" data-test="user-list-message">
     {{ (errorMessage$ | async)?.localizedDescription }}
 </div>

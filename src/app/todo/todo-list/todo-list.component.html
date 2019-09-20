@@ -6,7 +6,9 @@
         <ngb-progressbar *ngIf="progress" class="mt-4" type="secondary" [striped]="true" [animated]="true"
             [value]="100">
         </ngb-progressbar>
-        <li class="list-group-item" *ngFor="let item of displayList">
+        <li class="list-group-item"
+            *ngFor="let item of displayList"
+            data-test="todo-list-all-items">
             <kros-todo-item [item]="item">
             </kros-todo-item>
         </li>
@@ -19,19 +21,22 @@
 
             <label ngbButtonLabel class="btn-outline-secondary">
                 <input ngbButton type="radio" [value]="0" (click)="setFilter()">
-                <span i18n="@@todo-list-filter-all">
+                <span i18n="@@todo-list-filter-all"
+                      data-test="todo-list-filter-all">
                     All
                 </span>
             </label>
             <label ngbButtonLabel class="btn-outline-secondary">
                 <input ngbButton type="radio" [value]="1" (click)="setFilter()">
-                <span i18n="@@todo-list-filter-active">
+                <span i18n="@@todo-list-filter-active"
+                      data-test="todo-list-filter-active">
                     Active
                 </span>
             </label>
             <label ngbButtonLabel class="btn-outline-secondary">
                 <input ngbButton type="radio" [value]="2" (click)="setFilter()">
-                <span i18n="@@todo-list-filter-completed">
+                <span i18n="@@todo-list-filter-completed"
+                      data-test="todo-list-filter-completed">
                     Completed
                 </span>
             </label>
@@ -39,7 +44,8 @@
 
         <button class="btn btn-outline-danger"
                 (click)="deleteComplete()"
-                i18n="@@todo-list-delete-completed-button">
+                i18n="@@todo-list-delete-completed-button"
+                data-test="todo-list-delete-completed-button">
             Delete completed
         </button>
 
@@ -47,6 +53,6 @@
 
 </ng-container>
 
-<div class="text-danger">
+<div class="text-danger" data-test="todo-list-message">
     {{ (errorMessage$ | async)?.localizedDescription }}
 </div>

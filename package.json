@@ -11,7 +11,8 @@
     "analyze": "webpack-bundle-analyzer dist/Kros.Angular.BestPractices/stats.json",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "cypress:open": "cypress open"
   },
   "private": true,
   "dependencies": {
@@ -48,6 +49,7 @@
     "@types/jasminewd2": "~2.0.3",
     "@types/node": "~12.0.10",
     "codelyzer": "^5.0.1",
+    "cypress": "^3.4.1",
     "jasmine-core": "~3.4.0",
     "jasmine-marbles": "^0.6.0",
     "jasmine-spec-reporter": "~4.2.1",

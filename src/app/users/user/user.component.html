@@ -1,15 +1,15 @@
-<div class="row px-2 align-items-center">
+<div class="row px-2 align-items-center" data-test="user-info">
 
-    <div class="col-1">
+    <div class="col-1" data-test="user-info-id">
         {{user.id}}
     </div>
-    <div class="col">
+    <div class="col" data-test="user-info-email">
         {{user.email}}
     </div>
 
     <div>
         <label class="switch">
-            <input [formControl]="isAdmin" type="checkbox" style="visibility: hidden">
+            <input [formControl]="isAdmin" type="checkbox" style="visibility: hidden" data-test="user-info-is-admin">
             <span class="slider round"></span>
         </label>
     </div>

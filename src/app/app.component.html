@@ -11,7 +11,8 @@
                         class="btn btn-outline-primary col"
                         [routerLink]="['/todo']"
                         routerLinkActive="active"
-                        i18n="@@app-component-todo-list-menu">
+                        i18n="@@app-component-todo-list-menu"
+                        data-test="app-component-todo-list-menu">
                     Todo list
                 </button>
 
@@ -24,7 +25,8 @@
                         #popover="ngbPopover"
                         (mouseenter)="popover.open()"
                         (mouseleave)="popover.close()"
-                        i18n="@@app-component-todo-users-management-menu">
+                        i18n="@@app-component-todo-users-management-menu"
+                        data-test="app-component-todo-users-management-menu">
                     Users management
                 </button>
 
@@ -48,7 +50,8 @@
     <div class="row d-flex justify-content-center px-4 py-4">
         <button class="btn btn-outline-primary"
                 (click)="login('todo')"
-                i18n="@@app-component-login-button">
+                i18n="@@app-component-login-button"
+                data-test="app-component-login-button">
             Login
         </button>
     </div>
@@ -59,16 +62,17 @@
         <div class="badge badge-pill badge-success"
              [@animationKros]='state'
              (click)="animateMe()">
-            <div>
+            <div data-test="app-component-user-name">
                 {{ (loggedUser$ | async).name }}
             </div>
-            <div>
+            <div data-test="app-component-user-email">
                 {{ (loggedUser$ | async).email }}
             </div>
         </div>
         <button class="btn btn-outline-danger"
                 (click)="logout()"
-                i18n="@@app-component-logout-button">
+                i18n="@@app-component-logout-button"
+                data-test="app-component-logout-button">
             Logout
         </button>
     </div>
