@@ -12,7 +12,9 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "cypress:open": "cypress open"
+    "cypress:open:dev": "cypress open -c baseUrl=http://localhost:4200",
+    "cypress:open:prod": "cypress open",
+    "cypress:run:prod": "cypress run -c baseUrl=http://localhost:4200 --record --key f6df6669-db0d-4228-9368-242987f124b9"
   },
   "private": true,
   "dependencies": {

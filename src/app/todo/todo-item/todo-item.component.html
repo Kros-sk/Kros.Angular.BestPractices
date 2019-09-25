@@ -7,9 +7,7 @@
     {{item.id}}
 </div>
 
-<div class="name" data-test="todo-item-name">
-    {{item.name}}
-</div>
+<div class="name" data-test="todo-item-name">{{item.name}}</div>
 
 <div class="actions" [ngStyle]="{'visibility': !(item.progress) ? 'visible' : 'hidden'}">
     <button class="btn btn-outline-primary"

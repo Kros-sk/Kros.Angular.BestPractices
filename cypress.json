@@ -1,10 +1,12 @@
 {
   "projectId": "u3uuhi",
-  "baseUrl": "http://localhost:4200",
+  "baseUrl": "https://demo.todos.kros.wtf",
   "chromeWebSecurity": false,
   "ProjectName": "Demo.BestPractices",
   "OAuthUrl": "https://login.kros.wtf",
   "OAuthClientId": "Demo.BestPractices.Postman",
   "OAuthUsername": "integrationtests@kros.sk",
-  "OAuthPassword": "integrationtests"
+  "OAuthPassword": "integrationtests",
+  "UserEmail": "integrationtests@kros.sk",
+  "UserName": "Integration Tests"
 }
