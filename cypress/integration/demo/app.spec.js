@@ -10,9 +10,9 @@ describe('App tests', function() {
             // Vstup do prihlasenej aplikacie
             cy.visit('/');
 
-            cy.get('.badge > :nth-child(1)').contains(Cypress.config("UserName"));
-            cy.get('.badge > :nth-child(2)').contains(Cypress.config("UserEmail"));
-            cy.get('.d-flex > .btn').should("exist");
+            cy.get('[data-test=app-component-user-name]').contains(Cypress.config("UserName"));
+            cy.get('[data-test=app-component-user-email]').contains(Cypress.config("UserEmail"));
+            cy.get('[data-test=app-component-logout-button]').should("exist");
         })
     })
 })
