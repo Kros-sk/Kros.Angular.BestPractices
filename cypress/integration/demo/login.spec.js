@@ -6,6 +6,7 @@ describe('Prihlasenie a odhlasenie', function() {
         cy.visit('/');
 
         cy.contains('Login').click();
+        cy.wait(3000);
 
         cy.get('#Email').type(Cypress.config('OAuthUsername'));
         cy.get('#Password').type(Cypress.config('OAuthPassword'));
