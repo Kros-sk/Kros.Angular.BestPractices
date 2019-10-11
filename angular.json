@@ -76,7 +76,7 @@
                                     "maximumError": "5mb"
                                 }
                             ],
-                            "serviceWorker": true,
+                            "serviceWorker": false,
                             "ngswConfigPath": "src/ngsw-config.json"
                         },
                         "production-sk": {
@@ -102,7 +102,7 @@
                                     "maximumError": "5mb"
                                 }
                             ],
-                            "serviceWorker": true,
+                            "serviceWorker": false,
                             "ngswConfigPath": "src/ngsw-config.json",
                             "i18nFile": "src/locale/sk.xlf",
                             "i18nFormat": "xlf",
