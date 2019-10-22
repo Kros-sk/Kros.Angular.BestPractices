@@ -30,6 +30,12 @@
                     Users management
                 </button>
 
+                <button type="button" class="btn btn-outline-primary col" [routerLink]="['/company/list']"
+                    i18n="@@app-component-todo-list-menu"
+                    [ngClass]="{'active':router.url.includes('company')}">
+                    Companies
+                </button>
+
             </div>
 
         </div>
@@ -67,6 +73,9 @@
             </div>
             <div data-test="app-component-user-email">
                 {{ (loggedUser$ | async).email }}
+            </div>
+            <div *ngIf="(currentCompany$ | async) != null">
+                {{ (currentCompany$ | async).companyName }}
             </div>
         </div>
         <button class="btn btn-outline-danger"
