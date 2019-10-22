@@ -1,0 +1,13 @@
+{
+    "chromeWebSecurity": false,
+
+    "projectId": "u3uuhi",
+    "baseUrl": "https://demo.todos.kros.wtf",
+    "ProjectName": "Demo.BestPractices",
+    "OAuthUrl": "https://login.kros.wtf",
+    "OAuthClientId": "Demo.BestPractices.Postman",
+    "OAuthUsername": "integrationtests@kros.sk",
+    "OAuthPassword": "integrationtests",
+    "UserEmail": "integrationtests@kros.sk",
+    "UserName": "Integration Tests"
+}

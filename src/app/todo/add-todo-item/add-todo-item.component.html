@@ -7,12 +7,13 @@
 </div>
 <form [ngStyle]="{'visibility': !(progress$ | async) ? 'visible' : 'hidden'}" [formGroup]="todoForm"
     (ngSubmit)="addTodo()" class="d-flex justify-content-between">
-    <input class="col mr-4" type="text" formControlName="name">
+    <input class="col mr-4" type="text" formControlName="name" data-test="add-todo-item-name">
 
-    <input class="col mr-4" type="text" formControlName="description">
+    <input class="col mr-4" type="text" formControlName="description" data-test="add-todo-item-description">
 
     <button class="btn btn-outline-success col-2" type="submit" [disabled]="!todoForm.valid"
-        i18n="@@add-todo-item-button">
+        i18n="@@add-todo-item-button"
+        data-test="add-todo-item-button">
         Add
     </button>
 </form>
