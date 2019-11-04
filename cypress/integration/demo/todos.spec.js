@@ -1,68 +1,38 @@
 /// <reference types="cypress" />
 
+import * as todoPage from "../../support";
 
-// Start: Application Code
-
-var todoName = "Nova poznamka";
-var todoDescription = "Popis poznamky";
-var newTodoName = "Novy nazov poznamky";
-
-function addNewTodo() {
-    cy.get('[data-test=add-todo-item-name]').type(todoName);
-    cy.get('[data-test=add-todo-item-description]').type(todoDescription);
-
-    cy.server();
-    cy.route('POST', '**ToDos').as('createRoute');
-    cy.get('[data-test=add-todo-item-button]').click({force: true});
-    cy.wait(['@createRoute']);
-}
-
-function setIsDoneForLastTodo() {
-    cy.server();
-    cy.route('PUT', 'ToDos/changeIsDoneState/*').as('updateIsDoneRoute');
-
-    cy.get('[data-test=todo-item-is-done]')
-        .last()
-        .check();
-
-    cy.wait(['@updateIsDoneRoute']);
-}
-
-// End: Application Code
 
 
 describe('Todos tests', function() {
     before(function () {
         cy.login();
 
-        cy.server({
-            urlMatchingOptions: { matchBase: false, dot: true}
-        });
-
+        cy.server();
         cy.route({
             method: 'GET',
             url: '**ToDos*'}).as('getAllTodosRoute');
 
-        // Vstup do prihlasenej aplikacie
+        // Vstup do prihlasenej aplikacie do todos
         cy.visit('/');
-
         cy.get('[data-test=app-component-todo-list-menu]').click();
-
         cy.wait(['@getAllTodosRoute']);
     })
 
     it('Pridanie novej poznamky', () => {
-        addNewTodo();
+        todoPage.addNewTodo();
+
+        // Nova poznamka sa sice prida, ale nestihne sa vlozit do HTML DOM stromu, preto tento wait (idealne to nejako vyriesit)
+        cy.reload();
+        //cy.wait(1000);
+        cy.get('[data-test=todo-list-all-items] li')
+            .should('have.length', 1);
     })
 
-    it('Zeditovanie novo pridanej poznamky', () => {
-        // Nova poznamka sa sice prida, ale nestihne sa vlozit do HTML DOM stromu, preto tento wait (idealne to nejako vyriesit)
-        cy.wait(1000);
+    it('Zeditovanie poslednej poznamky', () => {
         cy.get('[data-test=todo-list-all-items] [data-test=todo-list-group-item]:last-child [data-test=todo-item-name]')
             .last()
             .as("lastTodoName");
-
-        // Pridat test
 
         cy.get('[data-test=todo-list-all-items] [data-test=todo-list-group-item]:last-child [data-test=todo-item-edit-button]')
             .last()
@@ -78,13 +48,16 @@ describe('Todos tests', function() {
         cy.get('[data-test=edit-todo-close-button-top-right]').click({force: true});
         cy.get('@lastEditButton').click({force: true});
 
+        const newTodoName = 'Novy nazov poznamky';
+        const newTodoDesc = 'Novy popis poznamky';
+
         // Zeditovanie poznamky
         cy.get('[data-test=edit-todo-name-input]')
             .clear()
-            .type("Novy nazov poznamky"); // Todo urpavit
+            .type(newTodoName);
         cy.get('[data-test=edit-todo-description-input]')
             .clear()
-            .type("Novy popis poznamky");
+            .type(newTodoDesc);
 
         cy.server();
         cy.route('PUT', 'ToDos/*').as('updateRoute');
@@ -95,11 +68,11 @@ describe('Todos tests', function() {
     })
 
     it('Vybavenie poslednej poznamky', () => {
-        setIsDoneForLastTodo();
+        todoPage.setIsDoneForLastTodo();
         cy.get('[data-test=todo-item-is-done]').should('be.checked');
     })
 
-    it('Vymazanie novo pridanej poznamky', () => {
+    it('Vymazanie poslednej poznamky', () => {
         cy.get('[data-test=todo-list-all-items] [data-test=todo-list-group-item] [data-test=todo-item-delete-button]')
             .last()
             .as("lastDeleteButton");
@@ -113,10 +86,10 @@ describe('Todos tests', function() {
     })
 
     it('Otestovanie filtrov', () => {
-        addNewTodo();
-        setIsDoneForLastTodo();
-        addNewTodo();
-        addNewTodo();
+        todoPage.addNewTodo();
+        todoPage.setIsDoneForLastTodo();
+        todoPage.addNewTodo();
+        todoPage.addNewTodo();
 
         // Active filter
         cy.server();

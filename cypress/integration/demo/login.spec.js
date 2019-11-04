@@ -3,10 +3,10 @@
 describe('Prihlasenie a odhlasenie', function() {
     it('Prihlasenie a odhlasenie', () => {
         // Vstup do aplikacie pred prihlasenim
-        cy.visit('/');
+        cy.visit('/', );
 
-        cy.contains('Login').click();
-        cy.wait(3000);
+        cy.contains('Login').click({force: true});
+        cy.location('pathname').should('eq', '/Account/Login')
 
         cy.get('#Email').type(Cypress.config('OAuthUsername'));
         cy.get('#Password').type(Cypress.config('OAuthPassword'));

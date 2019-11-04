@@ -18,3 +18,24 @@ import './commands'
 
 // Alternatively you can use CommonJS syntax:
 // require('./commands')
+
+export function addNewTodo() {
+    cy.get('[data-test=add-todo-item-name]').type('Nova poznamka');
+    cy.get('[data-test=add-todo-item-description]').type('Popis poznamky');
+
+    cy.server();
+    cy.route('POST', '**ToDos').as('createRoute');
+    cy.get('[data-test=add-todo-item-button]').click({force: true});
+    cy.wait(['@createRoute']);
+}
+
+export function setIsDoneForLastTodo() {
+    cy.server();
+    cy.route('PUT', 'ToDos/changeIsDoneState/*').as('updateIsDoneRoute');
+
+    cy.get('[data-test=todo-item-is-done]')
+        .last()
+        .check();
+
+    cy.wait(['@updateIsDoneRoute']);
+}
