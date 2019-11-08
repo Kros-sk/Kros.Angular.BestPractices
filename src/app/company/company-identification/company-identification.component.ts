@@ -41,14 +41,14 @@ export class CompanyIdentificationComponent
     }
     ngOnInit() {
         this.companyIdentification = this.fb.group({
-            companyName: ['', [Validators.required, Validators.maxLength(50)]],
+            organizationName: ['', [Validators.required, Validators.maxLength(50)]],
             businessId: ['', [Validators.required, Validators.pattern(/^\d*$/)]]
         });
     }
 
     writeValue(obj: any): void {
         this.companyIdentification.patchValue({
-            companyName: obj.companyName,
+            organizationName: obj.organizationName,
             businessId: obj.businessId
         });
     }

@@ -33,7 +33,7 @@
                 <button type="button" class="btn btn-outline-primary col" [routerLink]="['/company/list']"
                     i18n="@@app-component-todo-list-menu"
                     [ngClass]="{'active':router.url.includes('company')}">
-                    Companies
+                    Organizations
                 </button>
 
             </div>
@@ -75,7 +75,7 @@
                 {{ (loggedUser$ | async).email }}
             </div>
             <div *ngIf="(currentCompany$ | async) != null">
-                {{ (currentCompany$ | async).companyName }}
+                {{ (currentCompany$ | async).organizationName }}
             </div>
         </div>
         <button class="btn btn-outline-danger"

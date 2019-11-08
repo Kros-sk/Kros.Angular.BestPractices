@@ -9,6 +9,7 @@ import { Logout } from './auth/state/login.actions';
 
 import { CompanyItem } from './company/models/company.model';
 import { getCurrentCompany } from './company/state/company.selectors';
+import * as companyActions from './company/state/company.actions';
 
 
 @Component({
@@ -44,6 +45,8 @@ export class AppComponent implements OnInit {
         this.isLoggedUser$ = this.store.select((store: any) => store.login.loggedUser != null);
         this.loggedUser$ = this.store.select((store: any) => store.login.loggedUser);
         this.currentCompany$ = this.store.select(getCurrentCompany);
+
+        this.store.dispatch(new companyActions.LoadOnStart());
     }
 
     login(pageName: string) {

@@ -4,9 +4,11 @@ import { LocalizedErrorInfo } from 'src/app/shared/models/error-info.model';
 
 export enum CompanyActionsTypes {
     Load = '[Company] Load company items',
+    LoadOnStart = '[Company] Load company items on start',
     LoadCompany = '[Company] Load company item',
     LoadCompanySuccess = '[Company] Load company item Success',
     LoadSuccess = '[Company] Load company items Success',
+    LoadOnStartSuccess = '[Company] Load company items on start Success',
     LoadFail = '[Company] Load company items Fail',
     Add = '[Company] Add new company item',
     AddSuccess = '[Company] Add new company item Success',
@@ -19,11 +21,16 @@ export enum CompanyActionsTypes {
     UpdateFail = '[Company] Update company item Fail',
     SetCurrentCompany = '[Company] Set current company',
     StartProgress = '[Company] Start progress bar',
-    StopProgress = '[Company] Stop progress bar'
+    StopProgress = '[Company] Stop progress bar',
+    SetFirstCompany = '[Company] Set first company',
 }
 
 export class Load implements Action {
     readonly type = CompanyActionsTypes.Load;
+}
+
+export class LoadOnStart implements Action {
+    readonly type = CompanyActionsTypes.LoadOnStart;
 }
 
 export class LoadCompany implements Action {
@@ -40,6 +47,12 @@ export class LoadCompanySuccess implements Action {
 
 export class LoadSuccess implements Action {
     readonly type = CompanyActionsTypes.LoadSuccess;
+
+    constructor(public payload: CompanyItem[]) {}
+}
+
+export class LoadOnStartSuccess implements Action {
+    readonly type = CompanyActionsTypes.LoadOnStartSuccess;
 
     constructor(public payload: CompanyItem[]) {}
 }
@@ -108,6 +121,12 @@ export class SetCurrentCompany implements Action {
     constructor(public payload: number) {}
 }
 
+export class SetFirstCompany implements Action {
+    readonly type = CompanyActionsTypes.SetFirstCompany;
+
+    constructor() {}
+}
+
 export class StartProgress implements Action {
     readonly type = CompanyActionsTypes.StartProgress;
 }
@@ -118,9 +137,11 @@ export class StopProgress implements Action {
 
 export type CompanyActions =
     | Load
+    | LoadOnStart
     | LoadCompany
     | LoadCompanySuccess
     | LoadSuccess
+    | LoadOnStartSuccess
     | LoadFail
     | Add
     | AddSuccess
@@ -133,4 +154,5 @@ export type CompanyActions =
     | DeleteFail
     | SetCurrentCompany
     | StartProgress
-    | StopProgress;
+    | StopProgress
+    | SetFirstCompany;

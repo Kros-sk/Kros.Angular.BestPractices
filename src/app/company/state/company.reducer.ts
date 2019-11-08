@@ -4,6 +4,7 @@ import { CompanyActionsTypes, CompanyActions } from './company.actions';
 export function companyReducer(state = initialState, action: CompanyActions): CompanyState {
     switch (action.type) {
         case CompanyActionsTypes.LoadSuccess:
+        case CompanyActionsTypes.LoadOnStartSuccess:
             return {
                 ...state,
                 companies: action.payload,
@@ -41,6 +42,12 @@ export function companyReducer(state = initialState, action: CompanyActions): Co
             return {
                 ...state,
                 showProgressLoad: false
+            };
+
+        case CompanyActionsTypes.SetFirstCompany:
+            return {
+                ...state,
+                currentCompanyId: (state.companies.length > 0) ? state.companies[0].id : 0
             };
 
         default:

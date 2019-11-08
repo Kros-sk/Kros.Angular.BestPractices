@@ -39,7 +39,7 @@ export class CompanyListComponent implements OnInit {
             select(fromCompany.getCompanyList),
             map(companies =>
                 companies.sort((a, b) =>
-                    a.companyName.localeCompare(b.companyName)
+                    a.organizationName.localeCompare(b.organizationName)
                 )
             )
         );

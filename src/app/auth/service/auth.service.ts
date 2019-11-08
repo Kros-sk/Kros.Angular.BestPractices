@@ -2,11 +2,13 @@ import { Injectable } from '@angular/core';
 import { UserManager, UserManagerSettings, User, WebStorageStateStore } from 'oidc-client';
 import * as Oidc from 'oidc-client';
 import { LoggedUser } from '../models/logged-user.model';
-import { Store } from '@ngrx/store';
+import { Store, select } from '@ngrx/store';
 import { State } from '../state/login.state';
 import { LoginSuccess } from '../state/login.actions';
 import { environment } from 'src/environments/environment';
 import { HttpClient } from '@angular/common/http';
+import { CompanyItem } from 'src/app/company/models/company.model';
+import { getCurrentCompany } from 'src/app/company/state/company.selectors';
 
 
 @Injectable({
@@ -17,6 +19,7 @@ export class AuthService {
     private manager: UserManager = null;
     private user: User = null;
     public isAdmin = false;
+    private currentCompanyId = 0;
 
     constructor(
         private store: Store<State>,
@@ -27,8 +30,8 @@ export class AuthService {
         this.manager.getUser().then(user => {
             this.user = user;
             if (this.user) {
-                this.loadUserInfo();
                 this.store.dispatch(new LoginSuccess(this.getLoggedUser()));
+                this.loadUserInfo();
             }
         });
 
@@ -36,11 +39,21 @@ export class AuthService {
             this.manager.getUser().then(user => {
                 this.user = user;
                 if (this.user) {
-                    this.loadUserInfo();
                     this.store.dispatch(new LoginSuccess(this.getLoggedUser()));
+                    this.loadUserInfo();
                 }
             });
         });
+
+        this.store
+            .pipe(select(getCurrentCompany))
+            .subscribe((currentCompany: CompanyItem) => {
+                if (currentCompany != null) {
+                    this.currentCompanyId = currentCompany.id;
+                } else {
+                    this.currentCompanyId = 0;
+                }
+            });
     }
 
 
@@ -74,7 +87,7 @@ export class AuthService {
 
     loadUserInfo() {
         this.http
-            .get(`${environment.apiUrl}/users/isadmin`)
+            .get(`${environment.apiUrl}/organizations/${this.currentCompanyId}/users/isadmin`)
             .subscribe(resp => {
                 if (resp) {
                     this.isAdmin = (resp as boolean);
