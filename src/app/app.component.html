@@ -21,10 +21,6 @@
                         [routerLink]="['/users']"
                         routerLinkActive="active"
                         placement="top"
-                        [ngbPopover]="authService.isAdmin ? 'You are Admin' : 'You are not Admin'"
-                        #popover="ngbPopover"
-                        (mouseenter)="popover.open()"
-                        (mouseleave)="popover.close()"
                         i18n="@@app-component-todo-users-management-menu"
                         data-test="app-component-todo-users-management-menu">
                     Users management

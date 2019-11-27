@@ -27,7 +27,7 @@ const routes: Routes = [
     },
     {
         path: '**',
-        redirectTo: '/company',
+        redirectTo: '/company/list',
         pathMatch: 'full'
     }
 ];

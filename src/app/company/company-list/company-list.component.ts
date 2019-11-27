@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { Store, select } from '@ngrx/store';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { map, tap } from 'rxjs/operators';
 
 import { CompanyState } from '../state/company.state';
 import * as companyActions from '../state/company.actions';
@@ -27,6 +27,7 @@ export class CompanyListComponent implements OnInit {
     errorMessage$: Observable<LocalizedErrorInfo | null>;
     currentCompanyId: number;
     progress$: Observable<boolean>;
+    private companiesCount = null;
 
     ngOnInit() {
         this.errorMessage$ = this.store.pipe(select(fromCompany.getError));
@@ -41,6 +42,17 @@ export class CompanyListComponent implements OnInit {
                 companies.sort((a, b) =>
                     a.organizationName.localeCompare(b.organizationName)
                 )
+            ),
+            tap(companies => {
+                companies.map(() =>
+                    this.companiesCount = this.companiesCount + 1
+                );
+                if (this.companiesCount === 0) {
+                    this.addCompany();
+                } else {
+                    this.companiesCount = 0;
+                }
+            }
             )
         );
 
