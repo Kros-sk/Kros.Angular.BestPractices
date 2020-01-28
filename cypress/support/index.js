@@ -31,7 +31,7 @@ export function addNewTodo() {
 
 export function setIsDoneForLastTodo() {
     cy.server();
-    cy.route('PUT', 'ToDos/changeIsDoneState/*').as('updateIsDoneRoute');
+    cy.route('PUT', /organizations\/\d+\/ToDos\/changeIsDoneState*/).as('updateIsDoneRoute');
 
     cy.get('[data-test=todo-item-is-done]')
         .last()

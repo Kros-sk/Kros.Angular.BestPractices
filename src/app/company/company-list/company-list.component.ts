@@ -39,9 +39,11 @@ export class CompanyListComponent implements OnInit {
         this.companies$ = this.store.pipe(
             select(fromCompany.getCompanyList),
             map(companies =>
-                companies.sort((a, b) =>
-                    a.organizationName.localeCompare(b.organizationName)
-                )
+                companies.sort((a, b) => {
+                    if (a.organizationName) {
+                        return a.organizationName.localeCompare(b.organizationName);
+                    }
+                })
             ),
             tap(companies => {
                 companies.map(() =>
