@@ -12,6 +12,7 @@ export class UserGuardService {
         if (this.authService.isAdmin) {
             return true;
         }
+        alert('You are not admin!');
         return false;
     }
 }

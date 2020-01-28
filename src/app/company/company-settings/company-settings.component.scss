@@ -6,7 +6,7 @@
   grid-column-gap: 10px;
   grid-row-gap: 15px;
   grid-template-areas:
-    "companyName"
+    "organizationName"
     "businessId";
 }
 
@@ -23,8 +23,8 @@
     "zipCode city";
 }
 
-.companyName {
-  grid-area: companyName;
+.organizationName {
+  grid-area: organizationName;
   font-weight: bold;
 }
 

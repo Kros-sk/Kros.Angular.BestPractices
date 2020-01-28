@@ -1,68 +1,45 @@
 /// <reference types="cypress" />
 
-
-// Start: Application Code
-
-var todoName = "Nova poznamka";
-var todoDescription = "Popis poznamky";
-var newTodoName = "Novy nazov poznamky";
-
-function addNewTodo() {
-    cy.get('[data-test=add-todo-item-name]').type(todoName);
-    cy.get('[data-test=add-todo-item-description]').type(todoDescription);
-
-    cy.server();
-    cy.route('POST', '**ToDos').as('createRoute');
-    cy.get('[data-test=add-todo-item-button]').click({force: true});
-    cy.wait(['@createRoute']);
-}
-
-function setIsDoneForLastTodo() {
-    cy.server();
-    cy.route('PUT', 'ToDos/changeIsDoneState/*').as('updateIsDoneRoute');
-
-    cy.get('[data-test=todo-item-is-done]')
-        .last()
-        .check();
-
-    cy.wait(['@updateIsDoneRoute']);
-}
-
-// End: Application Code
-
+import * as todoPage from "../../support";
 
 describe('Todos tests', function() {
     before(function () {
         cy.login();
 
-        cy.server({
-            urlMatchingOptions: { matchBase: false, dot: true}
-        });
-
+        // Vstup do prihlasenej aplikacie
+        cy.server();
         cy.route({
             method: 'GET',
-            url: '**ToDos*'}).as('getAllTodosRoute');
+            url: /organizations/}).as('getAllOrganizations');
+            cy.visit('/company/list');
+        cy.wait(['@getAllOrganizations']);
+    })
 
-        // Vstup do prihlasenej aplikacie
-        cy.visit('/');
+    it('Zvolenie prvej organizacie', () => {
+        cy.get('.actions > :nth-child(1)').click();
 
-        cy.get('[data-test=app-component-todo-list-menu]').click();
-
+        cy.server();
+        cy.route({
+            method: 'GET',
+            url: /organizations\/\d+\/ToDos/}).as('getAllTodosRoute');
+        cy.get('[data-test=app-component-todo-list-menu]').click({ force: true });
         cy.wait(['@getAllTodosRoute']);
     })
 
     it('Pridanie novej poznamky', () => {
-        addNewTodo();
+        todoPage.addNewTodo();
+
+        // Nova poznamka sa sice prida, ale nestihne sa vlozit do HTML DOM stromu, preto tento wait (idealne to nejako vyriesit)
+        //cy.reload();
+        //cy.wait(1000);
+        cy.get('[data-test=todo-list-all-items] li')
+            .should('have.length', 1);
     })
 
-    it('Zeditovanie novo pridanej poznamky', () => {
-        // Nova poznamka sa sice prida, ale nestihne sa vlozit do HTML DOM stromu, preto tento wait (idealne to nejako vyriesit)
-        cy.wait(1000);
+    it('Zeditovanie poslednej poznamky', () => {
         cy.get('[data-test=todo-list-all-items] [data-test=todo-list-group-item]:last-child [data-test=todo-item-name]')
             .last()
             .as("lastTodoName");
-
-        // Pridat test
 
         cy.get('[data-test=todo-list-all-items] [data-test=todo-list-group-item]:last-child [data-test=todo-item-edit-button]')
             .last()
@@ -78,16 +55,19 @@ describe('Todos tests', function() {
         cy.get('[data-test=edit-todo-close-button-top-right]').click({force: true});
         cy.get('@lastEditButton').click({force: true});
 
+        const newTodoName = 'Novy nazov poznamky';
+        const newTodoDesc = 'Novy popis poznamky';
+
         // Zeditovanie poznamky
         cy.get('[data-test=edit-todo-name-input]')
             .clear()
-            .type("Novy nazov poznamky"); // Todo urpavit
+            .type(newTodoName);
         cy.get('[data-test=edit-todo-description-input]')
             .clear()
-            .type("Novy popis poznamky");
+            .type(newTodoDesc);
 
         cy.server();
-        cy.route('PUT', 'ToDos/*').as('updateRoute');
+        cy.route('PUT', /organizations\/\d+\/ToDos/).as('updateRoute');
         cy.get('[data-test=edit-todo-save-button]').click({force: true});
         cy.wait(['@updateRoute']);
 
@@ -95,17 +75,17 @@ describe('Todos tests', function() {
     })
 
     it('Vybavenie poslednej poznamky', () => {
-        setIsDoneForLastTodo();
+        todoPage.setIsDoneForLastTodo();
         cy.get('[data-test=todo-item-is-done]').should('be.checked');
     })
 
-    it('Vymazanie novo pridanej poznamky', () => {
+    it('Vymazanie poslednej poznamky', () => {
         cy.get('[data-test=todo-list-all-items] [data-test=todo-list-group-item] [data-test=todo-item-delete-button]')
             .last()
             .as("lastDeleteButton");
 
         cy.server();
-        cy.route('DELETE', 'ToDos/*').as('deleteRoute');
+        cy.route('DELETE', /organizations\/\d+\/ToDos*/).as('deleteRoute');
         cy.get('@lastDeleteButton').click({force: true});
         cy.wait(['@deleteRoute']);
 
@@ -113,10 +93,10 @@ describe('Todos tests', function() {
     })
 
     it('Otestovanie filtrov', () => {
-        addNewTodo();
-        setIsDoneForLastTodo();
-        addNewTodo();
-        addNewTodo();
+        todoPage.addNewTodo();
+        todoPage.setIsDoneForLastTodo();
+        todoPage.addNewTodo();
+        todoPage.addNewTodo();
 
         // Active filter
         cy.server();
@@ -141,7 +121,7 @@ describe('Todos tests', function() {
 
     it('Vymazanie hotovych poznamok', () => {
         cy.server();
-        cy.route('DELETE', 'ToDos/deleteCompleted').as('deleteCompletedRoute');
+        cy.route('DELETE', /organizations\/\d+\/ToDos\/deleteCompleted/).as('deleteCompletedRoute');
         cy.get('[data-test=todo-list-delete-completed-button]').click({force: true});
         cy.wait(['@deleteCompletedRoute']);
 
@@ -158,9 +138,13 @@ describe('Todos tests', function() {
     })
 
     it('Vymazanie vsetkych poznamok postupne', () => {
+        deleteAllTodos();
+    })
+
+    function deleteAllTodos() {
         // Info about multiple parameters: https://docs.cypress.io/api/commands/click.html#Click-all-buttons-found-on-the-page
         cy.get('[data-test=todo-item-delete-button]').click({ multiple: true, force: true });
         cy.get('[data-test=todo-list-group-item]').should('have.length', 0);
-    })
+    }
 })
 

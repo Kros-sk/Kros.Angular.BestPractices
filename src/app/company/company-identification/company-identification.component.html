@@ -1,8 +1,8 @@
 <div class="companyDetails-grid" [formGroup]="companyIdentification">
-    <div class="companyName">
-        <input class="col mr-4" type="text" formControlName="companyName" placeholder="Company Name">
-        <div *ngIf="companyIdentification.get('companyName').invalid &&
-        (companyIdentification.get('companyName').dirty || companyIdentification.get('companyName').touched)"
+    <div class="organizationName">
+        <input class="col mr-4" type="text" formControlName="organizationName" placeholder="Company Name">
+        <div *ngIf="companyIdentification.get('organizationName').invalid &&
+        (companyIdentification.get('organizationName').dirty || companyIdentification.get('organizationName').touched)"
             class="alert alert-danger">
             Company name is required
         </div>

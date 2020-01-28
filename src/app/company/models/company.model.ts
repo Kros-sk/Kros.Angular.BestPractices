@@ -1,7 +1,7 @@
 export class CompanyItem {
     id: number;
     userId: number;
-    companyName: string;
+    organizationName: string;
     businessId: string;
     street: string;
     streetNumber: string;
@@ -10,7 +10,7 @@ export class CompanyItem {
 }
 
 export class AddCompanyItem {
-    companyName: string;
+    organizationName: string;
     businessId: string;
     street: string;
     streetNumber: string;

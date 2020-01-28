@@ -18,15 +18,31 @@ export class CompanyEffects {
 
     @Effect()
     loadCompanies$: Observable<Action> = this.actions$.pipe(
-        ofType(companyActions.CompanyActionsTypes.Load),
-        switchMap(() =>
+        ofType(
+            companyActions.CompanyActionsTypes.Load,
+            companyActions.CompanyActionsTypes.LoadOnStart
+        ),
+        switchMap((action: Action) =>
             this.companyService.getCompanyList().pipe(
-                map(company => new companyActions.LoadSuccess(company)),
+                map(companies => {
+                    if (action.type === companyActions.CompanyActionsTypes.Load) {
+                        return new companyActions.LoadSuccess(companies);
+                    }
+                    return new companyActions.LoadOnStartSuccess(companies);
+                }),
                 catchError((err: LocalizedErrorInfo) =>
                     of(new companyActions.LoadFail(err))
                 )
             )
         )
+    );
+
+    @Effect()
+    setCompanyAfterLoad$ = this.actions$.pipe(
+        ofType(
+            companyActions.CompanyActionsTypes.LoadOnStartSuccess
+        ),
+        map(() => new companyActions.SetFirstCompany())
     );
 
     @Effect()
@@ -119,7 +135,6 @@ export class CompanyEffects {
     @Effect()
     reloadAfterChanges$: Observable<Action> = this.actions$.pipe(
         ofType(
-            LoginActionsTypes.LoginSuccess,
             companyActions.CompanyActionsTypes.AddSuccess,
             companyActions.CompanyActionsTypes.UpdateSuccess,
             companyActions.CompanyActionsTypes.DeleteSuccess

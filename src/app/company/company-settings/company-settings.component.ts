@@ -37,7 +37,7 @@ export class CompanySettingsComponent implements OnInit {
         this.showCompanyDetails();
         this.companyDetails = this.fb.group({
             companyIdentification: {
-                companyName: '',
+                organizationName: '',
                 businessId: ''
             },
             address: {
@@ -58,7 +58,7 @@ export class CompanySettingsComponent implements OnInit {
         this.companyService.getCompany(this.companyId).subscribe(item => {
             if (this.companyId) {
                 this.companyDetails.get('companyIdentification').patchValue({
-                    companyName: item.companyName,
+                    organizationName: item.organizationName,
                     businessId: item.businessId
                 });
                 this.companyDetails.get('address').patchValue({

@@ -31,7 +31,7 @@ export class CompanyDetailComponent implements OnInit {
         this.isLoaded = false;
         this.companyForm = this.formBuilder.group({
             businessId: ['', Validators.required],
-            companyName: ['', Validators.required],
+            organizationName: ['', Validators.required],
             street: [],
             streetNumber: [],
             city: [],
@@ -43,7 +43,7 @@ export class CompanyDetailComponent implements OnInit {
             this.companyService.getCompany(this.companyId).subscribe(item => {
                 this.companyForm.patchValue({
                     businessId: item.businessId,
-                    companyName: item.companyName,
+                    organizationName: item.organizationName,
                     street: item.street,
                     streetNumber: item.streetNumber,
                     city: item.city,

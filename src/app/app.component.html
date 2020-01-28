@@ -21,10 +21,6 @@
                         [routerLink]="['/users']"
                         routerLinkActive="active"
                         placement="top"
-                        [ngbPopover]="authService.isAdmin ? 'You are Admin' : 'You are not Admin'"
-                        #popover="ngbPopover"
-                        (mouseenter)="popover.open()"
-                        (mouseleave)="popover.close()"
                         i18n="@@app-component-todo-users-management-menu"
                         data-test="app-component-todo-users-management-menu">
                     Users management
@@ -33,7 +29,7 @@
                 <button type="button" class="btn btn-outline-primary col" [routerLink]="['/company/list']"
                     i18n="@@app-component-todo-list-menu"
                     [ngClass]="{'active':router.url.includes('company')}">
-                    Companies
+                    Organizations
                 </button>
 
             </div>
@@ -75,7 +71,7 @@
                 {{ (loggedUser$ | async).email }}
             </div>
             <div *ngIf="(currentCompany$ | async) != null">
-                {{ (currentCompany$ | async).companyName }}
+                {{ (currentCompany$ | async).organizationName }}
             </div>
         </div>
         <button class="btn btn-outline-danger"
