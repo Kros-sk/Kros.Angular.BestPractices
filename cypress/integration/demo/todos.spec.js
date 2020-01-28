@@ -13,17 +13,6 @@ describe('Todos tests', function() {
             url: /organizations/}).as('getAllOrganizations');
             cy.visit('/company/list');
         cy.wait(['@getAllOrganizations']);
-
-        // Vstup do prihlasenej aplikacie do todos
-        //cy.visit('/todo'); // Problem s nahodnym presmerovanim na todo route
-        //cy.wait(3000);
-
-        // cy.server();
-        // cy.route({
-        //     method: 'GET',
-        //     url: /organizations\/\d+\/ToDos/}).as('getAllTodosRoute');
-        // cy.get('[data-test=app-component-todo-list-menu]').click({ force: true });
-        // cy.wait(['@getAllTodosRoute']);
     })
 
     it('Zvolenie prvej organizacie', () => {
