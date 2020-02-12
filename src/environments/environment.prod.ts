@@ -1,6 +1,6 @@
 export const environment = {
     production: true,
 
-    apiUrl: 'https://demo.todos.gateway.api.kros.wtf',
+    apiUrl: 'https://kros-demo-apigateway-api.azurewebsites.net',
     identityServerCallBackUri: 'https://demo.todos.kros.wtf'
 };
