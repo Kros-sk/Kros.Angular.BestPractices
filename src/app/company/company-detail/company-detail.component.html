@@ -6,26 +6,33 @@
     <form [formGroup]="companyForm" (ngSubmit)="save()" class="d-flex justify-content-between">
         <div class="company-grid">
             <div class="name">
-                <input class="col mr-4" type="text" placeholder="Názov firmy" formControlName="organizationName">
+                <input class="col mr-4" type="text" placeholder="Názov firmy" formControlName="organizationName"
+                        data-test="add-company-name">
             </div>
             <div class="organizationId">
-                <input class="col mr-4" type="text" placeholder="IČO" formControlName="businessId">
+                <input class="col mr-4" type="text" placeholder="IČO" formControlName="businessId"
+                        data-test="add-company-bussines-id">
             </div>
             <div class="street">
-                <input class="col mr-4" type="text" placeholder="Ulica" formControlName="street">
+                <input class="col mr-4" type="text" placeholder="Ulica" formControlName="street"
+                        data-test="add-company-street">
             </div>
             <div class="streetNumber">
-                <input class="col mr-4" type="text" placeholder="Číslo" formControlName="streetNumber">
+                <input class="col mr-4" type="text" placeholder="Číslo" formControlName="streetNumber"
+                        data-test="add-company-street-number">
             </div>
             <div class="zipCode">
-                <input class="col mr-4" type="text" placeholder="PSČ" formControlName="zipCode">
+                <input class="col mr-4" type="text" placeholder="PSČ" formControlName="zipCode"
+                        data-test="add-company-zipcode">
             </div>
             <div class="city">
-                <input class="col mr-4" type="text" placeholder="Mesto" formControlName="city">
+                <input class="col mr-4" type="text" placeholder="Mesto" formControlName="city"
+                        data-test="add-company-city">
             </div>
             <div class="submit-btn">
                 <button class="btn btn-outline-success" type="submit" [disabled]="!companyForm.valid"
-                    i18n="@@add-todo-item-button">
+                    i18n="@@add-todo-item-button"
+                    data-test="save-company-button">
                     Save Company
                 </button>
             </div>

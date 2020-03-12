@@ -28,7 +28,8 @@
 
                 <button type="button" class="btn btn-outline-primary col" [routerLink]="['/company/list']"
                     i18n="@@app-component-todo-list-menu"
-                    [ngClass]="{'active':router.url.includes('company')}">
+                    [ngClass]="{'active':router.url.includes('company')}"
+                    data-test="app-component-todo-organizations-menu">
                     Organizations
                 </button>
 

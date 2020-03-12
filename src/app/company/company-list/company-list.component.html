@@ -1,5 +1,5 @@
 <ng-container *ngIf="!(errorMessage$ | async)">
-    <button class="btn btn-outline-success" (click)="addCompany()">
+    <button class="btn btn-outline-success" (click)="addCompany()" data-test="add-company-button">
         Add Company
     </button>
     <ul class="list-group mt-4">

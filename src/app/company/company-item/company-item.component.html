@@ -8,14 +8,16 @@
         {{item.organizationName}}
     </div>
     <div class="actions">
-        <button class="btn btn-outline-primary" (click)="selectCompany(item.id)" i18n="todo-item-add-button">
+        <button class="btn btn-outline-primary" (click)="selectCompany(item.id)" i18n="todo-item-add-button"
+                data-test="select-company-button">
             Select
         </button>
         <button class="btn btn-outline-primary" [routerLink]="['/company/settings', item.id]"
-            i18n=" todo-item-edit-button">
+            i18n=" todo-item-edit-button" data-test="edit-company-button">
             Edit
         </button>
-        <button class="btn btn-outline-danger" (click)="deleteCompany(item.id)" i18n="todo-item-delete-button">
+        <button class="btn btn-outline-danger" (click)="deleteCompany(item.id)" i18n="todo-item-delete-button"
+                data-test="delete-company-button">
             Delete
         </button>
     </div>
