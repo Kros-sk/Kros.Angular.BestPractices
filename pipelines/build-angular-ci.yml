@@ -9,6 +9,18 @@ workspace:
   clean: outputs
 
 steps:
+  - task: ArchiveFiles@2
+    displayName: 'Zip app source files'
+    inputs:
+      rootFolderOrFile: '$(Build.SourcesDirectory)'
+      archiveFile: '$(Build.ArtifactStagingDirectory)/app_sources.zip'
+     
+  - task: PublishPipelineArtifact@1
+    displayName: 'Publish artifacts: App sources'
+    inputs:
+      targetPath: '$(Build.ArtifactStagingDirectory)/app_sources.zip'
+      artifact: app_sources
+      
   - task: Npm@1
     displayName: 'npm install'
 
