@@ -19,9 +19,9 @@ steps:
       customCommand: 'run build'
 
   - task: ArchiveFiles@2
-    displayName: 'Zip app files'
+    displayName: 'Zip tests files'
     inputs:
-      rootFolderOrFile: '$(Build.SourcesDirectory)'
+      rootFolderOrFile: cypress
       archiveFile: '$(Build.ArtifactStagingDirectory)/cypress.zip'
 
   - task: PublishPipelineArtifact@1
@@ -31,10 +31,10 @@ steps:
       artifact: cypress
 
   - task: PublishPipelineArtifact@1
-    displayName: 'Publish artifacts: Cypress config'
+    displayName: 'Publish artifacts: package.json'
     inputs:
-      targetPath: cypress.json
-      artifact: 'cypress_config'
+      targetPath: package.json
+      artifactName: 'package_json'
 
   - task: PublishBuildArtifacts@1
     displayName: 'Publish artifacts: App'
