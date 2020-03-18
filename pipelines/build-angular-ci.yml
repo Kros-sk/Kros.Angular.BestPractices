@@ -13,6 +13,7 @@ steps:
     displayName: 'Zip app source files'
     inputs:
       rootFolderOrFile: '$(Build.SourcesDirectory)'
+      includeRootFolder: false
       archiveFile: '$(Build.ArtifactStagingDirectory)/app_sources.zip'
      
   - task: PublishPipelineArtifact@1
