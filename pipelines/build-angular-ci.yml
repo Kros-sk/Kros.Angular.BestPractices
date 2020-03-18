@@ -21,7 +21,7 @@ steps:
   - task: ArchiveFiles@2
     displayName: 'Zip tests files'
     inputs:
-      rootFolderOrFile: cypress
+      rootFolderOrFile: '$(Build.BinariesDirectory)'
       archiveFile: '$(Build.ArtifactStagingDirectory)/cypress.zip'
 
   - task: PublishPipelineArtifact@1
