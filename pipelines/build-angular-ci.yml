@@ -34,7 +34,7 @@ steps:
     displayName: 'Publish artifacts: package.json'
     inputs:
       targetPath: package.json
-      artifactName: 'package_json'
+      artifact: 'package_json'
 
   - task: PublishBuildArtifacts@1
     displayName: 'Publish artifacts: App'
