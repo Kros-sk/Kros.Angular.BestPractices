@@ -19,9 +19,9 @@ steps:
       customCommand: 'run build'
 
   - task: ArchiveFiles@2
-    displayName: 'Zip tests files'
+    displayName: 'Zip app files'
     inputs:
-      rootFolderOrFile: '$(Build.BinariesDirectory)'
+      rootFolderOrFile: '$(Build.SourcesDirectory)'
       archiveFile: '$(Build.ArtifactStagingDirectory)/cypress.zip'
 
   - task: PublishPipelineArtifact@1
