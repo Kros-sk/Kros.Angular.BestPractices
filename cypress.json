@@ -1,5 +1,6 @@
 {
     "chromeWebSecurity": false,
+    "testFiles": "**/*.feature",
 
     "projectId": "u3uuhi",
     "baseUrl": "https://demo.todos.kros.wtf",
@@ -9,5 +10,10 @@
     "OAuthUsername": "integrationtests@kros.sk",
     "OAuthPassword": "integrationtests",
     "UserEmail": "integrationtests@kros.sk",
-    "UserName": "Integration Tests"
+    "UserName": "Integration Tests",
+
+    "env":
+    {
+        "RETRIES": 3
+    }
 }
