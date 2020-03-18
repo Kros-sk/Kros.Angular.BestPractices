@@ -8,7 +8,7 @@ Given('kliknem na záložku poznámky', () => {
 });
 
 Given('vymažem všetky poznámky', () => {
-    cy.wait(300); // Waiting for add items to DOM
+    cy.wait(1000); // Waiting for add items to DOM
     Todos.deleteAllTodos();
 });
 
