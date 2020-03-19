@@ -21,4 +21,6 @@ module.exports = (on, config) => {
 
   on('file:preprocessor', cucumber())
   on('file:preprocessor', webpack(options))
+
+  require('cypress-plugin-retries/lib/plugin')(on)
 }

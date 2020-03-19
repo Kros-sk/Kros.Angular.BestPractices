@@ -16,8 +16,8 @@
 // Import commands.js using ES2015 syntax:
 import './commands'
 
-// Alternatively you can use CommonJS syntax:
-// require('./commands')
+require('cypress-plugin-retries')
+
 
 export function addNewTodo() {
     cy.get('[data-test=add-todo-item-name]').type('Nova poznamka');
